@@ -8,7 +8,7 @@ class MyTheme {
   static ThemeData lightTheme(BuildContext context) {
     return ThemeData(
       useMaterial3: true,
-      fontFamily: GoogleFonts.openSans().fontFamily,
+      fontFamily: GoogleFonts.lexendDeca().fontFamily,
       textTheme: TextTheme(
         labelLarge: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400),
         labelMedium: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w400),

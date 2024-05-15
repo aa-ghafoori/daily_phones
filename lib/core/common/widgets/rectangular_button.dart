@@ -23,14 +23,15 @@ class RectangularButton extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10.r, vertical: 10.r),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.h)),
-          elevation: 0,
           backgroundColor: backgroundColor ?? context.colorScheme.background,
           foregroundColor: textColor ?? context.colorScheme.onBackground,
           side: const BorderSide(color: Colors.transparent)),
       onPressed: () {},
       child: CustomText(
-        text: text,
-        textStyle: context.textTheme.bodySmall,
+        text: Text(
+          text,
+          style: context.textTheme.bodySmall,
+        ),
       ),
     );
   }

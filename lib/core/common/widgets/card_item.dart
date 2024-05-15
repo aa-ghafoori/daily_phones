@@ -41,18 +41,26 @@ class CardItem extends StatelessWidget {
                 : CrossAxisAlignment.center,
             children: [
               CustomText(
-                text: title,
-                color: context.colorScheme.background,
-                textStyle: !isSliderItem
-                    ? context.textTheme.titleSmall
-                    : context.textTheme.titleLarge,
+                text: Text(
+                  title,
+                  style: !isSliderItem
+                      ? context.textTheme.titleSmall?.copyWith(
+                          color: context.colorScheme.background,
+                        )
+                      : context.textTheme.titleLarge?.copyWith(
+                          color: context.colorScheme.background,
+                        ),
+                ),
               ),
               WhiteSpace(height: !isSliderItem ? 10 : 15),
               CustomText(
-                text: description,
-                color: context.colorScheme.background,
-                textStyle: context.textTheme.bodyMedium,
-                textAlign: TextAlign.center,
+                text: Text(
+                  description,
+                  textAlign: TextAlign.center,
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    color: context.colorScheme.background,
+                  ),
+                ),
               ),
               const WhiteSpace(height: 10),
               RectangularButton(text: buttonText ?? 'Repareer Nu'),

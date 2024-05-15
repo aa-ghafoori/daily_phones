@@ -1,7 +1,10 @@
 import 'package:daily_phones/core/common/widgets/custom_text.dart';
+import 'package:daily_phones/core/common/widgets/repair_item.dart';
 import 'package:daily_phones/core/common/widgets/round_button.dart';
 import 'package:daily_phones/core/common/widgets/white_space.dart';
 import 'package:daily_phones/core/res/extensions.dart';
+import 'package:daily_phones/core/res/image_resourses.dart';
+import 'package:daily_phones/on_boarding/views/widgets/repair_steps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,12 +17,18 @@ class Repairs extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CustomText(
-              text: 'Reparaties',
-              textStyle: context.textTheme.titleMedium,
+              text: Text('Reparaties', style: context.textTheme.titleMedium),
             ),
-            const RoundButton(text: 'Alle Reparaties')
+            RoundButton(
+              text: 'Alle Reparaties',
+              icon: Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 15.sp,
+              ),
+            ),
           ],
         ),
         const WhiteSpace(height: 10),
@@ -68,7 +77,17 @@ class Repairs extends StatelessWidget {
               ),
             ),
           ),
-        )
+        ),
+        const WhiteSpace(height: 70),
+        const RepairItem(image: ImageRes.spDp, text: 'Smartphone'),
+        const WhiteSpace(height: 70),
+        const RepairItem(image: ImageRes.tabletDp, text: 'iPads/Tablet'),
+        const WhiteSpace(height: 70),
+        const RepairItem(image: ImageRes.laptopDp, text: 'Mac/Windows'),
+        const WhiteSpace(height: 70),
+        const RepairItem(image: ImageRes.smartwatchDp1, text: 'Smartwatch'),
+        const WhiteSpace(height: 70),
+        const RepairSteps(),
       ],
     );
   }
