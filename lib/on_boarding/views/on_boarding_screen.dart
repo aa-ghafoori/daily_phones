@@ -13,7 +13,7 @@ class OnBoardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScaffold(
       body: ColoredBox(
-        color: context.colorScheme.onBackground.withOpacity(0.1),
+        color: context.colorScheme.onBackground.withOpacity(0.05),
         child: ListView(
           padding: EdgeInsets.all(12.h),
           children: const [

@@ -1,10 +1,11 @@
 import 'package:daily_phones/core/utils/theme/theme.dart';
-import 'package:daily_phones/on_boarding/views/on_boarding_screen.dart';
+import 'package:daily_phones/repair/views/repair_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'DAILY PHONES',
             theme: MyTheme.lightTheme(context),
-            home: const OnBoardingScreen(),
+            home: const RepairScreen(),
           );
         });
   }
