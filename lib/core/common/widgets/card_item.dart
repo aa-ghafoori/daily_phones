@@ -63,7 +63,7 @@ class CardItem extends StatelessWidget {
                 ),
               ),
               const WhiteSpace(height: 10),
-              RectangularButton(text: buttonText ?? 'Repareer Nu'),
+              RectangularButton(text: Text(buttonText ?? 'Repareer Nu')),
             ],
           ),
         )
