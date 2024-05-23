@@ -347,12 +347,12 @@ class ColorMap {
   static const Color black = Color.fromARGB(255, 73, 76, 80);
   static const Color white = Colors.white;
   static const Color red = Color.fromARGB(255, 195, 66, 57);
-  static const Color blue = Color.fromARGB(255, 215, 220, 225);
+  static const Color blue = Color.fromARGB(255, 103, 152, 201);
   static const Color green = Color.fromARGB(255, 213, 221, 206);
-  static const Color yellow = Color.fromARGB(255, 236, 232, 203);
+  static const Color yellow = Color.fromARGB(255, 208, 189, 96);
   static const Color purple = Colors.purple;
   static const Color pink = Color.fromARGB(255, 232, 213, 212);
-  static const Color gold = Color.fromARGB(255, 248, 236, 211);
+  static const Color gold = Color.fromARGB(255, 248, 229, 189);
   static const Color silver = Color.fromARGB(255, 227, 228, 222);
 }
 

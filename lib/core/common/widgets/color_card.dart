@@ -19,28 +19,24 @@ class ColorCard extends ConsumerWidget {
         final notifier = ref.read(productNotifierProvider.notifier);
         notifier.setSelectedColor(item);
       },
-      child: Container(
+      child: AnimatedContainer(
+        duration: Durations.short2,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           border: isSelected
               ? Border.all(
                   color: Theme.of(context).colorScheme.secondary,
                   width: 1.5,
-                  strokeAlign: BorderSide.strokeAlignOutside,
                 )
               : null,
-          boxShadow: !isSelected
-              ? [
-                  BoxShadow(
-                    blurRadius: 4,
-                    blurStyle: BlurStyle.outer,
-                    color: Theme.of(context)
-                        .colorScheme
-                        .onBackground
-                        .withOpacity(0.2),
-                  ),
-                ]
-              : null,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 4,
+              blurStyle: BlurStyle.outer,
+              color:
+                  Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
+            ),
+          ],
         ),
         child: child,
       ),

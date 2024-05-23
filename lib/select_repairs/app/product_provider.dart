@@ -1,4 +1,5 @@
 import 'package:daily_phones/core/res/constants.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'product_provider.g.dart';
@@ -10,8 +11,10 @@ class ProductNotifier extends _$ProductNotifier {
     return MyState(product: Product.empty);
   }
 
-  void setProduct(Product product) {
-    state = state.copyWith(product: product);
+  void setProduct(Product product, WidgetRef ref) {
+    if (state.product != product) {
+      state = MyState(product: product);
+    }
   }
 
   void addItem(item) {

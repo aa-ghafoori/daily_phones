@@ -4,13 +4,15 @@ import 'package:daily_phones/core/common/widgets/secondary_button.dart';
 import 'package:daily_phones/core/common/widgets/top_shadow_container.dart';
 import 'package:daily_phones/core/common/widgets/white_space.dart';
 import 'package:daily_phones/core/res/extensions.dart';
+import 'package:daily_phones/core/res/image_resourses.dart';
+import 'package:daily_phones/select_repairs/app/list_key_provider.dart';
 import 'package:daily_phones/select_repairs/app/product_provider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class RepairSummary extends ConsumerWidget {
+class RepairSummary extends ConsumerStatefulWidget {
   const RepairSummary(
       {required this.title, required this.selectedItems, super.key});
 
@@ -18,8 +20,16 @@ class RepairSummary extends ConsumerWidget {
   final List selectedItems;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final totalPrice = selectedItems.fold<double>(
+  RepairSummaryState createState() => RepairSummaryState();
+}
+
+class RepairSummaryState extends ConsumerState<RepairSummary> {
+  @override
+  Widget build(BuildContext context) {
+    final listKey = ref.watch(listKeyProvider);
+    final items = widget.selectedItems;
+
+    final totalPrice = items.fold<double>(
         0, (total, item) => total + (double.parse(item.price)));
 
     String numberString = totalPrice.toStringAsFixed(2);
@@ -36,13 +46,20 @@ class RepairSummary extends ConsumerWidget {
                 ?.copyWith(color: context.colorScheme.secondary),
           ),
           const WhiteSpace(height: 10),
-          Text(title.toUpperCase()),
+          Text(widget.title.toUpperCase()),
           const WhiteSpace(height: 15),
-          Column(
-            children: selectedItems
-                .map((item) =>
-                    _buildCheckoutItem(item: item, context: context, ref: ref))
-                .toList(),
+          AnimatedList(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            key: listKey,
+            initialItemCount: items.length,
+            itemBuilder: (context, index, animation) {
+              return BuildCheckoutItem(
+                item: items[index],
+                animation: animation,
+                index: index,
+              );
+            },
           ),
           Divider(
             color: context.colorScheme.onBackground.withOpacity(0.05),
@@ -58,13 +75,15 @@ class RepairSummary extends ConsumerWidget {
               ),
               const Spacer(),
               SizedBox(
-                  width: 0.17.sw,
-                  child: Center(
-                      child: Text(
+                width: 0.17.sw,
+                child: Center(
+                  child: Text(
                     numberString,
                     style: context.textTheme.bodyLarge
                         ?.copyWith(fontWeight: FontWeight.w300),
-                  ))),
+                  ),
+                ),
+              ),
             ],
           ),
           const WhiteSpace(height: 15),
@@ -140,7 +159,7 @@ class RepairSummary extends ConsumerWidget {
                         forceStrutHeight: true, height: 1.8, leading: 1.5),
                   ),
                   Text(
-                    decimalPart != '0' ? decimalPart : '',
+                    int.parse(decimalPart) > 0 ? decimalPart : '',
                   ),
                 ],
               ),
@@ -201,50 +220,74 @@ class RepairSummary extends ConsumerWidget {
       ),
     );
   }
+}
 
-  Widget _buildCheckoutItem(
-      {required dynamic item,
-      required BuildContext context,
-      required WidgetRef ref}) {
-    return Row(
-      children: [
-        const WhiteSpace(height: 45),
-        GestureDetector(
-          onTap: () =>
-              ref.read(productNotifierProvider.notifier).removeItem(item),
-          child: Icon(
-            CupertinoIcons.xmark,
-            size: 14,
-            color: context.colorScheme.secondary.withOpacity(0.8),
-          ),
-        ),
-        const WhiteSpace(width: 30),
-        Text(
-          item.title,
-          style: context.textTheme.bodyMedium?.copyWith(
-            fontWeight: FontWeight.w300,
-          ),
-        ),
-        const Spacer(),
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 5.h),
-          width: 0.17.sw,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4.r),
-            color: context.colorScheme.secondary,
-          ),
-          child: Center(
-            child: Text(
-              item.price,
-              style: context.textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-                color: context.colorScheme.background,
-                fontSize: 16,
+class BuildCheckoutItem extends ConsumerWidget {
+  const BuildCheckoutItem(
+      {required this.index,
+      required this.item,
+      required this.animation,
+      super.key});
+
+  final dynamic item;
+  final Animation<double> animation;
+  final int index;
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SlideTransition(
+      position: Tween<Offset>(
+        begin: const Offset(-5, 0),
+        end: const Offset(0, 0),
+      ).animate(animation),
+      child: Row(
+        children: [
+          const WhiteSpace(height: 45),
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              ref.read(productNotifierProvider.notifier).removeItem(item);
+              ref.read(listKeyProvider.notifier).removeItem(index, item);
+            },
+            child: CircleAvatar(
+              backgroundColor: Colors.transparent,
+              child: SvgPicture.asset(
+                ImageRes.close,
+                height: 10.w,
+                colorFilter: ColorFilter.mode(
+                  context.colorScheme.secondary.withOpacity(0.4),
+                  BlendMode.srcIn,
+                ),
               ),
             ),
           ),
-        )
-      ],
+          const WhiteSpace(width: 30),
+          Text(
+            item.title,
+            style: context.textTheme.bodyMedium?.copyWith(
+              fontWeight: FontWeight.w300,
+            ),
+          ),
+          const Spacer(),
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 5.h),
+            width: 0.17.sw,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4.r),
+              color: context.colorScheme.secondary,
+            ),
+            child: Center(
+              child: Text(
+                item.price,
+                style: context.textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: context.colorScheme.background,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -20,6 +20,7 @@ class ImageRes {
   static const netherlands = '$_basePath/netherlands.png';
   static const phone = '$_basePath/phone.svg';
   static const question = '$_basePath/question.svg';
+  static const close = '$_basePath/close.svg';
   static const alcatel = '$_basePath/alcatel.png';
   static const apple = '$_basePath/apple.png';
   static const asus = '$_basePath/asus.png';

@@ -1,3 +1,4 @@
+import 'package:daily_phones/select_repairs/app/list_key_provider.dart';
 import 'package:daily_phones/select_repairs/app/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,15 +22,21 @@ class NewCard extends ConsumerWidget {
           final notifier = ref.read(productNotifierProvider.notifier);
           if (isSelected) {
             notifier.removeItem(item);
+            ref
+                .read(listKeyProvider.notifier)
+                .removeItem(state.selectedItems.indexOf(item), item);
           } else {
             notifier.addItem(item);
+            final index = selectedItems.length;
+            ref.read(listKeyProvider.notifier).addItem(index, item);
             if (onTap != null) {
               onTap!();
             }
           }
         }
       },
-      child: Container(
+      child: AnimatedContainer(
+        duration: Durations.medium1,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           border: isSelected
