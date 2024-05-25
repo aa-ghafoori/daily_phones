@@ -1,4 +1,3 @@
-import 'package:daily_phones/core/res/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

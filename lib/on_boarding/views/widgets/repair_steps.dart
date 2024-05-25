@@ -44,6 +44,7 @@ class RepairSteps extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     const Text('Plan Je Afspraak!'),
+                    const WhiteSpace(width: 5),
                     Icon(
                       Icons.arrow_forward_ios_rounded,
                       size: 15.sp,

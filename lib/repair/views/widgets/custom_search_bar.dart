@@ -15,7 +15,9 @@ import 'package:daily_phones/core/res/extensions.dart';
 import 'package:daily_phones/core/res/image_resourses.dart';
 
 class CustomSearchBar extends ConsumerStatefulWidget {
-  const CustomSearchBar({super.key});
+  const CustomSearchBar({required this.onControllerCreated, super.key});
+
+  final Function(ScrollController) onControllerCreated;
 
   @override
   ConsumerState<CustomSearchBar> createState() => _CustomSearchBarState();
@@ -23,6 +25,8 @@ class CustomSearchBar extends ConsumerStatefulWidget {
 
 class _CustomSearchBarState extends ConsumerState<CustomSearchBar> {
   final FocusNode _focusNode = FocusNode();
+  final ScrollController _scrollController = ScrollController();
+  final GlobalKey _textFieldKey = GlobalKey();
   late List<SmartphoneBrand> _filteredList;
 
   @override
@@ -31,17 +35,41 @@ class _CustomSearchBarState extends ConsumerState<CustomSearchBar> {
     _filteredList = smartphoneBrands;
     _focusNode.addListener(_onFocusChange);
     ref.read(searchBarNotifierProvider.notifier).setFocusNode(_focusNode);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.onControllerCreated(_scrollController);
+    });
   }
 
   @override
   void dispose() {
     _focusNode.removeListener(_onFocusChange);
     _focusNode.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
   void _onFocusChange() {
     ref.read(searchBarNotifierProvider.notifier).setFocus(_focusNode.hasFocus);
+    if (_focusNode.hasFocus) {
+      _scrollToTextField();
+    }
+  }
+
+  void _scrollToTextField() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final textFieldContext = _textFieldKey.currentContext;
+      if (textFieldContext != null) {
+        final box = textFieldContext.findRenderObject() as RenderBox;
+        final position = box.localToGlobal(Offset.zero, ancestor: null);
+        final topOffset = position.dy;
+
+        _scrollController.animateTo(
+          _scrollController.offset + topOffset - 160,
+          duration: Durations.long4,
+          curve: Curves.easeInOutExpo,
+        );
+      }
+    });
   }
 
   void _handleTextChanged(String value) {
@@ -122,6 +150,7 @@ class _CustomSearchBarState extends ConsumerState<CustomSearchBar> {
                         ],
                       ),
                       child: TextField(
+                        key: _textFieldKey,
                         focusNode: _focusNode,
                         onChanged: _handleTextChanged,
                         cursorColor: context.colorScheme.onBackground,

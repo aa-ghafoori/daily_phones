@@ -16,7 +16,6 @@ import 'package:daily_phones/select_repairs/views/widgets/repair_summary.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -43,11 +42,8 @@ class _SelectRepairsScreenState extends State<SelectRepairsScreen> {
   void _scrollToRepairSummary() {
     final context = _repairSummaryKey.currentContext;
     if (context != null) {
-      Scrollable.ensureVisible(
-        context,
-        duration: Durations.medium3,
-        curve: Curves.easeInOut,
-      );
+      Scrollable.ensureVisible(context,
+          duration: Durations.long4, curve: Curves.easeInOutExpo);
     }
   }
 
