@@ -1,4 +1,3 @@
-import 'package:daily_phones/core/common/widgets/custom_text.dart';
 import 'package:daily_phones/core/common/widgets/white_space.dart';
 import 'package:daily_phones/core/res/extensions.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +12,10 @@ class RepairItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const WhiteSpace(height: 70),
         Image.asset(image),
-        const WhiteSpace(height: 30),
-        CustomText(text: Text(text, style: context.textTheme.titleMedium))
+        const WhiteSpace(height: 20),
+        Text(text, style: context.textTheme.titleMedium),
       ],
     );
   }

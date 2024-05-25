@@ -1,11 +1,8 @@
 import 'package:daily_phones/core/common/widgets/custom_scaffold.dart';
-import 'package:daily_phones/core/res/extensions.dart';
 import 'package:daily_phones/core/common/widgets/white_space.dart';
 import 'package:daily_phones/on_boarding/views/widgets/card_collection.dart';
 import 'package:daily_phones/on_boarding/views/widgets/repairs.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -55,40 +52,29 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      body: ColoredBox(
-        color: context.colorScheme.onBackground.withOpacity(0.05),
-        child: Stack(
-          children: [
-            ListView(
-              controller: _scrollController,
-              padding: EdgeInsets.all(12.h),
-              children: const [
-                CardCollection(),
-                WhiteSpace(height: 30),
-                Repairs(),
-                WhiteSpace(height: 60),
-              ],
-            ),
-            if (_isVisible)
-              Positioned(
-                right: 10,
-                bottom: 10,
-                child: FloatingActionButton.small(
-                  onPressed: _scrollToTop,
-                  backgroundColor:
-                      context.colorScheme.background.withOpacity(0.9),
-                  shape: const CircleBorder(),
-                  splashColor: Colors.transparent,
-                  child: Icon(
-                    CupertinoIcons.chevron_up,
-                    size: 16,
-                    color: context.colorScheme.onBackground.withOpacity(0.7),
-                  ),
-                ),
-              )
-          ],
-        ),
-      ),
+      controller: _scrollController,
+      body: const [
+        CardCollection(),
+        WhiteSpace(height: 30),
+        Repairs(),
+      ],
     );
   }
 }
+          // if (_isVisible)
+          //   Positioned(
+          //     right: 10,
+          //     bottom: 10,
+          //     child: FloatingActionButton.small(
+          //       onPressed: _scrollToTop,
+          //       backgroundColor:
+          //           context.colorScheme.background.withOpacity(0.9),
+          //       shape: const CircleBorder(),
+          //       splashColor: Colors.transparent,
+          //       child: Icon(
+          //         CupertinoIcons.chevron_up,
+          //         size: 16,
+          //         color: context.colorScheme.onBackground.withOpacity(0.7),
+          //       ),
+          //     ),
+          //   )

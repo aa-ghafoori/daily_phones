@@ -3,6 +3,43 @@ import 'dart:math';
 import 'package:daily_phones/core/res/image_resourses.dart';
 import 'package:flutter/material.dart';
 
+void redPrint(String text) {
+  debugPrint("\u001b[1;31m $text");
+}
+
+void greenPrint(String text) {
+  debugPrint("\u001b[1;32m $text");
+}
+
+void yellowPrint(String text) {
+  debugPrint("\u001b[1;33m $text");
+}
+
+List<String> storeList = [
+  'Reparaties',
+  'Smartphones',
+  'Screenprotector',
+  'Accessories',
+  'Laptops',
+  'iPads/Tablets'
+];
+List<String> dailyPhonesList = [
+  'Privacybeleid',
+  'Algemene Voorwaarden',
+  'Garantiebeleid',
+  'Retourbeleid',
+  'Betaalmethoden',
+  'Verzending',
+  'klachtenprocedure'
+];
+
+List<String> footerImages = [
+  ImageRes.marktplace,
+  ImageRes.facebook,
+  ImageRes.google2,
+  ImageRes.instagram
+];
+
 class Repair {
   final String title;
   final String duration;

@@ -1,22 +1,28 @@
 import 'package:daily_phones/core/res/constants.dart';
-import 'package:daily_phones/select_repairs/app/product_provider.dart';
+import 'package:daily_phones/select_repairs/app/cubit/product_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ColorCard extends ConsumerWidget {
   final Widget child;
   final SmartphoneColor item;
+  final ProductState? state;
 
-  const ColorCard({super.key, required this.child, required this.item});
+  const ColorCard({
+    super.key,
+    required this.child,
+    required this.item,
+    this.state,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(productNotifierProvider);
-    final isSelected = state.selectedColor == item;
+    final isSelected = state != null && (state!.selectedColor == item);
 
     return GestureDetector(
       onTap: () {
-        final notifier = ref.read(productNotifierProvider.notifier);
+        final notifier = context.read<ProductCubit>();
         notifier.setSelectedColor(item);
       },
       child: AnimatedContainer(

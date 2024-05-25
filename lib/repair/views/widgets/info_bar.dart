@@ -16,25 +16,27 @@ class InfoBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          children: [
-            GestureDetector(
-              onTap: () => context.navigator.pop(),
-              child: Container(
-                padding: EdgeInsets.all(8.r),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  color: context.colorScheme.secondary.withOpacity(0.2),
-                ),
-                child: Image.asset(
-                  ImageRes.backArrow,
-                  scale: 7.r,
+        Expanded(
+          child: Row(
+            children: [
+              GestureDetector(
+                onTap: () => context.navigator.pop(),
+                child: Container(
+                  padding: EdgeInsets.all(8.r),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.r),
+                    color: context.colorScheme.secondary.withOpacity(0.2),
+                  ),
+                  child: Image.asset(
+                    ImageRes.backArrow,
+                    scale: 7.r,
+                  ),
                 ),
               ),
-            ),
-            const WhiteSpace(width: 15),
-            title
-          ],
+              const WhiteSpace(width: 15),
+              Expanded(child: title)
+            ],
+          ),
         ),
         const LanguagePicker()
       ],

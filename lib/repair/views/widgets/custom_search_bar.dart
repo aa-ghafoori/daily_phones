@@ -1,11 +1,12 @@
+import 'package:daily_phones/core/common/widgets/description.dart';
 import 'package:daily_phones/core/res/constants.dart';
 import 'package:daily_phones/repair/app/search_bar_provider.dart';
 import 'package:daily_phones/repair/views/widgets/grid_list.dart';
-import 'package:daily_phones/select_repairs/app/list_key_provider.dart';
-import 'package:daily_phones/select_repairs/app/product_provider.dart';
-import 'package:daily_phones/select_repairs/views/select_repairs_screen.dart';
+import 'package:daily_phones/select_repairs/app/cubit/list_key_cubit.dart';
+import 'package:daily_phones/select_repairs/app/cubit/product_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -56,22 +57,12 @@ class _CustomSearchBarState extends ConsumerState<CustomSearchBar> {
     });
   }
 
-  void _onProductClicked(Product product) {
-    ref.read(productNotifierProvider.notifier).setProduct(product, ref);
-    ref.read(listKeyProvider.notifier).refreshKey();
-    navigateToSelectRepairsScreen();
-    _focusNode.unfocus();
-    ref.watch(productNotifierProvider);
-    ref.watch(listKeyProvider);
-  }
+  void _onProductClicked(Product product, BuildContext context) {
+    context.read<ProductCubit>().setProduct(product);
+    context.read<ListKeyCubit>().refreshKey();
 
-  void navigateToSelectRepairsScreen() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const SelectRepairsScreen(),
-      ),
-    );
+    context.navigator.pushNamed('/select_repair');
+    _focusNode.unfocus();
   }
 
   @override
@@ -88,42 +79,16 @@ class _CustomSearchBarState extends ConsumerState<CustomSearchBar> {
                 color: context.colorScheme.onBackground.withOpacity(0.05),
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: Column(
+              child: const Column(
                 children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        size: 13,
-                        color: context.colorScheme.secondary,
-                      ),
-                      const WhiteSpace(width: 5),
-                      Expanded(
-                        child: Text.rich(
-                          TextSpan(
-                            style: context.textTheme.bodyMedium
-                                ?.copyWith(fontWeight: FontWeight.w300),
-                            text: 'Voer het ',
-                            children: [
-                              TextSpan(
-                                text: 'merk, model',
-                                style: context.textTheme.bodyMedium
-                                    ?.copyWith(fontWeight: FontWeight.w600),
-                              ),
-                              const TextSpan(text: ' of '),
-                              TextSpan(
-                                text: 'modelcode',
-                                style: context.textTheme.bodyMedium
-                                    ?.copyWith(fontWeight: FontWeight.w600),
-                              ),
-                              const TextSpan(text: ' in.'),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+                  Description(
+                    text1: 'Voer het',
+                    text3: 'of',
+                    text2: 'merk, model',
+                    text4: 'modelcode',
+                    text5: 'in',
                   ),
-                  const WhiteSpace(height: 70),
+                  WhiteSpace(height: 60),
                 ],
               ),
             ),
@@ -131,7 +96,7 @@ class _CustomSearchBarState extends ConsumerState<CustomSearchBar> {
           ],
         ),
         Positioned(
-          top: 68.h,
+          top: 63.h,
           left: 15.w,
           right: 10.w,
           child: Column(
@@ -264,6 +229,7 @@ class _CustomSearchBarState extends ConsumerState<CustomSearchBar> {
                 ],
               ),
               AnimatedContainer(
+                clipBehavior: Clip.hardEdge,
                 duration: Durations.short3,
                 decoration: BoxDecoration(
                   color: context.colorScheme.background,
@@ -284,6 +250,9 @@ class _CustomSearchBarState extends ConsumerState<CustomSearchBar> {
                     ? EdgeInsets.zero
                     : EdgeInsets.only(left: 80.w, right: 120.w),
                 child: Scrollbar(
+                  trackVisibility: true,
+                  radius: Radius.circular(15.r),
+                  thickness: 8.w,
                   child: SingleChildScrollView(
                     child: Column(
                         children: _filteredList
@@ -291,10 +260,12 @@ class _CustomSearchBarState extends ConsumerState<CustomSearchBar> {
                               (brand) => brand.products.map(
                                 (product) => GestureDetector(
                                   behavior: HitTestBehavior.translucent,
-                                  onTap: () => _onProductClicked(Product(
-                                      name: product.name,
-                                      colors: product.colors,
-                                      brand: brand.brand)),
+                                  onTap: () => _onProductClicked(
+                                      Product(
+                                          name: product.name,
+                                          colors: product.colors,
+                                          brand: brand.brand),
+                                      context),
                                   child: _DropDownMenuItem(
                                     brandName: brand.brand,
                                     description: product.name,
@@ -337,17 +308,16 @@ class _DropDownMenuItem extends StatelessWidget {
             children: [
               Text(
                 brandName,
-                style: context.textTheme.bodySmall?.copyWith(
-                  color: context.colorScheme.secondary,
-                  fontSize: 12,
-                ),
+                style: context.textTheme.labelMedium?.copyWith(
+                    color: context.colorScheme.secondary,
+                    fontWeight: FontWeight.w400),
               ),
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
                   description,
                   style: context.textTheme.bodySmall
-                      ?.copyWith(fontWeight: FontWeight.w500),
+                      ?.copyWith(fontWeight: FontWeight.w600, fontSize: 13.sp),
                 ),
               ),
             ],

@@ -1,5 +1,3 @@
-import 'package:daily_phones/core/common/widgets/custom_text.dart';
-import 'package:daily_phones/core/common/widgets/white_space.dart';
 import 'package:daily_phones/core/res/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,40 +6,33 @@ class RoundButton extends StatelessWidget {
   const RoundButton({
     required this.text,
     this.backgroundColor,
-    this.textColor,
-    this.icon,
+    this.onPressed,
     super.key,
   });
 
-  final String text;
+  final Widget text;
   final Color? backgroundColor;
-  final Color? textColor;
-  final Widget? icon;
+  final VoidCallback? onPressed;
+
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-        style: OutlinedButton.styleFrom(
-          backgroundColor: backgroundColor ?? context.colorScheme.primary,
-          foregroundColor: textColor ?? context.colorScheme.background,
-          padding: EdgeInsets.symmetric(horizontal: 15.w),
-          side: const BorderSide(color: Colors.transparent),
+      style: OutlinedButton.styleFrom(
+        minimumSize: Size.zero,
+        padding: EdgeInsets.symmetric(horizontal: 13.r, vertical: 9.r),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.r)),
+        backgroundColor: backgroundColor ?? context.colorScheme.onPrimary,
+        side: const BorderSide(color: Colors.transparent),
+      ),
+      onPressed: onPressed,
+      child: DefaultTextStyle.merge(
+        child: text,
+        style: context.textTheme.labelLarge?.copyWith(
+          color: context.colorScheme.background,
+          fontWeight: FontWeight.w500,
         ),
-        onPressed: () {},
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CustomText(
-              text: Text(
-                text,
-                style: TextStyle(
-                    color: context.colorScheme.background,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            if (icon != null) const WhiteSpace(width: 5),
-            if (icon != null) icon!,
-          ],
-        ));
+      ),
+    );
   }
 }

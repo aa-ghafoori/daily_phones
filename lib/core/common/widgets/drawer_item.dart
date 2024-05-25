@@ -1,4 +1,5 @@
 import 'package:daily_phones/core/res/extensions.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,21 +27,28 @@ class DrawerItem extends StatelessWidget {
                   ContinuousRectangleBorder(borderRadius: BorderRadius.zero))),
           onPressed: onPressed,
           icon: Container(
-            height: 60,
+            height: 60.h,
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: hasIcon
                 ? Row(
                     children: [
-                      Text(text),
+                      Text(
+                        text,
+                        style: context.textTheme.labelLarge?.copyWith(
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                       const Spacer(),
                       Row(
                         children: [
-                          const VerticalDivider(),
+                          const VerticalDivider(thickness: 0),
                           Padding(
                             padding: EdgeInsets.only(left: 15.w),
                             child: Icon(
-                              Icons.arrow_forward_ios_rounded,
+                              CupertinoIcons.chevron_right,
                               size: 17.h,
+                              color:
+                                  context.colorScheme.tertiary.withOpacity(0.5),
                             ),
                           )
                         ],
@@ -51,15 +59,17 @@ class DrawerItem extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       text,
-                      style: text == 'Reparaties'
-                          ? context.textTheme.bodyMedium
-                              ?.copyWith(color: context.colorScheme.secondary)
-                          : null,
+                      style: context.textTheme.labelLarge?.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
           ),
         ),
-        const Divider(height: 0)
+        const Divider(
+          height: 0,
+          thickness: 0,
+        )
       ],
     );
   }

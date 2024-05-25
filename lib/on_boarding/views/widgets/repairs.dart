@@ -1,4 +1,3 @@
-import 'package:daily_phones/core/common/widgets/custom_text.dart';
 import 'package:daily_phones/core/common/widgets/repair_item.dart';
 import 'package:daily_phones/core/common/widgets/round_button.dart';
 import 'package:daily_phones/core/common/widgets/white_space.dart';
@@ -19,14 +18,18 @@ class Repairs extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CustomText(
-              text: Text('Reparaties', style: context.textTheme.titleMedium),
-            ),
+            Text('Reparaties', style: context.textTheme.titleMedium),
             RoundButton(
-              text: 'Alle Reparaties',
-              icon: Icon(
-                Icons.arrow_forward_ios_rounded,
-                size: 15.sp,
+              text: Row(
+                children: [
+                  const Text('Alle Reparaties'),
+                  const WhiteSpace(width: 5),
+                  Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 15.sp,
+                    color: context.colorScheme.background,
+                  ),
+                ],
               ),
             ),
           ],
@@ -43,8 +46,8 @@ class Repairs extends StatelessWidget {
             borderRadius: BorderRadius.circular(90.r),
           ),
           child: TextField(
-            style: context.textTheme.bodyLarge!.copyWith(
-                color: context.colorScheme.onBackground.withOpacity(0.9)),
+            style: context.textTheme.bodyMedium
+                ?.copyWith(color: context.colorScheme.tertiary),
             decoration: InputDecoration(
               suffixIcon: CircleAvatar(
                 radius: 20.r,
@@ -57,8 +60,6 @@ class Repairs extends StatelessWidget {
               suffixIconConstraints:
                   BoxConstraints(minHeight: 0, minWidth: 55.w),
               hintText: 'Zoek je merk, model of modelcode',
-              hintStyle: context.textTheme.bodyLarge!.copyWith(
-                  color: context.colorScheme.onBackground.withOpacity(0.9)),
               filled: true,
               fillColor: context.colorScheme.background,
               contentPadding:
@@ -78,13 +79,9 @@ class Repairs extends StatelessWidget {
             ),
           ),
         ),
-        const WhiteSpace(height: 70),
         const RepairItem(image: ImageRes.spDp, text: 'Smartphone'),
-        const WhiteSpace(height: 70),
         const RepairItem(image: ImageRes.tabletDp, text: 'iPads/Tablet'),
-        const WhiteSpace(height: 70),
         const RepairItem(image: ImageRes.laptopDp, text: 'Mac/Windows'),
-        const WhiteSpace(height: 70),
         const RepairItem(image: ImageRes.smartwatchDp1, text: 'Smartwatch'),
         const WhiteSpace(height: 70),
         const RepairSteps(),

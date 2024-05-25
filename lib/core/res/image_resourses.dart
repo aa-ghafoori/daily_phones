@@ -42,6 +42,11 @@ class ImageRes {
   static const samsung = '$_basePath/samsung.png';
   static const sony = '$_basePath/sony.png';
   static const xiaomi = '$_basePath/xiaomi.png';
+  static const marktplace = '$_basePath/marktplace.png';
+  static const facebook = '$_basePath/facebook.png';
+  static const google2 = '$_basePath/google2.png';
+  static const mark = '$_basePath/mark.png';
+  static const instagram = '$_basePath/instagram.png';
   static const iphone15 = '$_basePath/iphone15.png';
   static const charge = '$_basePath/charge.jpeg';
   static const investigation = '$_basePath/investigation.jpeg';

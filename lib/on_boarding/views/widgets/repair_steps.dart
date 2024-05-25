@@ -17,36 +17,39 @@ class RepairSteps extends StatelessWidget {
       child: ColoredBox(
         color: context.colorScheme.secondary,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 30.h),
+          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 30.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Jouw Reparatie: 3 Eenvoudige Stappen',
-                style: context.textTheme.titleLarge
+                style: context.textTheme.titleMedium
                     ?.copyWith(color: context.colorScheme.background),
               ),
-              const WhiteSpace(height: 20),
               const RepairStepsItem(
                   title: 'Type Selectie',
                   description:
                       'Kies het type apparaat dat gerepareerd moet worden.'),
-              const WhiteSpace(height: 20),
               const RepairStepsItem(
                   title: 'Reparatie Keuze',
                   description:
                       'Bepaal welke reparatie nodig is voor het geselecteerde item.'),
-              const WhiteSpace(height: 20),
               const RepairStepsItem(
                   title: 'Afspraak Plannen',
                   description:
                       'Regel een geschikt moment om de reparatie uit te laten voeren.'),
               const WhiteSpace(height: 20),
               RoundButton(
-                text: 'Alle Reparaties',
-                icon: Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 15.sp,
+                text: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text('Plan Je Afspraak!'),
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 15.sp,
+                      color: context.colorScheme.background,
+                    ),
+                  ],
                 ),
               ),
             ],

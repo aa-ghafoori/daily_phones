@@ -1,4 +1,3 @@
-import 'package:daily_phones/core/common/widgets/custom_text.dart';
 import 'package:daily_phones/core/common/widgets/rectangular_button.dart';
 import 'package:daily_phones/core/common/widgets/white_space.dart';
 import 'package:daily_phones/core/res/extensions.dart';
@@ -30,7 +29,7 @@ class CardItem extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(
             vertical: !isSliderItem ? 5.h : 30.h,
-            horizontal: !isSliderItem ? 30.w : 10.w,
+            horizontal: !isSliderItem ? 30.w : 20.w,
           ),
           child: Column(
             mainAxisAlignment: !isSliderItem
@@ -40,29 +39,25 @@ class CardItem extends StatelessWidget {
                 ? CrossAxisAlignment.start
                 : CrossAxisAlignment.center,
             children: [
-              CustomText(
-                text: Text(
-                  title,
-                  style: !isSliderItem
-                      ? context.textTheme.titleSmall?.copyWith(
-                          color: context.colorScheme.background,
-                        )
-                      : context.textTheme.titleLarge?.copyWith(
-                          color: context.colorScheme.background,
-                        ),
-                ),
+              Text(
+                title,
+                style: !isSliderItem
+                    ? context.textTheme.titleSmall?.copyWith(
+                        color: context.colorScheme.background,
+                        fontWeight: FontWeight.w600)
+                    : context.textTheme.titleMedium?.copyWith(
+                        color: context.colorScheme.background,
+                      ),
               ),
               WhiteSpace(height: !isSliderItem ? 10 : 15),
-              CustomText(
-                text: Text(
-                  description,
-                  textAlign: TextAlign.center,
-                  style: context.textTheme.bodyMedium?.copyWith(
-                    color: context.colorScheme.background,
-                  ),
+              Text(
+                description,
+                textAlign: TextAlign.center,
+                style: context.textTheme.bodySmall?.copyWith(
+                  color: context.colorScheme.background,
                 ),
               ),
-              const WhiteSpace(height: 10),
+              const WhiteSpace(height: 5),
               RectangularButton(text: Text(buttonText ?? 'Repareer Nu')),
             ],
           ),

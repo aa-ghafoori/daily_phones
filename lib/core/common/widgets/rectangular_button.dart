@@ -19,13 +19,17 @@ class RectangularButton extends StatelessWidget {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
         minimumSize: Size.zero,
-        padding: EdgeInsets.all(10.r),
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 9.h),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.h)),
         backgroundColor: backgroundColor ?? context.colorScheme.background,
         side: const BorderSide(color: Colors.transparent),
       ),
       onPressed: onPressed,
-      child: text,
+      child: DefaultTextStyle.merge(
+        child: text,
+        style:
+            context.textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w500),
+      ),
     );
   }
 }

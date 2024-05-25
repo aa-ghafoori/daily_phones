@@ -1,6 +1,7 @@
 import 'package:daily_phones/core/res/extensions.dart';
 import 'package:daily_phones/core/res/image_resourses.dart';
 import 'package:daily_phones/core/common/widgets/card_item.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -58,17 +59,25 @@ class _PageSliderState extends State<PageSlider> {
             padding: EdgeInsets.only(left: 5.w),
             child: GestureDetector(
               onTap: () => _controller.previousPage(),
-              child: Icon(
-                Icons.arrow_back_ios,
-                size: 20.h,
+              child: CircleAvatar(
+                backgroundColor: Colors.black.withOpacity(0.02),
+                child: Icon(
+                  CupertinoIcons.chevron_left,
+                  size: 20.h,
+                  color: context.colorScheme.tertiary,
+                ),
               ),
             ),
           ),
           GestureDetector(
             onTap: () => _controller.nextPage(),
-            child: Icon(
-              Icons.arrow_forward_ios,
-              size: 20.h,
+            child: CircleAvatar(
+              backgroundColor: Colors.black.withOpacity(0.02),
+              child: Icon(
+                CupertinoIcons.chevron_right,
+                size: 20.h,
+                color: context.colorScheme.tertiary,
+              ),
             ),
           ),
         ],

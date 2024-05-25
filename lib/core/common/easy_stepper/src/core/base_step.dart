@@ -235,11 +235,12 @@ class BaseStep extends StatelessWidget {
             textAlign: TextAlign.center,
             softWrap: false,
             overflow: TextOverflow.visible,
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: _handleTitleColor(
-                      context, isFinished, isActive, isAlreadyReached),
-                  height: 1,
-                  // fontSize: radius * 0.45,
+            style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                color: _handleTitleColor(
+                    context, isFinished, isActive, isAlreadyReached),
+                height: 1,
+                fontWeight: FontWeight.w400
+                // fontSize: radius * 0.45,
                 ),
           ),
     );
