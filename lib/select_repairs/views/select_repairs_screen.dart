@@ -43,7 +43,7 @@ class _SelectRepairsScreenState extends State<SelectRepairsScreen> {
     final context = _repairSummaryKey.currentContext;
     if (context != null) {
       Scrollable.ensureVisible(context,
-          duration: Durations.long4, curve: Curves.easeInOutExpo);
+          duration: Durations.extralong2, curve: Curves.easeInOutExpo);
     }
   }
 
@@ -222,7 +222,7 @@ class _SelectRepairsScreenState extends State<SelectRepairsScreen> {
             initialPage: _current,
             onPageChanged: (index, reason) => setState(() => _current = index),
             padEnds: false,
-            height: 0.4.sh,
+            height: 360,
             viewportFraction: 0.75,
             enableInfiniteScroll: false,
             scrollPhysics: const BouncingScrollPhysics(),
@@ -447,7 +447,7 @@ class _SelectRepairsScreenState extends State<SelectRepairsScreen> {
                   children: [
                     Container(
                       color: context.colorScheme.secondary.withOpacity(0.5),
-                      height: 0.2.sh,
+                      height: 180,
                       child: ClipRect(
                         child: Image.asset(
                           accessory.image,

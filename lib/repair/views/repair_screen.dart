@@ -25,12 +25,6 @@ class _RepairScreenState extends State<RepairScreen> {
   }
 
   @override
-  void dispose() {
-    _scrollController?.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return CustomScaffold(controller: _scrollController, body: [
       OverflowBox(

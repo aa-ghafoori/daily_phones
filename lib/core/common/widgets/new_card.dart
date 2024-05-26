@@ -23,10 +23,10 @@ class NewCard extends StatelessWidget {
         if (item != null && state != null) {
           final notifier = context.read<ProductCubit>();
           if (isSelected) {
-            notifier.removeItem(item);
             context
                 .read<ListKeyCubit>()
-                .removeItem(state!.selectedItems.indexOf(item), item);
+                .removeItem(selectedItems.indexOf(item), item);
+            notifier.removeItem(item);
           } else {
             notifier.addItem(item);
             final index = selectedItems!.length;

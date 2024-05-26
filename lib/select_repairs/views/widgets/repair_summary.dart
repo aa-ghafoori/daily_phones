@@ -233,6 +233,76 @@ class RepairSummary extends StatelessWidget {
   }
 }
 
+// class BuildCheckoutItem extends StatelessWidget {
+//   const BuildCheckoutItem(
+//       {required this.index,
+//       required this.item,
+//       required this.animation,
+//       super.key});
+
+//   final dynamic item;
+//   final Animation<double> animation;
+//   final int index;
+//   @override
+//   Widget build(BuildContext context) {
+//     return SlideTransition(
+//       position: Tween<Offset>(
+//         begin: const Offset(-2, 0),
+//         end: const Offset(0, 0),
+//       ).animate(animation),
+//       child: Row(
+//         children: [
+//           const WhiteSpace(height: 45),
+//           GestureDetector(
+//             behavior: HitTestBehavior.opaque,
+//             onTap: () {
+//               context.read<ProductCubit>().removeItem(item);
+//               context.read<ListKeyCubit>().removeItem(index, item);
+//             },
+//             child: CircleAvatar(
+//               backgroundColor: Colors.transparent,
+//               child: SvgPicture.asset(
+//                 ImageRes.close,
+//                 height: 10.w,
+//                 colorFilter: ColorFilter.mode(
+//                   context.colorScheme.secondary.withOpacity(0.4),
+//                   BlendMode.srcIn,
+//                 ),
+//               ),
+//             ),
+//           ),
+//           const WhiteSpace(width: 30),
+//           Text(
+//             item.title,
+//             style: context.textTheme.bodyMedium?.copyWith(
+//               fontWeight: FontWeight.w300,
+//             ),
+//           ),
+//           const Spacer(),
+//           Container(
+//             padding: EdgeInsets.symmetric(vertical: 5.h),
+//             width: 0.17.sw,
+//             decoration: BoxDecoration(
+//               borderRadius: BorderRadius.circular(4.r),
+//               color: context.colorScheme.secondary,
+//             ),
+//             child: Center(
+//               child: Text(
+//                 item.price,
+//                 style: context.textTheme.bodyMedium?.copyWith(
+//                   fontWeight: FontWeight.w600,
+//                   color: context.colorScheme.background,
+//                   fontSize: 16,
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
 class BuildCheckoutItem extends StatelessWidget {
   const BuildCheckoutItem(
       {required this.index,
@@ -243,62 +313,83 @@ class BuildCheckoutItem extends StatelessWidget {
   final dynamic item;
   final Animation<double> animation;
   final int index;
+
   @override
   Widget build(BuildContext context) {
-    return SlideTransition(
-      position: Tween<Offset>(
-        begin: const Offset(-5, 0),
-        end: const Offset(0, 0),
-      ).animate(animation),
-      child: Row(
-        children: [
-          const WhiteSpace(height: 45),
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: () {
-              context.read<ProductCubit>().removeItem(item);
-              context.read<ListKeyCubit>().removeItem(index, item);
-            },
-            child: CircleAvatar(
-              backgroundColor: Colors.transparent,
-              child: SvgPicture.asset(
-                ImageRes.close,
-                height: 10.w,
-                colorFilter: ColorFilter.mode(
-                  context.colorScheme.secondary.withOpacity(0.4),
-                  BlendMode.srcIn,
+    return DelayedAnimation(
+      delay: Durations.extralong3, // adjust delay as needed
+      child: SlideTransition(
+        position: Tween<Offset>(
+          begin: const Offset(-2, 0),
+          end: const Offset(0, 0),
+        ).animate(animation),
+        child: Row(
+          children: [
+            const WhiteSpace(height: 45),
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                context.read<ProductCubit>().removeItem(item);
+                context.read<ListKeyCubit>().removeItem(index, item);
+              },
+              child: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                child: SvgPicture.asset(
+                  ImageRes.close,
+                  height: 10.w,
+                  colorFilter: ColorFilter.mode(
+                    context.colorScheme.secondary.withOpacity(0.4),
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),
-          ),
-          const WhiteSpace(width: 30),
-          Text(
-            item.title,
-            style: context.textTheme.bodyMedium?.copyWith(
-              fontWeight: FontWeight.w300,
+            const WhiteSpace(width: 30),
+            Text(
+              item.title,
+              style: context.textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w300,
+              ),
             ),
-          ),
-          const Spacer(),
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 5.h),
-            width: 0.17.sw,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4.r),
-              color: context.colorScheme.secondary,
-            ),
-            child: Center(
-              child: Text(
-                item.price,
-                style: context.textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: context.colorScheme.background,
-                  fontSize: 16,
+            const Spacer(),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 5.h),
+              width: 0.17.sw,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4.r),
+                color: context.colorScheme.secondary,
+              ),
+              child: Center(
+                child: Text(
+                  item.price,
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: context.colorScheme.background,
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class DelayedAnimation extends StatelessWidget {
+  final Widget child;
+  final Duration delay;
+
+  const DelayedAnimation({required this.child, required this.delay});
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<void>(
+      future: Future.delayed(delay),
+      builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+        return child;
+      },
     );
   }
 }

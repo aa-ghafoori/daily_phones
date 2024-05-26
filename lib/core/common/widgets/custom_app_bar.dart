@@ -26,11 +26,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         scrolledUnderElevation: 0,
         title: GestureDetector(
           onTap: () {
-            context.navigator.pushNamed('/');
+            if (ModalRoute.of(context)!.settings.name != '/') {
+              context.navigator.pushNamed('/');
+            }
           },
           child: Padding(
             padding: const EdgeInsets.only(bottom: 5),
-            child: Image.asset(ImageRes.dpLogo, scale: 5.h),
+            child: Image.asset(ImageRes.dpLogo, scale: 5 * 1 / 1.sp),
           ),
         ),
         centerTitle: true,

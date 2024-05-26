@@ -51,9 +51,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
-      controller: _scrollController,
-      body: const [
+    return const CustomScaffold(
+      body: [
         CardCollection(),
         WhiteSpace(height: 30),
         Repairs(),

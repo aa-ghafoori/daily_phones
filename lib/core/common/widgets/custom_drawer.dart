@@ -22,22 +22,26 @@ class CustomDrawer extends StatelessWidget {
                         context.navigator.removeRoute(ModalRoute.of(context)!);
                       }
                       context.navigator.pop();
-                      context.navigator.pushNamed('/repair');
+                      if (ModalRoute.of(context)!.settings.name != '/repair') {
+                        context.navigator.pushNamed('/repair');
+                      }
                     }),
                 Positioned(
                   top: 22.h,
                   left: 105.w,
-                  child: Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.r),
-                        color: const Color.fromARGB(255, 194, 49, 23)),
-                    child: Text(
-                      'KORTING',
-                      style: context.textTheme.labelSmall?.copyWith(
-                          fontWeight: FontWeight.w800,
-                          color: context.colorScheme.background),
+                  child: IgnorePointer(
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.r),
+                          color: const Color.fromARGB(255, 194, 49, 23)),
+                      child: Text(
+                        'KORTING',
+                        style: context.textTheme.labelSmall?.copyWith(
+                            fontWeight: FontWeight.w800,
+                            color: context.colorScheme.background),
+                      ),
                     ),
                   ),
                 ),
