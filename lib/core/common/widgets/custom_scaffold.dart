@@ -12,7 +12,7 @@ class CustomScaffold extends StatelessWidget {
     super.key,
   });
 
-  final List<Widget> body;
+  final Widget body;
   final ScrollController? controller;
 
   @override
@@ -23,11 +23,12 @@ class CustomScaffold extends StatelessWidget {
       endDrawer: const Drawer(),
       bottomNavigationBar: const CustomBottomNavigationBar(),
       body: SafeArea(
-          child: ListView(
-        controller: controller,
-        padding: EdgeInsets.only(top: 15.w, left: 15.w, right: 15.w),
-        children: [...body, const Footer()],
-      )),
+        child: SingleChildScrollView(
+          controller: controller,
+          padding: EdgeInsets.only(top: 15.h),
+          child: Column(children: [body, const Footer()]),
+        ),
+      ),
     );
   }
 }

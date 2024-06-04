@@ -1,0 +1,57 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "daily_phones",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "daily_phones (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "daily_phones (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "mobile_devices_api",
+            "cwd": "packages\\mobile_devices_api",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "mobile_devices_repository",
+            "cwd": "packages\\mobile_devices_repository",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "sqflite_mobile_devices_api",
+            "cwd": "packages\\sqflite_mobile_devices_api",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "sqflite_mobile_devices_api (profile mode)",
+            "cwd": "packages\\sqflite_mobile_devices_api",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "sqflite_mobile_devices_api (release mode)",
+            "cwd": "packages\\sqflite_mobile_devices_api",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

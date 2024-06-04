@@ -39,10 +39,15 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   dropdown_button2: ^2.3.9
   flutter_svg: ^2.0.10+1
-  flutter_riverpod: ^2.5.1
-  riverpod_annotation: ^2.3.5
   lottie: ^3.1.2
   flutter_bloc: ^8.1.5
+  equatable: ^2.0.5
+  sqflite_mobile_devices_api:
+    path: packages/sqflite_mobile_devices_api
+  mobile_devices_api:
+    path: packages/mobile_devices_api
+  mobile_devices_repository:
+    path: packages/mobile_devices_repository
 
 dev_dependencies:
   flutter_test:

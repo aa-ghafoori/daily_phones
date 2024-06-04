@@ -257,6 +257,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.9"
+  equatable:
+    dependency: "direct main"
+    description:
+      name: equatable
+      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.5"
   fake_async:
     dependency: transitive
     description:
@@ -302,14 +310,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
-  flutter_riverpod:
-    dependency: "direct main"
-    description:
-      name: flutter_riverpod
-      sha256: "0f1974eff5bbe774bf1d870e406fc6f29e3d6f1c46bd9c58e7172ff68a785d7d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.5.1"
   flutter_screenutil:
     dependency: "direct main"
     description:
@@ -499,6 +499,20 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  mobile_devices_api:
+    dependency: "direct main"
+    description:
+      path: "packages/mobile_devices_api"
+      relative: true
+    source: path
+    version: "1.0.0"
+  mobile_devices_repository:
+    dependency: "direct main"
+    description:
+      path: "packages/mobile_devices_repository"
+      relative: true
+    source: path
+    version: "1.0.0"
   nested:
     dependency: transitive
     description:
@@ -588,7 +602,7 @@ packages:
     source: hosted
     version: "0.5.1"
   riverpod_annotation:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: riverpod_annotation
       sha256: e5e796c0eba4030c704e9dae1b834a6541814963292839dcf9638d53eba84f5c
@@ -672,6 +686,29 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0"
+  sqflite:
+    dependency: transitive
+    description:
+      name: sqflite
+      sha256: a43e5a27235518c03ca238e7b4732cf35eabe863a369ceba6cbefa537a66f16d
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.3+1"
+  sqflite_common:
+    dependency: transitive
+    description:
+      name: sqflite_common
+      sha256: "3da423ce7baf868be70e2c0976c28a1bb2f73644268b7ffa7d2e08eab71f16a4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.4"
+  sqflite_mobile_devices_api:
+    dependency: "direct main"
+    description:
+      path: "packages/sqflite_mobile_devices_api"
+      relative: true
+    source: path
+    version: "0.0.1"
   stack_trace:
     dependency: transitive
     description:
@@ -712,6 +749,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      sha256: "539ef412b170d65ecdafd780f924e5be3f60032a1128df156adad6c5b373d558"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0+1"
   term_glyph:
     dependency: transitive
     description:

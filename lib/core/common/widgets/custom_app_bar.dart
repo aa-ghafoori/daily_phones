@@ -1,3 +1,4 @@
+import 'package:daily_phones/core/common/widgets/custom_box_shadow.dart';
 import 'package:daily_phones/core/common/widgets/round_button.dart';
 import 'package:daily_phones/core/common/widgets/white_space.dart';
 import 'package:daily_phones/core/res/extensions.dart';
@@ -11,22 +12,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: context.colorScheme.tertiary.withOpacity(0.2),
-            spreadRadius: 0,
-            blurRadius: 5,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+    return CustomBoxShadow(
+      offset: const Offset(0, 4),
       child: AppBar(
         scrolledUnderElevation: 0,
         title: GestureDetector(
           onTap: () {
-            if (ModalRoute.of(context)!.settings.name != '/') {
+            if (ModalRoute.of(context)?.settings.name != '/') {
               context.navigator.pushNamed('/');
             }
           },

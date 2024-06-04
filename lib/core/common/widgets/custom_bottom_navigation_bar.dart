@@ -1,3 +1,4 @@
+import 'package:daily_phones/core/common/widgets/custom_box_shadow.dart';
 import 'package:daily_phones/core/res/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,17 +8,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: context.colorScheme.tertiary.withOpacity(0.2),
-            spreadRadius: 0,
-            blurRadius: 5,
-            offset: const Offset(0, -4),
-          ),
-        ],
-      ),
+    return CustomBoxShadow(
+      offset: const Offset(0, -4),
       child: BottomAppBar(
         padding: EdgeInsets.zero,
         height: 70,

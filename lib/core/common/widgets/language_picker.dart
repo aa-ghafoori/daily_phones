@@ -79,22 +79,6 @@ class MenuItems {
       ],
     );
   }
-
-  // static void onChanged(BuildContext context, MenuItem item) {
-  //   switch (item) {
-  //     case MenuItems.netherlands:
-  //       break;
-  //     case MenuItems.english:
-  //       // Do something
-  //       break;
-  //     case MenuItems.deutsch:
-  //       // Do something
-  //       break;
-  //     case MenuItems.french:
-  //       // Do something
-  //       break;
-  //   }
-  // }
 }
 
 class MenuItem {

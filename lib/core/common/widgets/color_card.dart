@@ -1,30 +1,24 @@
-import 'package:daily_phones/core/res/constants.dart';
-import 'package:daily_phones/select_repairs/app/cubit/product_cubit.dart';
+import 'package:daily_phones/repair/bloc/repair_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile_devices_api/mobile_devices_api.dart';
 
-class ColorCard extends ConsumerWidget {
+class ColorCard extends StatelessWidget {
   final Widget child;
-  final SmartphoneColor item;
-  final ProductState? state;
+  final ProductColor productColor;
 
-  const ColorCard({
-    super.key,
-    required this.child,
-    required this.item,
-    this.state,
-  });
+  const ColorCard({required this.child, required this.productColor, super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isSelected = state != null && (state!.selectedColor == item);
+  Widget build(BuildContext context) {
+    final bool isSelected =
+        context.select((RepairBloc bloc) => bloc.state.selectedColor) ==
+            productColor;
 
     return GestureDetector(
-      onTap: () {
-        final notifier = context.read<ProductCubit>();
-        notifier.setSelectedColor(item);
-      },
+      onTap: () => context
+          .read<RepairBloc>()
+          .add(RepairProductColorSelected(productColor: productColor)),
       child: AnimatedContainer(
         duration: Durations.short2,
         decoration: BoxDecoration(
