@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:sqflite_mobile_devices_api/sqflite_mobile_devices_api.dart';
 import 'core/res/predefined_data.dart';
 
-Future<void> main() async {
+void main() {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
 

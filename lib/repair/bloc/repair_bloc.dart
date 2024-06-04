@@ -68,12 +68,6 @@ class RepairBloc extends Bloc<RepairEvent, RepairState> {
       } catch (e) {
         emit(state.copyWith(status: RepairStatus.failure));
       }
-    } else {
-      // await Future.delayed(const Duration(milliseconds: 200), () {
-      //   state.status != RepairStatus.loading
-      //       ? emit(state.copyWith(status: RepairStatus.loading))
-      //       : emit(state.copyWith(status: RepairStatus.success));
-      // });
     }
   }
 

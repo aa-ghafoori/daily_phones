@@ -9,6 +9,12 @@ sealed class DevicesState extends Equatable {
 
 final class DevicesInitial extends DevicesState {}
 
+final class DevicesLoadInProgress extends DevicesState {}
+
+final class DevicesProductsLoadSuccess extends DevicesState {}
+
+final class DevicesProductsLoadFailure extends DevicesState {}
+
 final class DevicesBrandsLoadSuccess extends DevicesState {
   const DevicesBrandsLoadSuccess(this.brands);
 
@@ -19,12 +25,6 @@ final class DevicesBrandsLoadSuccess extends DevicesState {
 }
 
 final class DevicesBrandsLoadFailure extends DevicesState {}
-
-final class DevicesLoadInProgress extends DevicesState {}
-
-final class DevicesProductsLoadSuccess extends DevicesState {}
-
-final class DevicesProductsLoadFailure extends DevicesState {}
 
 final class DevicesFocused extends DevicesState {
   final List<Product> products;

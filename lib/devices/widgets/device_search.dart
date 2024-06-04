@@ -9,11 +9,19 @@ import 'package:daily_phones/core/res/extensions.dart';
 import 'package:daily_phones/core/res/image_resourses.dart';
 import 'package:mobile_devices_api/mobile_devices_api.dart';
 
-class DeviceSearch extends StatelessWidget {
-  DeviceSearch({required this.scrollController, super.key});
+class DeviceSearch extends StatefulWidget {
+  const DeviceSearch({required this.scrollController, super.key});
 
   final ScrollController scrollController;
+
+  @override
+  State<DeviceSearch> createState() => _DeviceSearchState();
+}
+
+class _DeviceSearchState extends State<DeviceSearch> {
   final GlobalKey _textFieldKey = GlobalKey();
+
+  List<Product> products = [];
 
   void _scrollToTextField() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -23,8 +31,8 @@ class DeviceSearch extends StatelessWidget {
         final position = box.localToGlobal(Offset.zero, ancestor: null);
         final topOffset = position.dy;
 
-        scrollController.animateTo(
-          scrollController.offset + topOffset - 160,
+        widget.scrollController.animateTo(
+          widget.scrollController.offset + topOffset - 160,
           duration: Durations.long4,
           curve: Curves.easeInOutExpo,
         );
@@ -34,44 +42,38 @@ class DeviceSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<DevicesBloc, DevicesState>(
-      listenWhen: (previous, current) => current is DevicesFocused,
-      buildWhen: (previous, current) =>
-          current is DevicesFocused || current is DevicesUnfocused,
-      listener: (context, state) => _scrollToTextField(),
-      builder: (context, state) {
-        final bloc = context.read<DevicesBloc>();
-        final isFocused = state is DevicesFocused;
-        final List<Product> products = isFocused ? (state).products : [];
+    final bloc = context.watch<DevicesBloc>();
+    final state = bloc.state;
+    final isFocused = state is DevicesFocused;
+    if (isFocused) {
+      _scrollToTextField();
+      products = state.products;
+    }
 
-        return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.w),
-          child: Column(
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15.w),
+      child: Column(
+        children: [
+          Row(
             children: [
-              Row(
-                children: [
-                  SearchInputField(
-                    textFieldKey: _textFieldKey,
-                    focusNode: bloc.focusNode,
-                    isFocused: isFocused,
-                    handleTextChanged: (text) =>
-                        bloc.add(DevicesTextChanged(text)),
-                  ),
-                  if (!isFocused) const DeviceIcon(),
-                ],
+              SearchInputField(
+                textFieldKey: _textFieldKey,
+                focusNode: bloc.focusNode,
+                isFocused: isFocused,
+                handleTextChanged: (text) => bloc.add(DevicesTextChanged(text)),
               ),
-              SearchResultDropdownMenu(
-                  isFocused: isFocused, products: products),
+              if (!isFocused) const _DeviceIcon(),
             ],
           ),
-        );
-      },
+          SearchResultDropdownMenu(isFocused: isFocused, products: products),
+        ],
+      ),
     );
   }
 }
 
-class DeviceIcon extends StatelessWidget {
-  const DeviceIcon({super.key});
+class _DeviceIcon extends StatelessWidget {
+  const _DeviceIcon();
 
   @override
   Widget build(BuildContext context) {
@@ -82,17 +84,13 @@ class DeviceIcon extends StatelessWidget {
           ImageRes.phone,
           height: 48.h,
           colorFilter: ColorFilter.mode(
-            context.colorScheme.secondary.withOpacity(0.7),
-            BlendMode.srcIn,
-          ),
+              context.colorScheme.secondary.withOpacity(0.7), BlendMode.srcIn),
         ),
         SvgPicture.asset(
           ImageRes.question,
           height: 17,
-          colorFilter: ColorFilter.mode(
-            context.colorScheme.secondary,
-            BlendMode.srcIn,
-          ),
+          colorFilter:
+              ColorFilter.mode(context.colorScheme.secondary, BlendMode.srcIn),
         ),
       ],
     );

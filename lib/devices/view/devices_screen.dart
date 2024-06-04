@@ -4,7 +4,7 @@ import 'package:daily_phones/core/common/widgets/white_space.dart';
 import 'package:daily_phones/core/res/extensions.dart';
 import 'package:daily_phones/devices/bloc/devices_bloc.dart';
 import 'package:daily_phones/devices/widgets/device_search.dart';
-import 'package:daily_phones/devices/widgets/custom_stepper.dart';
+import 'package:daily_phones/core/common/widgets/custom_stepper.dart';
 import 'package:daily_phones/devices/widgets/brand_grid.dart';
 import 'package:daily_phones/core/common/widgets/info_bar.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +62,7 @@ class _DevicesViewState extends State<DevicesView> {
                   const WhiteSpace(height: 30),
                   InfoBar(title: title(context)),
                   const WhiteSpace(height: 20),
-                  const BackgroundContainer(),
+                  const _BackgroundContainer(),
                   const BrandGrid(),
                 ],
               ),
@@ -94,8 +94,8 @@ class _DevicesViewState extends State<DevicesView> {
       );
 }
 
-class BackgroundContainer extends StatelessWidget {
-  const BackgroundContainer({super.key});
+class _BackgroundContainer extends StatelessWidget {
+  const _BackgroundContainer();
 
   @override
   Widget build(BuildContext context) {

@@ -19,7 +19,8 @@ class SearchResultDropdownMenu extends StatelessWidget {
   void _onProductClicked(Product product, BuildContext context) {
     context.navigator.pushNamed('/repair');
     context.read<RepairBloc>().add(RepairProductSelected(product: product));
-    context.read<DevicesBloc>().focusNode.unfocus();
+    Future.delayed(const Duration(milliseconds: 50),
+        () => context.read<DevicesBloc>().focusNode.unfocus());
   }
 
   @override
@@ -71,10 +72,7 @@ class SearchResultDropdownMenu extends StatelessWidget {
 }
 
 class _DropDownMenuItem extends StatelessWidget {
-  const _DropDownMenuItem({
-    required this.brandName,
-    required this.description,
-  });
+  const _DropDownMenuItem({required this.brandName, required this.description});
 
   final String brandName;
   final String description;

@@ -1,5 +1,8 @@
 import 'package:daily_phones/core/res/image_resourses.dart';
+import 'package:daily_phones/on_boarding/models/card_data.dart';
+import 'package:daily_phones/on_boarding/widgets/card_item.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_devices_api/mobile_devices_api.dart';
 
 void redPrint(String text) {
@@ -14,7 +17,52 @@ void yellowPrint(String text) {
   debugPrint("\u001b[1;33m $text");
 }
 
-List<String> storeList = [
+final List<Widget> pageSliderItemsList = [
+  const CardItem(
+    isSliderItem: true,
+    image: ImageRes.ipadRepair,
+    title: 'iPad Reparatie',
+    description: 'Repareer je iPad tegen een scherpe prijs!',
+  ),
+  const CardItem(
+    isSliderItem: true,
+    image: ImageRes.iphoneRepair,
+    title: 'iPhone Reparatie',
+    description: 'Repareer je iPhone voor een scherpe prijs',
+  ),
+  const CardItem(
+    isSliderItem: true,
+    image: ImageRes.smartWatchRepair,
+    title: 'Smartwatch Reparatie',
+    description: 'Repareer je smartwatch tegen een scherpe prijs!',
+  ),
+];
+
+final List<CardData> cardData = [
+  CardData(
+    image: ImageRes.dpRefurbished,
+    title: 'Beste Refurbished',
+    description: 'Shop nu onze uitgebreide collectie',
+    height: 0.3.sh,
+    buttonText: 'Shop Refurbished',
+  ),
+  CardData(
+    image: ImageRes.dpScreen,
+    title: 'Screen Protector',
+    description: 'Voor de beste bescherming',
+    height: 0.2.sh,
+    buttonText: 'Vind jouw model',
+  ),
+  CardData(
+    image: ImageRes.screenDp,
+    title: 'Hoesjes',
+    description: '1000+ designs',
+    height: 0.2.sh,
+    buttonText: 'Zoek Jouw Design',
+  ),
+];
+
+final List<String> storeList = [
   'Reparaties',
   'Smartphones',
   'Screenprotector',
@@ -23,7 +71,7 @@ List<String> storeList = [
   'iPads/Tablets'
 ];
 
-List<String> dailyPhonesList = [
+final List<String> dailyPhonesList = [
   'Privacybeleid',
   'Algemene Voorwaarden',
   'Garantiebeleid',
@@ -33,14 +81,14 @@ List<String> dailyPhonesList = [
   'klachtenprocedure'
 ];
 
-List<String> footerImages = [
+final List<String> footerImages = [
   ImageRes.marktplace,
   ImageRes.facebook,
   ImageRes.google2,
   ImageRes.instagram
 ];
 
-List<Brand> predefinedBrands = [
+final List<Brand> predefinedBrands = [
   Brand(name: 'Apple', imageUrl: ImageRes.apple, types: const [
     ProductType.smartphone,
     ProductType.laptop,
@@ -116,7 +164,7 @@ List<Brand> predefinedBrands = [
       types: const [ProductType.smartphone, ProductType.laptop]),
 ];
 
-List<Product> predefinedProducts = [
+final List<Product> predefinedProducts = [
   Product(
     name: 'iPhone 14',
     brand: 'Apple',
@@ -917,7 +965,7 @@ List<Product> predefinedProducts = [
   ),
 ];
 
-List<Accessory> predefinedAccessories = [
+final List<Accessory> predefinedAccessories = [
   Accessory(
     title: 'Screen Protector',
     description: 'Protect your phone screen from scratches and minor impacts.',
@@ -944,7 +992,7 @@ List<Accessory> predefinedAccessories = [
   ),
 ];
 
-List<Repair> predefinedRepairs = [
+final List<Repair> predefinedRepairs = [
   Repair(
     title: 'Screen',
     durationInMinutes: 30,
@@ -1230,7 +1278,7 @@ List<Repair> predefinedRepairs = [
   ),
 ];
 
-List<ProductColor> predefinedColors = [
+final List<ProductColor> predefinedColors = [
   ProductColor(name: 'Black', hex: '#494C50'),
   ProductColor(name: 'Red', hex: '#C34239'),
   ProductColor(name: 'Blue', hex: '#6798C9'),

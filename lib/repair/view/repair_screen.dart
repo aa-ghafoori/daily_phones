@@ -2,7 +2,7 @@ import 'package:daily_phones/core/common/widgets/custom_scaffold.dart';
 import 'package:daily_phones/core/common/widgets/description.dart';
 import 'package:daily_phones/core/common/widgets/white_space.dart';
 import 'package:daily_phones/core/res/extensions.dart';
-import 'package:daily_phones/devices/widgets/custom_stepper.dart';
+import 'package:daily_phones/core/common/widgets/custom_stepper.dart';
 import 'package:daily_phones/core/common/widgets/info_bar.dart';
 import 'package:daily_phones/repair/bloc/repair_bloc.dart';
 import 'package:daily_phones/repair/widgets/recommended_accessories.dart';
@@ -14,14 +14,37 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_devices_repository/mobile_devices_repository.dart';
 
-class RepairsScreen extends StatefulWidget {
-  const RepairsScreen({super.key});
+class RepairScreen extends StatelessWidget {
+  const RepairScreen({super.key});
 
   @override
-  State<RepairsScreen> createState() => _RepairsScreenState();
+  Widget build(BuildContext context) {
+    return BlocSelector<RepairBloc, RepairState, Product?>(
+      selector: (state) => state.product,
+      builder: (context, state) {
+        if (state != null) {
+          return BlocProvider(
+            create: (context) => RepairBloc(
+                mobileDevicesRepository:
+                    context.read<MobileDevicesRepository>())
+              ..add(RepairProductSelected(product: state)),
+            child: const RepairView(),
+          );
+        }
+        return const RepairView();
+      },
+    );
+  }
 }
 
-class _RepairsScreenState extends State<RepairsScreen> {
+class RepairView extends StatefulWidget {
+  const RepairView({super.key});
+
+  @override
+  State<RepairView> createState() => _RepairViewState();
+}
+
+class _RepairViewState extends State<RepairView> {
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _repairSummaryKey = GlobalKey();
 

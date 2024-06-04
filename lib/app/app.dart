@@ -37,11 +37,11 @@ class AppView extends StatelessWidget {
         splitScreenMode: true,
         builder: (_, child) {
           return MaterialApp(
-            initialRoute: '/devices',
+            initialRoute: '/',
             routes: {
               '/': (context) => const OnBoardingScreen(),
               '/devices': (context) => const DevicesScreen(),
-              '/repair': (context) => const RepairsScreen(),
+              '/repair': (context) => const RepairScreen(),
             },
             debugShowCheckedModeBanner: false,
             title: 'DAILY PHONES',

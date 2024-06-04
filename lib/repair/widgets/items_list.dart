@@ -1,7 +1,6 @@
 import 'package:daily_phones/core/common/widgets/white_space.dart';
 import 'package:daily_phones/core/res/extensions.dart';
 import 'package:daily_phones/core/res/image_resourses.dart';
-import 'package:daily_phones/core/res/predefined_data.dart';
 import 'package:daily_phones/repair/bloc/repair_bloc.dart';
 import 'package:daily_phones/repair/models/item.dart';
 import 'package:flutter/material.dart';
@@ -29,8 +28,6 @@ class _ItemsListState extends State<ItemsList> {
   }
 
   void _handleItemUpdates(List<Item> currentItems) {
-    redPrint('_handleItemUpdates runned --> currentItems:$currentItems');
-
     if (currentItems.length > _items.length) {
       final missingItems =
           currentItems.where((item) => !_items.contains(item)).toList();
@@ -42,7 +39,7 @@ class _ItemsListState extends State<ItemsList> {
           Future.delayed(
               const Duration(milliseconds: 500),
               () => _listKey.currentState
-                  ?.insertItem(index, duration: Durations.medium1));
+                  ?.insertItem(index, duration: Durations.short3));
         }
       }
     }
@@ -53,7 +50,7 @@ class _ItemsListState extends State<ItemsList> {
       final index = _items.indexOf(removedItem);
       _listKey.currentState?.removeItem(
         index,
-        duration: Durations.medium1,
+        duration: Durations.short3,
         (context, animation) => CheckoutItem(
           item: removedItem,
           animation: animation,
@@ -65,7 +62,6 @@ class _ItemsListState extends State<ItemsList> {
 
   @override
   Widget build(BuildContext context) {
-    redPrint('items_list build method run: _items:$_items');
     if (widget.selectedItems.length != _items.length) {
       _handleItemUpdates(widget.selectedItems);
     }

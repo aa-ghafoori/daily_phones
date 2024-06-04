@@ -8,7 +8,7 @@ class CustomDrawer extends StatelessWidget {
 
   void _onPressed(BuildContext context) {
     context.navigator.pop();
-    if (ModalRoute.of(context)!.settings.name != '/devices') {
+    if (ModalRoute.of(context)?.settings.name != '/devices') {
       context.navigator.pushNamed('/devices');
     }
   }

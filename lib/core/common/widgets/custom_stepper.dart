@@ -14,14 +14,6 @@ class CustomStepper extends StatefulWidget {
 }
 
 class _CustomStepperState extends State<CustomStepper> {
-  Widget _buildCustomStepText(String text) {
-    return Text(
-      text,
-      style: context.textTheme.bodyLarge
-          ?.copyWith(color: context.colorScheme.background),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return EasyStepper(
@@ -63,11 +55,16 @@ class _CustomStepperState extends State<CustomStepper> {
           icon: const Icon(CupertinoIcons.check_mark),
           customStep: widget.activeStep <= 1 ? _buildCustomStepText('2') : null,
         ),
-        EasyStep(
-          title: 'Afronden',
-          customStep: _buildCustomStepText('3'),
-        ),
+        EasyStep(title: 'Afronden', customStep: _buildCustomStepText('3')),
       ],
+    );
+  }
+
+  Widget _buildCustomStepText(String text) {
+    return Text(
+      text,
+      style: context.textTheme.bodyLarge
+          ?.copyWith(color: context.colorScheme.background),
     );
   }
 }

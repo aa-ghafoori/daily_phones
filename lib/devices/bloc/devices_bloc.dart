@@ -73,9 +73,7 @@ class DevicesBloc extends Bloc<DevicesEvent, DevicesState> {
 
   FocusNode get focusNode => _focusNode;
 
-  void _onFocusChange() {
-    add(DevicesFocusChanged(_focusNode.hasFocus));
-  }
+  void _onFocusChange() => add(DevicesFocusChanged(_focusNode.hasFocus));
 
   @override
   Future<void> close() {

@@ -1,31 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:daily_phones/on_boarding/widgets/card_item.dart';
 import 'package:daily_phones/core/res/extensions.dart';
-import 'package:daily_phones/core/res/image_resourses.dart';
+import 'package:daily_phones/core/res/predefined_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-final List<Widget> itemList = [
-  const CardItem(
-    isSliderItem: true,
-    image: ImageRes.ipadRepair,
-    title: 'iPad Reparatie',
-    description: 'Repareer je iPad tegen een scherpe prijs!',
-  ),
-  const CardItem(
-    isSliderItem: true,
-    image: ImageRes.iphoneRepair,
-    title: 'iPhone Reparatie',
-    description: 'Repareer je iPhone voor een scherpe prijs',
-  ),
-  const CardItem(
-    isSliderItem: true,
-    image: ImageRes.smartWatchRepair,
-    title: 'Smartwatch Reparatie',
-    description: 'Repareer je smartwatch tegen een scherpe prijs!',
-  ),
-];
 
 class PageSlider extends StatefulWidget {
   const PageSlider({super.key});
@@ -45,7 +23,7 @@ class _PageSliderState extends State<PageSlider> {
       children: [
         CarouselSlider(
           carouselController: _controller,
-          items: itemList,
+          items: pageSliderItemsList,
           options: CarouselOptions(
             height: 0.5.sh,
             viewportFraction: 1,
@@ -68,7 +46,7 @@ class _PageSliderState extends State<PageSlider> {
           ],
         ),
         CarouselIndicator(
-          itemCount: itemList.length,
+          itemCount: pageSliderItemsList.length,
           currentIndex: _current,
           controller: _controller,
         ),
