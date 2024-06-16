@@ -10,6 +10,19 @@ import 'package:get_it/get_it.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  sl.registerSingletonAsync<DatabaseHelper>(() async {
+    final dbHelper = DatabaseHelper();
+    await dbHelper.seedDatabase(
+      predefinedBrands: predefinedBrands,
+      predefinedProducts: predefinedProducts,
+      predefinedAccessories: predefinedAccessories,
+      predefinedRepairs: predefinedRepairs,
+    );
+    return dbHelper;
+  });
+
+  await sl.isReady<DatabaseHelper>();
+
   sl
     ..registerFactory(
       () => RepairBloc(
@@ -26,14 +39,5 @@ Future<void> init() async {
     ..registerLazySingleton<RepairRepo>(() => RepairRepoImpl(sl()))
     ..registerLazySingleton<RepairLocalDataSrc>(
       () => RepairLocalDataSrcImpl(sl()),
-    )
-    ..registerLazySingleton(
-      () => DatabaseHelper()
-        ..seedDatabase(
-          predefinedBrands: predefinedBrands,
-          predefinedProducts: predefinedProducts,
-          predefinedAccessories: predefinedAccessories,
-          predefinedRepairs: predefinedRepairs,
-        ),
     );
 }
