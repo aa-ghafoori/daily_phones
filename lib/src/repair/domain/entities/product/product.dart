@@ -8,17 +8,25 @@ enum ProductType { smartphone, laptop, smartwatch, ipadTablet }
 
 class Product extends Equatable {
   Product({
-    String? id,
     required this.name,
     required this.brand,
     required this.imageUrl,
     required this.type,
     required this.colors,
+    String? id,
   })  : assert(
           id == null || id.isNotEmpty,
           'id must either be null or non empty',
         ),
         id = id ?? const Uuid().v4();
+
+  factory Product.empty() => Product(
+        name: '',
+        brand: '',
+        imageUrl: '',
+        type: ProductType.smartphone,
+        colors: const [],
+      );
 
   final String id;
 
@@ -31,14 +39,6 @@ class Product extends Equatable {
   final ProductType type;
 
   final List<ProductColor> colors;
-
-  factory Product.empty() => Product(
-        name: '',
-        brand: '',
-        imageUrl: '',
-        type: ProductType.smartphone,
-        colors: const [],
-      );
 
   @override
   List<Object?> get props => [id, name, brand, imageUrl, type];

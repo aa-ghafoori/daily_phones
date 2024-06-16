@@ -3,11 +3,11 @@ import 'package:uuid/uuid.dart';
 
 class Accessory extends Equatable {
   Accessory({
-    String? id,
     required this.title,
     required this.description,
     required this.imageUrl,
     required this.price,
+    String? id,
   })  : assert(
           id == null || id.isNotEmpty,
           'id must either be null or non empty',

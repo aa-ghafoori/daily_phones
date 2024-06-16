@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'dart:math';
 
 import 'package:daily_phones/core/res/image_resourses.dart';
@@ -22,11 +24,11 @@ void yellowPrint(String text) {
 
 List<ProductColorModel> generateProductColors(int count) {
   final random = Random();
-  final List<ProductColorModel> productColors = [];
-  final List<ProductColorModel> shuffledColors = List.from(predefinedColors)
+  final productColors = <ProductColorModel>[];
+  final shuffledColors = List<ProductColorModel>.from(predefinedColors)
     ..shuffle(random);
 
-  for (int i = 0; i < count; i++) {
+  for (var i = 0; i < count; i++) {
     productColors.add(shuffledColors[i]);
   }
 
@@ -84,7 +86,7 @@ final List<String> storeList = [
   'Screenprotector',
   'Accessories',
   'Laptops',
-  'iPads/Tablets'
+  'iPads/Tablets',
 ];
 
 final List<String> dailyPhonesList = [
@@ -94,90 +96,111 @@ final List<String> dailyPhonesList = [
   'Retourbeleid',
   'Betaalmethoden',
   'Verzending',
-  'klachtenprocedure'
+  'klachtenprocedure',
 ];
 
 final List<String> footerImages = [
   ImageRes.marktplace,
   ImageRes.facebook,
   ImageRes.google2,
-  ImageRes.instagram
+  ImageRes.instagram,
 ];
 
 final List<BrandModel> predefinedBrands = [
-  BrandModel(name: 'Apple', imageUrl: ImageRes.apple, types: const [
-    ProductType.smartphone,
-    ProductType.laptop,
-    ProductType.smartwatch
-  ]),
   BrandModel(
-      name: 'Samsung',
-      imageUrl: ImageRes.samsung,
-      types: const [ProductType.smartphone, ProductType.smartwatch]),
+    name: 'Apple',
+    imageUrl: ImageRes.apple,
+    types: const [
+      ProductType.smartphone,
+      ProductType.laptop,
+      ProductType.smartwatch,
+    ],
+  ),
   BrandModel(
-      name: 'Google',
-      imageUrl: ImageRes.google,
-      types: const [ProductType.smartphone, ProductType.laptop]),
+    name: 'Samsung',
+    imageUrl: ImageRes.samsung,
+    types: const [ProductType.smartphone, ProductType.smartwatch],
+  ),
   BrandModel(
-      name: 'OnePlus',
-      imageUrl: ImageRes.oneplus,
-      types: const [ProductType.smartphone]),
+    name: 'Google',
+    imageUrl: ImageRes.google,
+    types: const [ProductType.smartphone, ProductType.laptop],
+  ),
   BrandModel(
-      name: 'Sony',
-      imageUrl: ImageRes.sony,
-      types: const [ProductType.smartphone, ProductType.laptop]),
+    name: 'OnePlus',
+    imageUrl: ImageRes.oneplus,
+    types: const [ProductType.smartphone],
+  ),
   BrandModel(
-      name: 'Xiaomi',
-      imageUrl: ImageRes.xiaomi,
-      types: const [ProductType.smartphone, ProductType.smartwatch]),
+    name: 'Sony',
+    imageUrl: ImageRes.sony,
+    types: const [ProductType.smartphone, ProductType.laptop],
+  ),
   BrandModel(
-      name: 'Oppo',
-      imageUrl: ImageRes.oppo,
-      types: const [ProductType.smartphone]),
+    name: 'Xiaomi',
+    imageUrl: ImageRes.xiaomi,
+    types: const [ProductType.smartphone, ProductType.smartwatch],
+  ),
   BrandModel(
-      name: 'Huawei',
-      imageUrl: ImageRes.huawei,
-      types: const [ProductType.smartphone, ProductType.laptop]),
+    name: 'Oppo',
+    imageUrl: ImageRes.oppo,
+    types: const [ProductType.smartphone],
+  ),
   BrandModel(
-      name: 'LG',
-      imageUrl: ImageRes.lg,
-      types: const [ProductType.smartphone, ProductType.smartwatch]),
+    name: 'Huawei',
+    imageUrl: ImageRes.huawei,
+    types: const [ProductType.smartphone, ProductType.laptop],
+  ),
   BrandModel(
-      name: 'Nokia',
-      imageUrl: ImageRes.nokia,
-      types: const [ProductType.smartphone]),
+    name: 'LG',
+    imageUrl: ImageRes.lg,
+    types: const [ProductType.smartphone, ProductType.smartwatch],
+  ),
   BrandModel(
-      name: 'Motorola',
-      imageUrl: ImageRes.motorola,
-      types: const [ProductType.smartphone]),
+    name: 'Nokia',
+    imageUrl: ImageRes.nokia,
+    types: const [ProductType.smartphone],
+  ),
   BrandModel(
-      name: 'Lenovo',
-      imageUrl: ImageRes.lenovo,
-      types: const [ProductType.smartphone, ProductType.laptop]),
+    name: 'Motorola',
+    imageUrl: ImageRes.motorola,
+    types: const [ProductType.smartphone],
+  ),
   BrandModel(
-      name: 'Asus',
-      imageUrl: ImageRes.asus,
-      types: const [ProductType.smartphone, ProductType.laptop]),
+    name: 'Lenovo',
+    imageUrl: ImageRes.lenovo,
+    types: const [ProductType.smartphone, ProductType.laptop],
+  ),
   BrandModel(
-      name: 'Realme',
-      imageUrl: ImageRes.realme,
-      types: const [ProductType.smartphone]),
+    name: 'Asus',
+    imageUrl: ImageRes.asus,
+    types: const [ProductType.smartphone, ProductType.laptop],
+  ),
   BrandModel(
-      name: 'Blackberry',
-      imageUrl: ImageRes.blackberry,
-      types: const [ProductType.smartphone]),
+    name: 'Realme',
+    imageUrl: ImageRes.realme,
+    types: const [ProductType.smartphone],
+  ),
   BrandModel(
-      name: 'Cat',
-      imageUrl: ImageRes.cat,
-      types: const [ProductType.smartphone]),
+    name: 'Blackberry',
+    imageUrl: ImageRes.blackberry,
+    types: const [ProductType.smartphone],
+  ),
   BrandModel(
-      name: 'Alcatel',
-      imageUrl: ImageRes.alcatel,
-      types: const [ProductType.smartphone]),
+    name: 'Cat',
+    imageUrl: ImageRes.cat,
+    types: const [ProductType.smartphone],
+  ),
   BrandModel(
-      name: 'Honor',
-      imageUrl: ImageRes.honor,
-      types: const [ProductType.smartphone, ProductType.laptop]),
+    name: 'Alcatel',
+    imageUrl: ImageRes.alcatel,
+    types: const [ProductType.smartphone],
+  ),
+  BrandModel(
+    name: 'Honor',
+    imageUrl: ImageRes.honor,
+    types: const [ProductType.smartphone, ProductType.laptop],
+  ),
 ];
 
 final List<ProductModel> predefinedProducts = [

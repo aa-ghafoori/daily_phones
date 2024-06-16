@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars, sort_constructors_first, prefer_asserts_with_message
+
 import 'package:flutter/material.dart';
 
 export 'core/base_step.dart';

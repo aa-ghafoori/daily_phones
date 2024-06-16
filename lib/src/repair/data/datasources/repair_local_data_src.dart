@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:daily_phones/core/database/database_helper.dart';
 import 'package:daily_phones/core/errors/exceptions.dart';
 import 'package:daily_phones/core/utils/typedef.dart';
@@ -24,13 +26,13 @@ class RepairLocalDataSrcImpl implements RepairLocalDataSrc {
 
   final DatabaseHelper _databaseHelper;
 
-  Future<Database> get _db async => await _databaseHelper.database;
+  Future<Database> get _db async => _databaseHelper.database;
 
   Future<List<T>> _executeQuery<T>(
     String table, {
+    required T Function(DataMap map) fromMap,
     String? where,
     List<Object?>? whereArgs,
-    required T Function(DataMap map) fromMap,
   }) async {
     try {
       final db = await _db;
@@ -65,7 +67,7 @@ class RepairLocalDataSrcImpl implements RepairLocalDataSrc {
         where:
             'id IN (SELECT accessoryId FROM product_accessories WHERE productId = ?)',
         whereArgs: [product.id],
-        fromMap: (map) => AccessoryModel.fromMap(map),
+        fromMap: AccessoryModel.fromMap,
       );
 
   @override
@@ -73,12 +75,14 @@ class RepairLocalDataSrcImpl implements RepairLocalDataSrc {
         'brands',
         where: 'types LIKE ?',
         whereArgs: ['%${ProductModel.productTypeToString(type)}%'],
-        fromMap: (map) => BrandModel.fromMap(map),
+        fromMap: BrandModel.fromMap,
       );
 
   @override
-  Future<List<ProductModel>> getProducts(
-      {ProductType? type, String? brand}) async {
+  Future<List<ProductModel>> getProducts({
+    ProductType? type,
+    String? brand,
+  }) async {
     String? where;
     List<Object?>? whereArgs;
 
@@ -97,7 +101,7 @@ class RepairLocalDataSrcImpl implements RepairLocalDataSrc {
       'products',
       where: where,
       whereArgs: whereArgs,
-      fromMap: (map) => ProductModel.fromMap(map),
+      fromMap: ProductModel.fromMap,
     );
   }
 
@@ -108,6 +112,6 @@ class RepairLocalDataSrcImpl implements RepairLocalDataSrc {
         where:
             'id IN (SELECT repairId FROM product_repairs WHERE productId = ?)',
         whereArgs: [product.id],
-        fromMap: (map) => RepairModel.fromMap(map),
+        fromMap: RepairModel.fromMap,
       );
 }

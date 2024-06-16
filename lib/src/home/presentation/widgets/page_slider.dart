@@ -56,14 +56,14 @@ class _PageSliderState extends State<PageSlider> {
 }
 
 class CarouselControlButton extends StatelessWidget {
-  final IconData icon;
-  final VoidCallback onTap;
-
   const CarouselControlButton({
     required this.icon,
     required this.onTap,
     super.key,
   });
+
+  final IconData icon;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -85,16 +85,16 @@ class CarouselControlButton extends StatelessWidget {
 }
 
 class CarouselIndicator extends StatelessWidget {
-  final int itemCount;
-  final int currentIndex;
-  final CarouselController controller;
-
   const CarouselIndicator({
     required this.itemCount,
     required this.currentIndex,
     required this.controller,
     super.key,
   });
+
+  final int itemCount;
+  final int currentIndex;
+  final CarouselController controller;
 
   @override
   Widget build(BuildContext context) {

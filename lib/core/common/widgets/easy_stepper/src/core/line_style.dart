@@ -1,3 +1,5 @@
+// ignore_for_file: always_use_package_imports, directives_ordering, lines_longer_than_80_chars, sort_constructors_first, avoid_unused_constructor_parameters
+
 import '../../easy_stepper.dart';
 import 'package:flutter/material.dart';
 

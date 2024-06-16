@@ -4,10 +4,10 @@ import 'package:uuid/uuid.dart';
 
 class Brand extends Equatable {
   Brand({
-    String? id,
     required this.name,
     required this.imageUrl,
     required this.types,
+    String? id,
   })  : assert(
           id == null || id.isNotEmpty,
           'id must either be null or non empty',

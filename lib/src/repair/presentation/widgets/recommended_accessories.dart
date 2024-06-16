@@ -56,14 +56,14 @@ class _RecommendedAccessoriesState extends State<RecommendedAccessories> {
               context,
               icon: Icons.arrow_back_ios,
               enabled: _current != 0,
-              onTap: _current != 0 ? () => _controller.previousPage() : null,
+              onTap: _current != 0 ? _controller.previousPage : null,
             ),
             const WhiteSpace(width: 5),
             _buildNavigationButton(
               context,
               icon: Icons.arrow_forward_ios,
               enabled: _current != 3,
-              onTap: _current != 3 ? () => _controller.nextPage() : null,
+              onTap: _current != 3 ? _controller.nextPage : null,
             ),
           ],
         ),
@@ -71,8 +71,12 @@ class _RecommendedAccessoriesState extends State<RecommendedAccessories> {
     );
   }
 
-  Widget _buildNavigationButton(BuildContext context,
-      {required IconData icon, required bool enabled, VoidCallback? onTap}) {
+  Widget _buildNavigationButton(
+    BuildContext context, {
+    required IconData icon,
+    required bool enabled,
+    VoidCallback? onTap,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Container(

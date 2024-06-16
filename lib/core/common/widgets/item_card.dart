@@ -4,12 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemCard extends StatelessWidget {
+  const ItemCard({
+    required this.child,
+    this.isSelected = false,
+    this.item,
+    super.key,
+  });
+
   final bool isSelected;
   final Widget child;
   final CheckoutItem? item;
-
-  const ItemCard(
-      {this.isSelected = false, required this.child, this.item, super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -7,13 +7,33 @@ part 'product_color_model.dart';
 
 class ProductModel extends Product {
   ProductModel({
-    super.id,
     required super.name,
     required super.brand,
     required super.imageUrl,
     required super.type,
     required super.colors,
+    super.id,
   });
+
+  factory ProductModel.fromEntity(Product product) => ProductModel(
+        id: product.id,
+        name: product.name,
+        brand: product.brand,
+        imageUrl: product.imageUrl,
+        type: product.type,
+        colors: product.colors,
+      );
+
+  factory ProductModel.fromMap(DataMap map) => ProductModel(
+        id: map['id'] as String,
+        name: map['name'] as String,
+        brand: map['brand'] as String,
+        imageUrl: map['imageUrl'] as String,
+        type: stringToProductType(map['type'] as String),
+        colors: (jsonDecode(map['colors'] as String) as List<dynamic>)
+            .map((colorMap) => ProductColorModel.fromMap(colorMap as DataMap))
+            .toList(),
+      );
 
   static String productTypeToString(ProductType type) =>
       type.toString().split('.').last;
@@ -27,30 +47,10 @@ class ProductModel extends Product {
         'brand': brand,
         'imageUrl': imageUrl,
         'type': productTypeToString(type),
-        'colors': jsonEncode(colors
-            .map((color) => (color as ProductColorModel).toMap())
-            .toList()),
+        'colors': jsonEncode(
+          colors.map((color) => (color as ProductColorModel).toMap()).toList(),
+        ),
       };
-
-  factory ProductModel.fromMap(DataMap map) => ProductModel(
-        id: map['id'] as String,
-        name: map['name'] as String,
-        brand: map['brand'] as String,
-        imageUrl: map['imageUrl'] as String,
-        type: stringToProductType(map['type'] as String),
-        colors: (jsonDecode(map['colors']) as List<dynamic>)
-            .map((colorMap) => ProductColorModel.fromMap(colorMap as DataMap))
-            .toList(),
-      );
-
-  factory ProductModel.fromEntity(Product product) => ProductModel(
-        id: product.id,
-        name: product.name,
-        brand: product.brand,
-        imageUrl: product.imageUrl,
-        type: product.type,
-        colors: product.colors,
-      );
 
   @override
   List<Object?> get props => [id, name, brand, imageUrl, type];

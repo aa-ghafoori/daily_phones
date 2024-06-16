@@ -1,7 +1,7 @@
-import 'package:daily_phones/src/repair/domain/entities/entities.dart';
-import 'package:daily_phones/src/repair/presentation/bloc/repair_bloc.dart';
 import 'package:daily_phones/core/common/widgets/widgets.dart';
 import 'package:daily_phones/core/res/extensions.dart';
+import 'package:daily_phones/src/repair/domain/entities/entities.dart';
+import 'package:daily_phones/src/repair/presentation/bloc/repair_bloc.dart';
 import 'package:daily_phones/src/repair/presentation/widgets/action_buttons.dart';
 import 'package:daily_phones/src/repair/presentation/widgets/items_list.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +65,7 @@ class RepairSummary extends StatelessWidget {
 
   Widget _buildProductInfo(BuildContext context) {
     return Text(
-      ('${product.brand} ${product.name}').toUpperCase(),
+      '${product.brand} ${product.name}'.toUpperCase(),
       style: context.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w400),
     );
   }
@@ -76,8 +76,9 @@ class RepairSummary extends StatelessWidget {
         Text(
           'Sub-total',
           style: context.textTheme.bodySmall?.copyWith(
-              fontSize: 15.sp,
-              color: context.colorScheme.onBackground.withOpacity(0.7)),
+            fontSize: 15.sp,
+            color: context.colorScheme.onBackground.withOpacity(0.7),
+          ),
         ),
         const Spacer(),
         SizedBox(
@@ -95,7 +96,10 @@ class RepairSummary extends StatelessWidget {
   }
 
   Widget _buildTotal(
-      BuildContext context, List<String> parts, String decimalPart) {
+    BuildContext context,
+    List<String> parts,
+    String decimalPart,
+  ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -109,8 +113,9 @@ class RepairSummary extends StatelessWidget {
             Text(
               'incl. tax (21%)',
               style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                  color: context.colorScheme.onBackground.withOpacity(0.7)),
+                fontWeight: FontWeight.w300,
+                color: context.colorScheme.onBackground.withOpacity(0.7),
+              ),
             ),
           ],
         ),
@@ -125,7 +130,10 @@ class RepairSummary extends StatelessWidget {
               parts[0],
               style: context.textTheme.headlineMedium,
               strutStyle: const StrutStyle(
-                  forceStrutHeight: true, height: 1.8, leading: 1.5),
+                forceStrutHeight: true,
+                height: 1.8,
+                leading: 1.5,
+              ),
             ),
             Text(
               int.parse(decimalPart) > 0 ? decimalPart : '',

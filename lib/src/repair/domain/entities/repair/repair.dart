@@ -5,12 +5,12 @@ part 'spare_part.dart';
 
 class Repair extends Equatable {
   Repair({
-    String? id,
     required this.title,
     required this.description,
     required this.durationInMinutes,
     required this.price,
     required this.iconUrl,
+    String? id,
   })  : assert(
           id == null || id.isNotEmpty,
           'id must either be null or non empty',

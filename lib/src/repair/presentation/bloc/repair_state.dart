@@ -61,8 +61,10 @@ final class RepairProductsLoadSuccess extends RepairState {
 }
 
 final class RepairProductsLoadFailure extends RepairState {
-  const RepairProductsLoadFailure(
-      {required this.message, required this.statusCode});
+  const RepairProductsLoadFailure({
+    required this.message,
+    required this.statusCode,
+  });
 
   final String message;
 
@@ -82,8 +84,10 @@ final class RepairBrandsLoadSuccess extends RepairState {
 }
 
 final class RepairBrandsLoadFailure extends RepairState {
-  const RepairBrandsLoadFailure(
-      {required this.message, required this.statusCode});
+  const RepairBrandsLoadFailure({
+    required this.message,
+    required this.statusCode,
+  });
 
   final String message;
 

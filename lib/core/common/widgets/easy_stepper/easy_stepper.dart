@@ -1,11 +1,11 @@
-// ignore_for_file: use_super_parameters
+// ignore_for_file: use_super_parameters, lines_longer_than_80_chars, sort_constructors_first, always_put_required_named_parameters_first, require_trailing_commas, omit_local_variable_types, avoid_redundant_argument_values, avoid_bool_literals_in_conditional_expressions
 
 import 'dart:io';
 import 'dart:math';
 
-import 'src/core/custom_scroll_behavior.dart';
-import 'src/core/line_style.dart';
-import 'src/easy_step.dart';
+import 'package:daily_phones/core/common/widgets/easy_stepper/src/core/custom_scroll_behavior.dart';
+import 'package:daily_phones/core/common/widgets/easy_stepper/src/core/line_style.dart';
+import 'package:daily_phones/core/common/widgets/easy_stepper/src/easy_step.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

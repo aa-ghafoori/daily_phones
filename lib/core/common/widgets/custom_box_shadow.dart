@@ -2,8 +2,12 @@ import 'package:daily_phones/core/res/extensions.dart';
 import 'package:flutter/material.dart';
 
 class CustomBoxShadow extends StatelessWidget {
-  const CustomBoxShadow(
-      {required this.child, required this.offset, this.padding, super.key});
+  const CustomBoxShadow({
+    required this.child,
+    required this.offset,
+    this.padding,
+    super.key,
+  });
 
   final Offset offset;
 
@@ -20,7 +24,6 @@ class CustomBoxShadow extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: context.colorScheme.tertiary.withOpacity(0.2),
-            spreadRadius: 0,
             blurRadius: 5,
             offset: offset,
           ),

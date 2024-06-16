@@ -7,9 +7,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RepairOption extends StatelessWidget {
-  final Repair repair;
-
   const RepairOption({required this.repair, super.key});
+
+  final Repair repair;
 
   @override
   Widget build(BuildContext context) {

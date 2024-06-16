@@ -13,7 +13,6 @@ class ActionButtons extends StatelessWidget {
           backgroundColor: context.colorScheme.secondary.withOpacity(0.15),
           text: Center(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   'Send Offer PDF',
@@ -37,7 +36,6 @@ class ActionButtons extends StatelessWidget {
           backgroundColor: context.colorScheme.secondary,
           text: Center(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   'Next Step',

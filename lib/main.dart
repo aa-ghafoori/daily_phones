@@ -8,16 +8,19 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runZonedGuarded(() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  runZonedGuarded(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
 
-    init();
+      await init();
 
-    FlutterError.onError = (details) =>
-        log(details.exceptionAsString(), stackTrace: details.stack);
+      FlutterError.onError = (details) =>
+          log(details.exceptionAsString(), stackTrace: details.stack);
 
-    Bloc.observer = const AppBlocObserver();
+      Bloc.observer = const AppBlocObserver();
 
-    runApp(const App());
-  }, (error, stackTrace) => log(error.toString(), stackTrace: stackTrace));
+      runApp(const App());
+    },
+    (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
+  );
 }

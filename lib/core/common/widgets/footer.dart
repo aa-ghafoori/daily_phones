@@ -36,10 +36,16 @@ class Footer extends StatelessWidget {
         child: Column(
           children: [
             _buildAddressItem(
-                'Dokkum', 'Waagstraat 14A, 9101 LC Dokkum', context),
+              'Dokkum',
+              'Waagstraat 14A, 9101 LC Dokkum',
+              context,
+            ),
             const WhiteSpace(height: 30),
             _buildAddressItem(
-                'Harlingen', 'Voorstraat 15, 8861 BC Harlingen', context),
+              'Harlingen',
+              'Voorstraat 15, 8861 BC Harlingen',
+              context,
+            ),
           ],
         ),
       ),
@@ -53,6 +59,7 @@ class Footer extends StatelessWidget {
         Image.asset(ImageRes.dpLogo, scale: 3.7.sp),
         const WhiteSpace(height: 20),
         Text(
+          // ignore: lines_longer_than_80_chars
           'Professionele Apple telefoonreparatie in Dokkum of Harlingen door erkende Independent Repair Provider. Snelle, betrouwbare service met originele onderdelen.',
           style: context.textTheme.labelLarge?.copyWith(
             color: context.colorScheme.tertiary,
@@ -89,7 +96,7 @@ class Footer extends StatelessWidget {
             'Made by Empireyo',
             style: context.textTheme.labelLarge
                 ?.copyWith(color: context.colorScheme.tertiary),
-          )
+          ),
         ],
       ),
     );
@@ -109,7 +116,7 @@ class Footer extends StatelessWidget {
             Icon(
               CupertinoIcons.chevron_right_circle_fill,
               color: context.colorScheme.secondary,
-            )
+            ),
           ],
         ),
         const WhiteSpace(height: 5),
@@ -123,7 +130,10 @@ class Footer extends StatelessWidget {
   }
 
   Widget _buildRichText(
-      String boldText, String regularText, BuildContext context) {
+    String boldText,
+    String regularText,
+    BuildContext context,
+  ) {
     return Text.rich(
       TextSpan(
         text: boldText,
@@ -140,7 +150,10 @@ class Footer extends StatelessWidget {
   }
 
   Widget _buildTextSection(
-      String title, List<String> items, BuildContext context) {
+    String title,
+    List<String> items,
+    BuildContext context,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

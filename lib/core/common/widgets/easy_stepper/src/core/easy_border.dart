@@ -1,10 +1,25 @@
-// ignore_for_file: constant_identifier_names, use_super_parameters
+// ignore_for_file: omit_local_variable_types, constant_identifier_names, sort_constructors_first, lines_longer_than_80_chars, prefer_asserts_in_initializer_lists, prefer_final_locals, unnecessary_breaks, prefer_asserts_with_message, prefer_int_literals, avoid_equals_and_hash_code_on_mutable_classes
 
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
 class EasyBorder extends StatelessWidget {
+  EasyBorder({
+    required this.child,
+    super.key,
+    this.color = Colors.black,
+    this.strokeWidth = 1,
+    this.borderShape = BorderShape.Rect,
+    this.dashPattern = const <double>[3, 1],
+    this.padding = const EdgeInsets.all(2),
+    this.borderPadding = EdgeInsets.zero,
+    this.radius = Radius.zero,
+    this.strokeCap = StrokeCap.butt,
+    this.customPath,
+  }) : super() {
+    assert(_isValidDashPattern(dashPattern), 'Invalid dash pattern');
+  }
   final Widget child;
   final EdgeInsets padding;
   final EdgeInsets borderPadding;
@@ -15,22 +30,6 @@ class EasyBorder extends StatelessWidget {
   final Radius radius;
   final StrokeCap strokeCap;
   final PathBuilder? customPath;
-
-  EasyBorder({
-    key,
-    required this.child,
-    this.color = Colors.black,
-    this.strokeWidth = 1,
-    this.borderShape = BorderShape.Rect,
-    this.dashPattern = const <double>[3, 1],
-    this.padding = const EdgeInsets.all(2),
-    this.borderPadding = EdgeInsets.zero,
-    this.radius = const Radius.circular(0),
-    this.strokeCap = StrokeCap.butt,
-    this.customPath,
-  }) : super(key: key) {
-    assert(_isValidDashPattern(dashPattern), 'Invalid dash pattern');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +61,7 @@ class EasyBorder extends StatelessWidget {
   /// * Cannot be null or empty
   /// * If [dashPattern] has only 1 element, it cannot be 0
   bool _isValidDashPattern(List<double>? dashPattern) {
-    Set<double>? dashSet = dashPattern?.toSet();
+    final Set<double>? dashSet = dashPattern?.toSet();
     if (dashSet == null) return false;
     if (dashSet.length == 1 && dashSet.elementAt(0) == 0.0) return false;
     if (dashSet.isEmpty) return false;
@@ -90,7 +89,7 @@ class _DashPainter extends CustomPainter {
     this.dashPattern = const <double>[3, 1],
     this.color = Colors.black,
     this.borderShape = BorderShape.Rect,
-    this.radius = const Radius.circular(0),
+    this.radius = Radius.zero,
     this.strokeCap = StrokeCap.butt,
     this.customPath,
     this.padding = EdgeInsets.zero,

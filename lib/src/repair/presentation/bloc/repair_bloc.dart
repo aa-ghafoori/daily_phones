@@ -1,7 +1,7 @@
+import 'package:daily_phones/src/repair/domain/entities/entities.dart';
+import 'package:daily_phones/src/repair/domain/usecases/usecases.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:daily_phones/src/repair/domain/usecases/usecases.dart';
-import 'package:daily_phones/src/repair/domain/entities/entities.dart';
 
 part 'repair_event.dart';
 part 'repair_state.dart';
@@ -36,41 +36,54 @@ class RepairBloc extends Bloc<RepairEvent, RepairState> {
   List<Product> _products = [];
 
   Future<void> _onRepairStarted(
-      RepairStarted event, Emitter<RepairState> emit) async {
+    RepairStarted event,
+    Emitter<RepairState> emit,
+  ) async {
     emit(const RepairLoadInProgress());
 
     final brands =
         await _getBrands(const GetBrandsParams(type: ProductType.smartphone));
 
     brands.fold(
-        (failure) => RepairBrandsLoadFailure(
-            message: failure.message, statusCode: failure.statusCode),
-        (brands) => emit(RepairBrandsLoadSuccess(brands)));
+      (failure) => RepairBrandsLoadFailure(
+        message: failure.message,
+        statusCode: failure.statusCode,
+      ),
+      (brands) => emit(RepairBrandsLoadSuccess(brands)),
+    );
 
     final products = await _getProducts(const GetProductsParams());
 
     products.fold(
-        (failure) => emit(RepairProductsLoadFailure(
-              message: failure.message,
-              statusCode: failure.statusCode,
-            )), (products) {
+        (failure) => emit(
+              RepairProductsLoadFailure(
+                message: failure.message,
+                statusCode: failure.statusCode,
+              ),
+            ), (products) {
       _products = products;
       emit(RepairProductsLoadSuccess(products));
     });
   }
 
   Future<void> _onRepairProductsFiltered(
-      RepairProductsFiltered event, Emitter<RepairState> emit) async {
+    RepairProductsFiltered event,
+    Emitter<RepairState> emit,
+  ) async {
     final filteredProducts = _products
-        .where((product) =>
-            product.brand.toLowerCase().contains(event.text.toLowerCase()) ||
-            product.name.toLowerCase().contains(event.text.toLowerCase()))
+        .where(
+          (product) =>
+              product.brand.toLowerCase().contains(event.text.toLowerCase()) ||
+              product.name.toLowerCase().contains(event.text.toLowerCase()),
+        )
         .toList();
     emit(RepairProductsFilterSuccess(filteredProducts));
   }
 
   Future<void> _onRepairProductSelected(
-      RepairProductSelected event, Emitter<RepairState> emit) async {
+    RepairProductSelected event,
+    Emitter<RepairState> emit,
+  ) async {
     if (state.product != event.product) {
       emit(
         state.copyWith(status: RepairStatus.loading, product: event.product),
@@ -84,7 +97,9 @@ class RepairBloc extends Bloc<RepairEvent, RepairState> {
         (failure) => emit(state.copyWith(status: RepairStatus.failure)),
         (accessories) => emit(
           state.copyWith(
-              accessories: accessories, status: RepairStatus.success),
+            accessories: accessories,
+            status: RepairStatus.success,
+          ),
         ),
       );
       final repairs = await _getRepairs(
@@ -103,9 +118,15 @@ class RepairBloc extends Bloc<RepairEvent, RepairState> {
   }
 
   void _onRepairProductColorSelected(
-      RepairProductColorSelected event, Emitter<RepairState> emit) {
-    emit(state.copyWith(
-        selectedColor: event.productColor, status: RepairStatus.success));
+    RepairProductColorSelected event,
+    Emitter<RepairState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        selectedColor: event.productColor,
+        status: RepairStatus.success,
+      ),
+    );
   }
 
   void _onRepairItemAdded(RepairItemAdded event, Emitter<RepairState> emit) {
@@ -117,7 +138,9 @@ class RepairBloc extends Bloc<RepairEvent, RepairState> {
   }
 
   void _onRepairItemRemoved(
-      RepairItemRemoved event, Emitter<RepairState> emit) {
+    RepairItemRemoved event,
+    Emitter<RepairState> emit,
+  ) {
     final updatedItems = List<CheckoutItem>.from(state.selectedItems)
       ..remove(event.item);
     emit(

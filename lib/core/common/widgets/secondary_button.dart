@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SecondaryButton extends StatelessWidget {
-  const SecondaryButton(
-      {super.key, this.backgroundColor, this.icon, this.padding});
+  const SecondaryButton({
+    super.key,
+    this.backgroundColor,
+    this.icon,
+    this.padding,
+  });
 
   final Color? backgroundColor;
   final Icon? icon;

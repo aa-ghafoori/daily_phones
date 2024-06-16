@@ -25,11 +25,15 @@ Future<void> init() async {
     ..registerLazySingleton(() => GetRepairs(sl()))
     ..registerLazySingleton<RepairRepo>(() => RepairRepoImpl(sl()))
     ..registerLazySingleton<RepairLocalDataSrc>(
-        () => RepairLocalDataSrcImpl(sl()))
-    ..registerLazySingleton(() => DatabaseHelper()
-      ..seedDatabase(
+      () => RepairLocalDataSrcImpl(sl()),
+    )
+    ..registerLazySingleton(
+      () => DatabaseHelper()
+        ..seedDatabase(
           predefinedBrands: predefinedBrands,
           predefinedProducts: predefinedProducts,
           predefinedAccessories: predefinedAccessories,
-          predefinedRepairs: predefinedRepairs));
+          predefinedRepairs: predefinedRepairs,
+        ),
+    );
 }

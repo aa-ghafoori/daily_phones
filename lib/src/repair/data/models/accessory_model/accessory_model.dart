@@ -3,20 +3,12 @@ import 'package:daily_phones/src/repair/domain/entities/entities.dart';
 
 class AccessoryModel extends Accessory {
   AccessoryModel({
-    super.id,
     required super.title,
     required super.description,
     required super.imageUrl,
     required super.price,
+    super.id,
   });
-
-  DataMap toMap() => <String, dynamic>{
-        'id': id,
-        'title': title,
-        'description': description,
-        'imageUrl': imageUrl,
-        'price': price,
-      };
 
   factory AccessoryModel.fromMap(DataMap map) => AccessoryModel(
         id: map['id'] as String,
@@ -25,6 +17,14 @@ class AccessoryModel extends Accessory {
         imageUrl: map['imageUrl'] as String,
         price: map['price'] as double,
       );
+
+  DataMap toMap() => <String, dynamic>{
+        'id': id,
+        'title': title,
+        'description': description,
+        'imageUrl': imageUrl,
+        'price': price,
+      };
 
   @override
   List<Object?> get props => [id, title, description, imageUrl, price];

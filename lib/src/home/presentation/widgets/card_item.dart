@@ -43,7 +43,8 @@ class CardItem extends StatelessWidget {
                 style: !isSliderItem
                     ? context.textTheme.titleSmall?.copyWith(
                         color: context.colorScheme.background,
-                        fontWeight: FontWeight.w600)
+                        fontWeight: FontWeight.w600,
+                      )
                     : context.textTheme.titleMedium?.copyWith(
                         color: context.colorScheme.background,
                       ),
@@ -60,7 +61,7 @@ class CardItem extends StatelessWidget {
               RectangularButton(text: Text(buttonText ?? 'Repareer Nu')),
             ],
           ),
-        )
+        ),
       ],
     );
   }

@@ -5,13 +5,22 @@ part 'spare_part_model.dart';
 
 class RepairModel extends Repair {
   RepairModel({
-    super.id,
     required super.title,
     required super.description,
     required super.durationInMinutes,
     required super.price,
     required super.iconUrl,
+    super.id,
   });
+
+  factory RepairModel.fromMap(DataMap map) => RepairModel(
+        id: map['id'] as String,
+        title: map['title'] as String,
+        description: map['description'] as String,
+        durationInMinutes: map['durationInMinutes'] as int,
+        price: map['price'] as double,
+        iconUrl: map['iconUrl'] as String,
+      );
 
   RepairModel copyWith({
     String? title,
@@ -36,15 +45,6 @@ class RepairModel extends Repair {
         'price': price,
         'iconUrl': iconUrl,
       };
-
-  factory RepairModel.fromMap(DataMap map) => RepairModel(
-        id: map['id'] as String,
-        title: map['title'] as String,
-        description: map['description'] as String,
-        durationInMinutes: map['durationInMinutes'] as int,
-        price: map['price'] as double,
-        iconUrl: map['iconUrl'] as String,
-      );
 
   @override
   List<Object?> get props =>

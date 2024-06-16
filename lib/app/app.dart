@@ -9,16 +9,17 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: const Size(411.4, 890.3),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (_, child) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'DAILY PHONES',
-            theme: DailyPhonesTheme.lightTheme,
-            onGenerateRoute: generateRoute,
-          );
-        });
+      designSize: const Size(411.4, 890.3),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'DAILY PHONES',
+          theme: DailyPhonesTheme.lightTheme,
+          onGenerateRoute: generateRoute,
+        );
+      },
+    );
   }
 }

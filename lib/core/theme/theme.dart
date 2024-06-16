@@ -1,7 +1,7 @@
 import 'package:daily_phones/core/res/app_colors.dart';
+import 'package:daily_phones/core/res/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:daily_phones/core/res/fonts.dart';
 
 class DailyPhonesTheme {
   DailyPhonesTheme._();

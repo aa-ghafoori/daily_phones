@@ -1,14 +1,11 @@
+// ignore_for_file: require_trailing_commas
+
 import 'package:daily_phones/core/res/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SearchInputField extends StatelessWidget {
-  final GlobalKey textFieldKey;
-  final FocusNode focusNode;
-  final bool isFocused;
-  final Function(String) handleTextChanged;
-
   const SearchInputField({
     required this.textFieldKey,
     required this.focusNode,
@@ -16,6 +13,10 @@ class SearchInputField extends StatelessWidget {
     required this.handleTextChanged,
     super.key,
   });
+  final GlobalKey textFieldKey;
+  final FocusNode focusNode;
+  final bool isFocused;
+  final void Function(String) handleTextChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,6 @@ class SearchInputField extends StatelessWidget {
           cursorWidth: 1,
           style: context.textTheme.bodyMedium,
           decoration: InputDecoration(
-            suffixIconConstraints: const BoxConstraints(minHeight: 0),
             suffixIcon: SearchIcon(isFocused: isFocused, focusNode: focusNode),
             isDense: true,
             contentPadding:
@@ -70,11 +70,11 @@ class SearchInputField extends StatelessWidget {
 }
 
 class SearchIcon extends StatelessWidget {
-  final bool isFocused;
-  final FocusNode focusNode;
-
   const SearchIcon(
       {required this.isFocused, required this.focusNode, super.key});
+
+  final bool isFocused;
+  final FocusNode focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +117,7 @@ class SearchIcon extends StatelessWidget {
               key: const ValueKey<int>(2),
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: GestureDetector(
-                onTap: () => focusNode.unfocus(),
+                onTap: focusNode.unfocus,
                 child: Icon(
                   CupertinoIcons.xmark_circle_fill,
                   size: 30,

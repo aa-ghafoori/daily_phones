@@ -1,11 +1,11 @@
-// ignore_for_file: use_super_parameters
+// ignore_for_file: use_super_parameters, directives_ordering, always_put_required_named_parameters_first, lines_longer_than_80_chars, require_trailing_commas, use_named_constants, prefer_single_quotes
 
-import '../../easy_stepper.dart';
-import 'easy_border.dart';
+import 'package:daily_phones/core/common/widgets/easy_stepper/easy_stepper.dart';
+import 'package:daily_phones/core/common/widgets/easy_stepper/src/core/easy_border.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import 'base_step_delegate.dart';
+import 'package:daily_phones/core/common/widgets/easy_stepper/src/core/base_step_delegate.dart';
 
 /// Callback is fired when a step is reached.
 typedef OnStepReached = void Function(int index);

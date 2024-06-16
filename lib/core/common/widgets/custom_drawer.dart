@@ -23,9 +23,14 @@ class CustomDrawer extends StatelessWidget {
             Stack(
               children: [
                 DrawerItem(
-                    text: 'Reparaties', onPressed: () => _onPressed(context)),
+                  text: 'Reparaties',
+                  onPressed: () => _onPressed(context),
+                ),
                 Positioned(
-                    top: 22.h, left: 105.w, child: _discountBadge(context)),
+                  top: 22.h,
+                  left: 105.w,
+                  child: _discountBadge(context),
+                ),
               ],
             ),
             const DrawerItem(text: 'Smartphones', hasIcon: true),
@@ -43,13 +48,15 @@ class CustomDrawer extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.r),
-              color: const Color.fromARGB(255, 194, 49, 23)),
+            borderRadius: BorderRadius.circular(20.r),
+            color: const Color.fromARGB(255, 194, 49, 23),
+          ),
           child: Text(
             'KORTING',
             style: context.textTheme.labelSmall?.copyWith(
-                fontWeight: FontWeight.w800,
-                color: context.colorScheme.background),
+              fontWeight: FontWeight.w800,
+              color: context.colorScheme.background,
+            ),
           ),
         ),
       );
@@ -73,11 +80,6 @@ class DrawerItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         IconButton(
-          style: const ButtonStyle(
-            shape: MaterialStatePropertyAll(
-              ContinuousRectangleBorder(borderRadius: BorderRadius.zero),
-            ),
-          ),
           padding: EdgeInsets.zero,
           onPressed: onPressed ?? () {},
           icon: Container(

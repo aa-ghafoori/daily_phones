@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:daily_phones/core/common/widgets/widgets.dart';
 import 'package:daily_phones/core/res/extensions.dart';
 import 'package:daily_phones/core/res/image_resourses.dart';
@@ -25,17 +27,20 @@ class RepairProcessGuide extends StatelessWidget {
                   ?.copyWith(color: context.colorScheme.background),
             ),
             const RepairStep(
-                title: 'Type Selectie',
-                description:
-                    'Kies het type apparaat dat gerepareerd moet worden.'),
+              title: 'Type Selectie',
+              description:
+                  'Kies het type apparaat dat gerepareerd moet worden.',
+            ),
             const RepairStep(
-                title: 'Reparatie Keuze',
-                description:
-                    'Bepaal welke reparatie nodig is voor het geselecteerde item.'),
+              title: 'Reparatie Keuze',
+              description:
+                  'Bepaal welke reparatie nodig is voor het geselecteerde item.',
+            ),
             const RepairStep(
-                title: 'Afspraak Plannen',
-                description:
-                    'Regel een geschikt moment om de reparatie uit te laten voeren.'),
+              title: 'Afspraak Plannen',
+              description:
+                  'Regel een geschikt moment om de reparatie uit te laten voeren.',
+            ),
             const WhiteSpace(height: 20),
             RoundButton(
               text: Row(
@@ -94,7 +99,7 @@ class RepairStep extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ],

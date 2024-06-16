@@ -37,9 +37,10 @@ class _ItemsListState extends State<ItemsList> {
           final index = currentItems.indexOf(item);
           _items = List.from(currentItems);
           Future.delayed(
-              const Duration(milliseconds: 500),
-              () => _listKey.currentState
-                  ?.insertItem(index, duration: Durations.short3));
+            const Duration(milliseconds: 500),
+            () => _listKey.currentState
+                ?.insertItem(index, duration: Durations.short3),
+          );
         }
       }
     }

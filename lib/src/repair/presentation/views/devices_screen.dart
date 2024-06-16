@@ -74,7 +74,7 @@ class _InfoBar extends StatelessWidget {
           text: 'Welk',
           children: [
             TextSpan(text: ' model ', style: context.textTheme.titleMedium),
-            const TextSpan(text: 'heb je?')
+            const TextSpan(text: 'heb je?'),
           ],
         ),
       ),

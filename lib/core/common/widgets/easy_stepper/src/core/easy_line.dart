@@ -1,8 +1,19 @@
-// ignore_for_file: use_super_parameters
+// ignore_for_file: use_super_parameters, lines_longer_than_80_chars, use_is_even_rather_than_modulo, omit_local_variable_types, prefer_int_literals
 
 import 'package:flutter/material.dart';
 
 class EasyLine extends StatelessWidget {
+  const EasyLine({
+    super.key,
+    this.length = 50.0,
+    this.color = Colors.grey,
+    this.thickness = 3,
+    this.spacing = 3.0,
+    this.width = 2.0,
+    this.lineType = LineType.dotted,
+    this.axis = Axis.horizontal,
+  });
+
   /// Width of the dotted line.
   final double length;
 
@@ -24,25 +35,15 @@ class EasyLine extends StatelessWidget {
   /// Line Axis.
   final Axis axis;
 
-  const EasyLine({
-    key,
-    this.length = 50.0,
-    this.color = Colors.grey,
-    this.thickness = 3,
-    this.spacing = 3.0,
-    this.width = 2.0,
-    this.lineType = LineType.dotted,
-    this.axis = Axis.horizontal,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
       // If this is not applied, top half of the dot gets offscreen, hence, hidden.
       margin: EdgeInsets.only(
-          top: lineType == LineType.dotted || lineType == LineType.dashed
-              ? thickness * 0.5
-              : thickness * 0.5),
+        top: lineType == LineType.dotted || lineType == LineType.dashed
+            ? thickness * 0.5
+            : thickness * 0.5,
+      ),
       width: axis == Axis.horizontal
           ? length
           : lineType == LineType.dotted
@@ -93,19 +94,18 @@ class EasyLine extends StatelessWidget {
 }
 
 class _DottedLinePainter extends CustomPainter {
+  _DottedLinePainter({
+    required this.brush,
+    this.length = 100,
+    this.dotRadius = 2.0,
+    this.spacing = 3.0,
+    this.axis = Axis.horizontal,
+  }) : assert(dotRadius > 0, 'dotRadius must be greater than 0');
   final double length;
   final double dotRadius;
   final double spacing;
   final Paint brush;
   final Axis axis;
-
-  _DottedLinePainter({
-    this.length = 100,
-    required this.brush,
-    this.dotRadius = 2.0,
-    this.spacing = 3.0,
-    this.axis = Axis.horizontal,
-  }) : assert(dotRadius > 0, 'dotRadius must be greater than 0');
 
   @override
   void paint(Canvas canvas, Size size) {

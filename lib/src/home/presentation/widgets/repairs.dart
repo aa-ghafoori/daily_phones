@@ -1,6 +1,6 @@
 import 'package:daily_phones/core/common/widgets/widgets.dart';
-import 'package:daily_phones/core/res/image_resourses.dart';
 import 'package:daily_phones/core/res/extensions.dart';
+import 'package:daily_phones/core/res/image_resourses.dart';
 import 'package:daily_phones/src/home/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,7 +33,6 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text('Reparaties', style: context.textTheme.titleMedium),
         RoundButton(

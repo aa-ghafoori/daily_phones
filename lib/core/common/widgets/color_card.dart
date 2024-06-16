@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ColorCard extends StatelessWidget {
+  const ColorCard({required this.child, required this.productColor, super.key});
+
   final Widget child;
   final ProductColor productColor;
 
-  const ColorCard({required this.child, required this.productColor, super.key});
-
   @override
   Widget build(BuildContext context) {
-    final bool isSelected =
+    final isSelected =
         context.select((RepairBloc bloc) => bloc.state.selectedColor) ==
             productColor;
 

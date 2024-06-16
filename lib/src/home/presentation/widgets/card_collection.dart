@@ -12,16 +12,18 @@ class CardCollection extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-            height: 0.5.sh,
-            child:
-                const Card(clipBehavior: Clip.hardEdge, child: PageSlider())),
+          height: 0.5.sh,
+          child: const Card(clipBehavior: Clip.hardEdge, child: PageSlider()),
+        ),
         const WhiteSpace(height: 12),
-        ...cardData.map((data) => CustomCard(
-              image: data.image,
-              title: data.title,
-              description: data.description,
-              height: data.height,
-            ))
+        ...cardData.map(
+          (data) => CustomCard(
+            image: data.image,
+            title: data.title,
+            description: data.description,
+            height: data.height,
+          ),
+        ),
       ],
     );
   }

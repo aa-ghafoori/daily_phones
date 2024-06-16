@@ -1,7 +1,7 @@
 part of 'product.dart';
 
 class ProductColor extends Equatable {
-  ProductColor({String? id, required this.name, required this.color})
+  ProductColor({required this.name, required this.color, String? id})
       : assert(
           id == null || id.isNotEmpty,
           'id must either be null or non empty',

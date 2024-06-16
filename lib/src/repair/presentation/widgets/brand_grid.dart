@@ -40,36 +40,36 @@ class BrandGridView extends StatelessWidget {
           ),
           const WhiteSpace(height: 10),
           GridView(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 13.r,
-                mainAxisSpacing: 13.r,
-                childAspectRatio: 1.5,
-              ),
-              children: brands
-                  .map(
-                    (brand) => Container(
-                      decoration: BoxDecoration(
-                        color: context.colorScheme.background,
-                        borderRadius: BorderRadius.circular(15),
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 10,
-                            spreadRadius: 0,
-                            color: context.colorScheme.onBackground
-                                .withOpacity(0.1),
-                          ),
-                        ],
-                      ),
-                      child: Image.asset(
-                        brand.imageUrl,
-                        scale: 4,
-                      ),
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 13.r,
+              mainAxisSpacing: 13.r,
+              childAspectRatio: 1.5,
+            ),
+            children: brands
+                .map(
+                  (brand) => Container(
+                    decoration: BoxDecoration(
+                      color: context.colorScheme.background,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 10,
+                          color:
+                              context.colorScheme.onBackground.withOpacity(0.1),
+                        ),
+                      ],
                     ),
-                  )
-                  .toList()),
+                    child: Image.asset(
+                      brand.imageUrl,
+                      scale: 4,
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
         ],
       ),
     );

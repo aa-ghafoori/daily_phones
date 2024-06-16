@@ -23,7 +23,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         settings: settings,
       );
     case RepairScreen.routeName:
-      final product = settings.arguments as Product;
+      final product = settings.arguments! as Product;
       return _pageRouteBuilder(
         (_) => BlocProvider(
           create: (context) => sl<RepairBloc>(),
@@ -39,7 +39,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   }
 }
 
-MaterialPageRoute _pageRouteBuilder(
+MaterialPageRoute<dynamic> _pageRouteBuilder(
   Widget Function(BuildContext) page, {
   required RouteSettings settings,
 }) =>

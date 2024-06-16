@@ -33,11 +33,11 @@ class InfoBar extends StatelessWidget {
                 ),
               ),
               const WhiteSpace(width: 15),
-              Expanded(child: title)
+              Expanded(child: title),
             ],
           ),
         ),
-        const LanguagePicker()
+        const LanguagePicker(),
       ],
     );
   }

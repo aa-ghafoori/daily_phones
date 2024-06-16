@@ -1,7 +1,6 @@
+import 'package:daily_phones/core/res/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:daily_phones/core/res/extensions.dart';
 
 class DevicesSearchBar extends StatelessWidget {
   const DevicesSearchBar({
@@ -42,7 +41,7 @@ class DevicesSearchBar extends StatelessWidget {
               color: context.colorScheme.background,
             ),
           ),
-          suffixIconConstraints: BoxConstraints(minHeight: 0, minWidth: 55.w),
+          suffixIconConstraints: BoxConstraints(minWidth: 55.w),
           hintText: hintText,
           filled: true,
           fillColor: context.colorScheme.background,

@@ -1,8 +1,8 @@
 import 'package:daily_phones/core/res/extensions.dart';
 import 'package:daily_phones/core/res/image_resourses.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LanguagePicker extends StatefulWidget {
@@ -57,17 +57,24 @@ class MenuItems {
   static List<MenuItem> listItems = [netherlands, english, deutsch, french];
 
   static final netherlands = MenuItem(
-      text: 'Nederlands', icon: Image.asset(ImageRes.netherlands, scale: 1.5));
+    text: 'Nederlands',
+    icon: Image.asset(ImageRes.netherlands, scale: 1.5),
+  );
   static final english = MenuItem(
-      text: 'English (US)', icon: Image.asset(ImageRes.us, scale: 1.5));
+    text: 'English (US)',
+    icon: Image.asset(ImageRes.us, scale: 1.5),
+  );
   static final deutsch = MenuItem(
-      text: 'Deutsch', icon: Image.asset(ImageRes.germany, scale: 1.5));
+    text: 'Deutsch',
+    icon: Image.asset(ImageRes.germany, scale: 1.5),
+  );
   static final french = MenuItem(
-      text: 'Français', icon: Image.asset(ImageRes.france, scale: 1.5));
+    text: 'Français',
+    icon: Image.asset(ImageRes.france, scale: 1.5),
+  );
 
   static Widget buildItem(MenuItem item) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         item.icon,
         const SizedBox(width: 10),

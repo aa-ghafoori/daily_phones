@@ -1,14 +1,14 @@
 import 'package:daily_phones/core/utils/typedef.dart';
 import 'package:daily_phones/src/repair/data/models/models.dart';
 import 'package:flutter/widgets.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
-  static final DatabaseHelper _instance = DatabaseHelper._internal();
   factory DatabaseHelper() => _instance;
 
   DatabaseHelper._internal();
+  static final DatabaseHelper _instance = DatabaseHelper._internal();
 
   static Database? _database;
 
@@ -20,15 +20,15 @@ class DatabaseHelper {
   }
 
   Future<Database> _initDatabase() async {
-    String path = join(await getDatabasesPath(), 'daily_phones_database.db');
-    return await openDatabase(
+    final path = join(await getDatabasesPath(), 'daily_phones_database.db');
+    return openDatabase(
       path,
       version: 1,
       onCreate: _onCreate,
     );
   }
 
-  Future _onCreate(Database db, int version) async {
+  Future<void> _onCreate(Database db, int version) async {
     await db.execute('PRAGMA foreign_keys = ON');
 
     // Database tables for the Repair Feauture
@@ -156,7 +156,9 @@ class DatabaseHelper {
   }
 
   Future<void> linkAccessoryToProduct(
-      String productId, String accessoryId) async {
+    String productId,
+    String accessoryId,
+  ) async {
     await _addEntity('product_accessories', {
       'productId': productId,
       'accessoryId': accessoryId,
@@ -171,7 +173,9 @@ class DatabaseHelper {
   }
 
   Future<void> linkSparePartToRepair(
-      String repairId, String sparePartId) async {
+    String repairId,
+    String sparePartId,
+  ) async {
     await _addEntity('repair_spare_parts', {
       'repairId': repairId,
       'sparePartId': sparePartId,
@@ -179,67 +183,76 @@ class DatabaseHelper {
   }
 
   Future<void> addAccessoriesToProduct(
-      String productId, List<AccessoryModel> accessories) async {
+    String productId,
+    List<AccessoryModel> accessories,
+  ) async {
     final db = await database;
     final batch = db.batch();
     for (final accessory in accessories) {
-      batch.insert(
-        'accessories',
-        accessory.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
-      batch.insert(
-        'product_accessories',
-        {
-          'productId': productId,
-          'accessoryId': accessory.id,
-        },
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+      batch
+        ..insert(
+          'accessories',
+          accessory.toMap(),
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        )
+        ..insert(
+          'product_accessories',
+          {
+            'productId': productId,
+            'accessoryId': accessory.id,
+          },
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        );
     }
     await batch.commit(noResult: true);
   }
 
   Future<void> addRepairsToProduct(
-      String productId, List<RepairModel> repairs) async {
+    String productId,
+    List<RepairModel> repairs,
+  ) async {
     final db = await database;
     final batch = db.batch();
     for (final repair in repairs) {
-      batch.insert(
-        'repairs',
-        repair.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
-      batch.insert(
-        'product_repairs',
-        {
-          'productId': productId,
-          'repairId': repair.id,
-        },
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+      batch
+        ..insert(
+          'repairs',
+          repair.toMap(),
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        )
+        ..insert(
+          'product_repairs',
+          {
+            'productId': productId,
+            'repairId': repair.id,
+          },
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        );
     }
     await batch.commit(noResult: true);
   }
 
   Future<void> addSparePartsToRepair(
-      String repairId, List<SparePartModel> spareParts) async {
+    String repairId,
+    List<SparePartModel> spareParts,
+  ) async {
     final db = await database;
     final batch = db.batch();
     for (final sparePart in spareParts) {
-      batch.insert(
-        'spare_parts',
-        sparePart.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
-      batch.insert(
-        'repair_spare_parts',
-        {
-          'repairId': repairId,
-          'sparePartId': sparePart.id,
-        },
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+      batch
+        ..insert(
+          'spare_parts',
+          sparePart.toMap(),
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        )
+        ..insert(
+          'repair_spare_parts',
+          {
+            'repairId': repairId,
+            'sparePartId': sparePart.id,
+          },
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        );
     }
     await batch.commit(noResult: true);
   }

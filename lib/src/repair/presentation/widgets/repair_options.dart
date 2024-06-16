@@ -26,22 +26,22 @@ class _RepairOptionsState extends State<RepairOptions> {
         const WhiteSpace(height: 30),
         if (!_showAllRepairs)
           ShowAllRepairsButton(
-              repairCount: repairs.length,
-              onPressed: () => setState(() => _showAllRepairs = true)),
+            repairCount: repairs.length,
+            onPressed: () => setState(() => _showAllRepairs = true),
+          ),
       ],
     );
   }
 }
 
 class ShowAllRepairsButton extends StatelessWidget {
-  final VoidCallback onPressed;
-  final int repairCount;
-
   const ShowAllRepairsButton({
     required this.onPressed,
     required this.repairCount,
     super.key,
   });
+  final VoidCallback onPressed;
+  final int repairCount;
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +62,9 @@ class ShowAllRepairsButton extends StatelessWidget {
               text: 'show all ',
               children: [
                 TextSpan(
-                    text: '$repairCount',
-                    style: const TextStyle(fontWeight: FontWeight.w600)),
+                  text: '$repairCount',
+                  style: const TextStyle(fontWeight: FontWeight.w600),
+                ),
                 const TextSpan(text: ' repairs '),
               ],
             ),

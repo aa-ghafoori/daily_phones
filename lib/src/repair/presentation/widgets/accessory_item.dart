@@ -7,14 +7,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AccessoryItem extends StatelessWidget {
-  final Accessory accessory;
-
   const AccessoryItem({required this.accessory, super.key});
+  final Accessory accessory;
 
   @override
   Widget build(BuildContext context) {
     final item = CheckoutItem.fromAccessory(accessory);
-    final bool isSelected = context
+    final isSelected = context
         .select((RepairBloc bloc) => bloc.state.selectedItems.contains(item));
 
     return Padding(
@@ -94,9 +93,10 @@ class AccessoryItem extends StatelessWidget {
           Text(
             '€',
             style: context.textTheme.labelLarge?.copyWith(
-                color: isSelected
-                    ? context.colorScheme.background
-                    : context.colorScheme.secondary),
+              color: isSelected
+                  ? context.colorScheme.background
+                  : context.colorScheme.secondary,
+            ),
           ),
           Text(
             price.toString(),

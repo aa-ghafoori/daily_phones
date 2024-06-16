@@ -5,14 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SearchResultDropdownMenu extends StatelessWidget {
-  final bool isFocused;
-  final List<Product> products;
-
   const SearchResultDropdownMenu({
     required this.isFocused,
     required this.products,
     super.key,
   });
+  final bool isFocused;
+  final List<Product> products;
 
   void _onProductClicked(Product product, BuildContext context) =>
       context.navigator.pushNamed(RepairScreen.routeName, arguments: product);
@@ -86,8 +85,9 @@ class _DropDownMenuItem extends StatelessWidget {
               Text(
                 brandName,
                 style: context.textTheme.labelMedium?.copyWith(
-                    color: context.colorScheme.secondary,
-                    fontWeight: FontWeight.w400),
+                  color: context.colorScheme.secondary,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
               const SizedBox(width: 10),
               Expanded(
