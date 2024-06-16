@@ -1,20 +1,36 @@
+import 'dart:math';
+
 import 'package:daily_phones/core/res/image_resourses.dart';
-import 'package:daily_phones/on_boarding/models/card_data.dart';
-import 'package:daily_phones/on_boarding/widgets/card_item.dart';
+import 'package:daily_phones/src/home/domain/entities/entities.dart';
+import 'package:daily_phones/src/home/presentation/widgets/widgets.dart';
+import 'package:daily_phones/src/repair/data/models/models.dart';
+import 'package:daily_phones/src/repair/domain/entities/product/product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mobile_devices_api/mobile_devices_api.dart';
 
 void redPrint(String text) {
-  debugPrint("\u001b[1;31m $text");
+  debugPrint('\u001b[1;31m $text');
 }
 
 void greenPrint(String text) {
-  debugPrint("\u001b[1;32m $text");
+  debugPrint('\u001b[1;32m $text');
 }
 
 void yellowPrint(String text) {
-  debugPrint("\u001b[1;33m $text");
+  debugPrint('\u001b[1;33m $text');
+}
+
+List<ProductColorModel> generateProductColors(int count) {
+  final random = Random();
+  final List<ProductColorModel> productColors = [];
+  final List<ProductColorModel> shuffledColors = List.from(predefinedColors)
+    ..shuffle(random);
+
+  for (int i = 0; i < count; i++) {
+    productColors.add(shuffledColors[i]);
+  }
+
+  return productColors;
 }
 
 final List<Widget> pageSliderItemsList = [
@@ -88,903 +104,1036 @@ final List<String> footerImages = [
   ImageRes.instagram
 ];
 
-final List<Brand> predefinedBrands = [
-  Brand(name: 'Apple', imageUrl: ImageRes.apple, types: const [
+final List<BrandModel> predefinedBrands = [
+  BrandModel(name: 'Apple', imageUrl: ImageRes.apple, types: const [
     ProductType.smartphone,
     ProductType.laptop,
     ProductType.smartwatch
   ]),
-  Brand(
+  BrandModel(
       name: 'Samsung',
       imageUrl: ImageRes.samsung,
       types: const [ProductType.smartphone, ProductType.smartwatch]),
-  Brand(
+  BrandModel(
       name: 'Google',
       imageUrl: ImageRes.google,
       types: const [ProductType.smartphone, ProductType.laptop]),
-  Brand(
+  BrandModel(
       name: 'OnePlus',
       imageUrl: ImageRes.oneplus,
       types: const [ProductType.smartphone]),
-  Brand(
+  BrandModel(
       name: 'Sony',
       imageUrl: ImageRes.sony,
       types: const [ProductType.smartphone, ProductType.laptop]),
-  Brand(
+  BrandModel(
       name: 'Xiaomi',
       imageUrl: ImageRes.xiaomi,
       types: const [ProductType.smartphone, ProductType.smartwatch]),
-  Brand(
+  BrandModel(
       name: 'Oppo',
       imageUrl: ImageRes.oppo,
       types: const [ProductType.smartphone]),
-  Brand(
+  BrandModel(
       name: 'Huawei',
       imageUrl: ImageRes.huawei,
       types: const [ProductType.smartphone, ProductType.laptop]),
-  Brand(
+  BrandModel(
       name: 'LG',
       imageUrl: ImageRes.lg,
       types: const [ProductType.smartphone, ProductType.smartwatch]),
-  Brand(
+  BrandModel(
       name: 'Nokia',
       imageUrl: ImageRes.nokia,
       types: const [ProductType.smartphone]),
-  Brand(
+  BrandModel(
       name: 'Motorola',
       imageUrl: ImageRes.motorola,
       types: const [ProductType.smartphone]),
-  Brand(
+  BrandModel(
       name: 'Lenovo',
       imageUrl: ImageRes.lenovo,
       types: const [ProductType.smartphone, ProductType.laptop]),
-  Brand(
+  BrandModel(
       name: 'Asus',
       imageUrl: ImageRes.asus,
       types: const [ProductType.smartphone, ProductType.laptop]),
-  Brand(
+  BrandModel(
       name: 'Realme',
       imageUrl: ImageRes.realme,
       types: const [ProductType.smartphone]),
-  Brand(
+  BrandModel(
       name: 'Blackberry',
       imageUrl: ImageRes.blackberry,
       types: const [ProductType.smartphone]),
-  Brand(
+  BrandModel(
       name: 'Cat',
       imageUrl: ImageRes.cat,
       types: const [ProductType.smartphone]),
-  Brand(
+  BrandModel(
       name: 'Alcatel',
       imageUrl: ImageRes.alcatel,
       types: const [ProductType.smartphone]),
-  Brand(
+  BrandModel(
       name: 'Honor',
       imageUrl: ImageRes.honor,
       types: const [ProductType.smartphone, ProductType.laptop]),
 ];
 
-final List<Product> predefinedProducts = [
-  Product(
+final List<ProductModel> predefinedProducts = [
+  ProductModel(
     name: 'iPhone 14',
     brand: 'Apple',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'iPhone 14 Plus',
     brand: 'Apple',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'iPhone 14 Pro',
     brand: 'Apple',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'iPhone 14 Pro Max',
     brand: 'Apple',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'iPhone 13',
     brand: 'Apple',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'iPhone 13 mini',
     brand: 'Apple',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'iPhone 13 Pro',
     brand: 'Apple',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'iPhone 13 Pro Max',
     brand: 'Apple',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'iPhone 12',
     brand: 'Apple',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'iPhone 12 mini',
     brand: 'Apple',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'iPhone 12 Pro',
     brand: 'Apple',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'iPhone 12 Pro Max',
     brand: 'Apple',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'iPhone SE (2022)',
     brand: 'Apple',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Galaxy S23',
     brand: 'Samsung',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Galaxy S23+',
     brand: 'Samsung',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Galaxy S23 Ultra',
     brand: 'Samsung',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Galaxy S22',
     brand: 'Samsung',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Galaxy S22+',
     brand: 'Samsung',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Galaxy S22 Ultra',
     brand: 'Samsung',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Galaxy Z Fold 4',
     brand: 'Samsung',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Galaxy Z Flip 4',
     brand: 'Samsung',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Galaxy A53',
     brand: 'Samsung',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Galaxy A73',
     brand: 'Samsung',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Galaxy S21 FE',
     brand: 'Samsung',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Pixel 7',
     brand: 'Google',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Pixel 7 Pro',
     brand: 'Google',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Pixel 6',
     brand: 'Google',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Pixel 6 Pro',
     brand: 'Google',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Pixel 5',
     brand: 'Google',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Pixel 4a',
     brand: 'Google',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Pixel 5a',
     brand: 'Google',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Pixel 4',
     brand: 'Google',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Pixel 4 XL',
     brand: 'Google',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Pixel 3a',
     brand: 'Google',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Pixel 3a XL',
     brand: 'Google',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'OnePlus 11',
     brand: 'OnePlus',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'OnePlus 10 Pro',
     brand: 'OnePlus',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'OnePlus 10T',
     brand: 'OnePlus',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'OnePlus 9',
     brand: 'OnePlus',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'OnePlus 9 Pro',
     brand: 'OnePlus',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'OnePlus 8T',
     brand: 'OnePlus',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'OnePlus Nord 2',
     brand: 'OnePlus',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'OnePlus 8',
     brand: 'OnePlus',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'OnePlus 8 Pro',
     brand: 'OnePlus',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'OnePlus 7T',
     brand: 'OnePlus',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'OnePlus 7T Pro',
     brand: 'OnePlus',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Xperia 1 IV',
     brand: 'Sony',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Xperia 5 IV',
     brand: 'Sony',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Xperia 10 IV',
     brand: 'Sony',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Xperia 1 III',
     brand: 'Sony',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Xperia 5 III',
     brand: 'Sony',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Xperia 10 III',
     brand: 'Sony',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Xperia 1 II',
     brand: 'Sony',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Xperia 5 II',
     brand: 'Sony',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Xperia 10 II',
     brand: 'Sony',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Mi 12',
     brand: 'Xiaomi',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Mi 12 Pro',
     brand: 'Xiaomi',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Redmi Note 11',
     brand: 'Xiaomi',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Redmi Note 11 Pro',
     brand: 'Xiaomi',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Mi 11',
     brand: 'Xiaomi',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Mi 11 Pro',
     brand: 'Xiaomi',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Mi 11 Ultra',
     brand: 'Xiaomi',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Mi 10T',
     brand: 'Xiaomi',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Mi 10T Pro',
     brand: 'Xiaomi',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Find X5',
     brand: 'Oppo',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Find X5 Pro',
     brand: 'Oppo',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Reno 8',
     brand: 'Oppo',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Reno 8 Pro',
     brand: 'Oppo',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Reno 7',
     brand: 'Oppo',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Reno 7 Pro',
     brand: 'Oppo',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Mate 50',
     brand: 'Huawei',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Mate 50 Pro',
     brand: 'Huawei',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'P50',
     brand: 'Huawei',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'P50 Pro',
     brand: 'Huawei',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'P40',
     brand: 'Huawei',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'P40 Pro',
     brand: 'Huawei',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'P40 Pro+',
     brand: 'Huawei',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Mate 40',
     brand: 'Huawei',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Mate 40 Pro',
     brand: 'Huawei',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Mate 40 Pro+',
     brand: 'Huawei',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Velvet',
     brand: 'LG',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Wing',
     brand: 'LG',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'G8X ThinQ',
     brand: 'LG',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'V60 ThinQ',
     brand: 'LG',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Stylo 6',
     brand: 'LG',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'K92 5G',
     brand: 'LG',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'G8 ThinQ',
     brand: 'LG',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: '7.2',
     brand: 'Nokia',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: '8.3 5G',
     brand: 'Nokia',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: '5.4',
     brand: 'Nokia',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: '3.4',
     brand: 'Nokia',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'G50',
     brand: 'Nokia',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'G20',
     brand: 'Nokia',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'G10',
     brand: 'Nokia',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Edge 30 Pro',
     brand: 'Motorola',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Edge 30 Ultra',
     brand: 'Motorola',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Moto G200',
     brand: 'Motorola',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Moto G100',
     brand: 'Motorola',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Moto G60',
     brand: 'Motorola',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Moto G50',
     brand: 'Motorola',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Moto G30',
     brand: 'Motorola',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Moto G Power (2021)',
     brand: 'Motorola',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Moto G Stylus (2021)',
     brand: 'Motorola',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Legion Duel 2',
     brand: 'Lenovo',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Legion Phone Duel',
     brand: 'Lenovo',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Legion Y70',
     brand: 'Lenovo',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Z6 Pro',
     brand: 'Lenovo',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Z5s',
     brand: 'Lenovo',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'ROG Phone 7',
     brand: 'Asus',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'ROG Phone 6',
     brand: 'Asus',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'ROG Phone 5',
     brand: 'Asus',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Zenfone 8',
     brand: 'Asus',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Zenfone 7',
     brand: 'Asus',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Narzo 50',
     brand: 'Realme',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Narzo 30',
     brand: 'Realme',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Narzo 20',
     brand: 'Realme',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Narzo 10',
     brand: 'Realme',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Blackberry KEY2',
     brand: 'Blackberry',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Blackberry KEYone',
     brand: 'Blackberry',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Blackberry Motion',
     brand: 'Blackberry',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Blackberry DTEK60',
     brand: 'Blackberry',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Cat S62 Pro',
     brand: 'Cat',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Cat S52',
     brand: 'Cat',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Cat S42',
     brand: 'Cat',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Cat S41',
     brand: 'Cat',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: '1S',
     brand: 'Alcatel',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: '3L',
     brand: 'Alcatel',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: '1V',
     brand: 'Alcatel',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: '5',
     brand: 'Alcatel',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Magic4 Pro',
     brand: 'Honor',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Magic4 Lite',
     brand: 'Honor',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Magic3',
     brand: 'Honor',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
-  Product(
+  ProductModel(
     name: 'Magic3 Pro',
     brand: 'Honor',
     imageUrl: ImageRes.iphone15,
     type: ProductType.smartphone,
+    colors: generateProductColors(3 + Random().nextInt(4)),
   ),
 ];
 
-final List<Accessory> predefinedAccessories = [
-  Accessory(
+final List<AccessoryModel> predefinedAccessories = [
+  AccessoryModel(
     title: 'Screen Protector',
     description: 'Protect your phone screen from scratches and minor impacts.',
     imageUrl: ImageRes.screenProtector,
     price: 15.95,
   ),
-  Accessory(
+  AccessoryModel(
     title: 'Safety Glass',
     description: 'Durable glass protection to prevent screen shattering.',
     imageUrl: ImageRes.safetyGlass,
     price: 25.95,
   ),
-  Accessory(
+  AccessoryModel(
     title: 'Silicon Case',
     description: 'Flexible and lightweight case to protect your phone.',
     imageUrl: ImageRes.siliconCase,
     price: 20.95,
   ),
-  Accessory(
+  AccessoryModel(
     title: 'Phone Book Case',
     description: 'Stylish and functional phone case with additional storage.',
     imageUrl: ImageRes.phoneBookCase,
@@ -992,8 +1141,8 @@ final List<Accessory> predefinedAccessories = [
   ),
 ];
 
-final List<Repair> predefinedRepairs = [
-  Repair(
+final List<RepairModel> predefinedRepairs = [
+  RepairModel(
     title: 'Screen',
     durationInMinutes: 30,
     price: 200,
@@ -1001,7 +1150,7 @@ final List<Repair> predefinedRepairs = [
         "Your screen is cracked, doesn't respond properly, or displays horizontal/vertical lines and/or unusual colors.",
     iconUrl: ImageRes.screen,
   ),
-  Repair(
+  RepairModel(
     title: 'Battery',
     durationInMinutes: 20,
     price: 100,
@@ -1009,7 +1158,7 @@ final List<Repair> predefinedRepairs = [
         'Your battery drains quickly, does not charge fully, or your phone shuts down unexpectedly.',
     iconUrl: ImageRes.charge,
   ),
-  Repair(
+  RepairModel(
     title: 'Charging Port',
     durationInMinutes: 45,
     price: 80,
@@ -1017,7 +1166,7 @@ final List<Repair> predefinedRepairs = [
         'Your charging port is loose, not charging, or requires constant adjusting to work.',
     iconUrl: ImageRes.charge,
   ),
-  Repair(
+  RepairModel(
     title: 'Camera',
     durationInMinutes: 60,
     price: 150,
@@ -1025,7 +1174,7 @@ final List<Repair> predefinedRepairs = [
         'Your camera is blurry, not focusing, or the camera app is not working.',
     iconUrl: ImageRes.camera,
   ),
-  Repair(
+  RepairModel(
     title: 'Software Update',
     durationInMinutes: 15,
     price: 30,
@@ -1033,7 +1182,7 @@ final List<Repair> predefinedRepairs = [
         'Your phone needs the latest software update for better performance and new features.',
     iconUrl: ImageRes.update,
   ),
-  Repair(
+  RepairModel(
     title: 'Water Damage',
     durationInMinutes: 120,
     price: 250,
@@ -1041,7 +1190,7 @@ final List<Repair> predefinedRepairs = [
         'Your phone was exposed to water and needs repair to restore functionality.',
     iconUrl: ImageRes.waterDrop,
   ),
-  Repair(
+  RepairModel(
     title: 'Vibrator',
     durationInMinutes: 25,
     price: 50,
@@ -1049,7 +1198,7 @@ final List<Repair> predefinedRepairs = [
         'Your phone’s vibrator is not working properly or not vibrating at all.',
     iconUrl: ImageRes.vibrator,
   ),
-  Repair(
+  RepairModel(
     title: 'SIM Card Reader',
     durationInMinutes: 30,
     price: 60,
@@ -1057,7 +1206,7 @@ final List<Repair> predefinedRepairs = [
         'Your phone is not detecting the SIM card or frequently loses signal.',
     iconUrl: ImageRes.simcard,
   ),
-  Repair(
+  RepairModel(
     title: 'Sensor',
     durationInMinutes: 35,
     price: 70,
@@ -1065,7 +1214,7 @@ final List<Repair> predefinedRepairs = [
         'Your phone’s sensors (e.g., proximity, accelerometer) are not working correctly.',
     iconUrl: ImageRes.sensor,
   ),
-  Repair(
+  RepairModel(
     title: 'WiFi',
     durationInMinutes: 40,
     price: 80,
@@ -1073,14 +1222,14 @@ final List<Repair> predefinedRepairs = [
         'Your phone has difficulty connecting to WiFi networks or maintaining a stable connection.',
     iconUrl: ImageRes.wifi,
   ),
-  Repair(
+  RepairModel(
     title: 'Back Cover',
     durationInMinutes: 20,
     price: 40,
     description: 'Your phone’s back cover is damaged or needs replacement.',
     iconUrl: ImageRes.backCover,
   ),
-  Repair(
+  RepairModel(
     title: 'Microphone',
     durationInMinutes: 45,
     price: 90,
@@ -1088,7 +1237,7 @@ final List<Repair> predefinedRepairs = [
         'Your phone’s microphone is not working, making it difficult for others to hear you.',
     iconUrl: ImageRes.microphone,
   ),
-  Repair(
+  RepairModel(
     title: 'Speaker',
     durationInMinutes: 50,
     price: 100,
@@ -1096,7 +1245,7 @@ final List<Repair> predefinedRepairs = [
         'Your phone’s speaker is not producing sound or is producing distorted sound.',
     iconUrl: ImageRes.speaker,
   ),
-  Repair(
+  RepairModel(
     title: 'Button',
     durationInMinutes: 30,
     price: 50,
@@ -1104,7 +1253,7 @@ final List<Repair> predefinedRepairs = [
         'A physical button on your phone (e.g., power, volume) is not functioning correctly.',
     iconUrl: ImageRes.button,
   ),
-  Repair(
+  RepairModel(
     title: 'Display',
     durationInMinutes: 30,
     price: 220,
@@ -1112,133 +1261,133 @@ final List<Repair> predefinedRepairs = [
         'Your display has dead pixels, backlight issues, or discoloration.',
     iconUrl: ImageRes.screen,
   ),
-  Repair(
+  RepairModel(
     title: 'Home Button',
     durationInMinutes: 25,
     price: 60,
     description: 'The home button is unresponsive or stuck.',
     iconUrl: ImageRes.button,
   ),
-  Repair(
+  RepairModel(
     title: 'Earpiece Speaker',
     durationInMinutes: 35,
     price: 70,
     description: 'You can’t hear the other person well during calls.',
     iconUrl: ImageRes.speaker,
   ),
-  Repair(
+  RepairModel(
     title: 'Proximity Sensor',
     durationInMinutes: 30,
     price: 50,
     description: 'Your phone screen does not turn off during calls.',
     iconUrl: ImageRes.sensor,
   ),
-  Repair(
+  RepairModel(
     title: 'Headphone Jack',
     durationInMinutes: 40,
     price: 80,
     description: 'Your headphone jack is not working or has static noise.',
     iconUrl: ImageRes.sensor,
   ),
-  Repair(
+  RepairModel(
     title: 'Fingerprint Sensor',
     durationInMinutes: 30,
     price: 100,
     description: 'The fingerprint sensor is not recognizing fingerprints.',
     iconUrl: ImageRes.sensor,
   ),
-  Repair(
+  RepairModel(
     title: 'Volume Button',
     durationInMinutes: 25,
     price: 40,
     description: 'The volume button is stuck or unresponsive.',
     iconUrl: ImageRes.button,
   ),
-  Repair(
+  RepairModel(
     title: 'Power Button',
     durationInMinutes: 25,
     price: 40,
     description: 'The power button is stuck or unresponsive.',
     iconUrl: ImageRes.button,
   ),
-  Repair(
+  RepairModel(
     title: 'Mute Switch',
     durationInMinutes: 20,
     price: 30,
     description: 'The mute switch is stuck or unresponsive.',
     iconUrl: ImageRes.button,
   ),
-  Repair(
+  RepairModel(
     title: 'Back Camera Lens',
     durationInMinutes: 60,
     price: 120,
     description: 'The back camera lens is cracked or scratched.',
     iconUrl: ImageRes.camera,
   ),
-  Repair(
+  RepairModel(
     title: 'Front Camera',
     durationInMinutes: 45,
     price: 100,
     description: 'The front camera is blurry or not working.',
     iconUrl: ImageRes.camera,
   ),
-  Repair(
+  RepairModel(
     title: 'Network Issues',
     durationInMinutes: 60,
     price: 150,
     description: 'Your phone has trouble connecting to the mobile network.',
     iconUrl: ImageRes.simcard,
   ),
-  Repair(
+  RepairModel(
     title: 'Bluetooth',
     durationInMinutes: 30,
     price: 80,
     description: 'Your phone has trouble connecting to Bluetooth devices.',
     iconUrl: ImageRes.sensor,
   ),
-  Repair(
+  RepairModel(
     title: 'Face ID',
     durationInMinutes: 50,
     price: 200,
     description: 'Face ID is not working or not recognizing your face.',
     iconUrl: ImageRes.camera,
   ),
-  Repair(
+  RepairModel(
     title: 'Data Recovery',
     durationInMinutes: 120,
     price: 300,
     description: 'Recover lost or deleted data from your phone.',
     iconUrl: ImageRes.update,
   ),
-  Repair(
+  RepairModel(
     title: 'Motherboard',
     durationInMinutes: 180,
     price: 400,
-    description: 'Repair or replace a faulty motherboard.',
+    description: 'RepairModel or replace a faulty motherboard.',
     iconUrl: ImageRes.investigation,
   ),
-  Repair(
+  RepairModel(
     title: 'Antenna',
     durationInMinutes: 45,
     price: 100,
     description: 'Fix issues with weak or no signal.',
     iconUrl: ImageRes.sensor,
   ),
-  Repair(
+  RepairModel(
     title: 'Loudspeaker',
     durationInMinutes: 50,
     price: 90,
-    description: 'Repair or replace a faulty loudspeaker.',
+    description: 'RepairModel or replace a faulty loudspeaker.',
     iconUrl: ImageRes.speaker,
   ),
-  Repair(
+  RepairModel(
     title: 'MicroSD Slot',
     durationInMinutes: 35,
     price: 60,
     description: 'The MicroSD slot is not reading cards or is damaged.',
     iconUrl: ImageRes.simcard,
   ),
-  Repair(
+  RepairModel(
     title: 'GPS',
     durationInMinutes: 40,
     price: 80,
@@ -1246,21 +1395,21 @@ final List<Repair> predefinedRepairs = [
         'Your phone has issues with GPS accuracy or not detecting location.',
     iconUrl: ImageRes.sensor,
   ),
-  Repair(
+  RepairModel(
     title: 'Vibration Motor',
     durationInMinutes: 25,
     price: 50,
     description: 'Your phone’s vibration motor is weak or not working at all.',
     iconUrl: ImageRes.vibrator,
   ),
-  Repair(
+  RepairModel(
     title: 'Proximity Sensor Calibration',
     durationInMinutes: 20,
     price: 30,
     description: 'Calibrate the proximity sensor for accurate detection.',
     iconUrl: ImageRes.sensor,
   ),
-  Repair(
+  RepairModel(
     title: 'Light Sensor',
     durationInMinutes: 25,
     price: 50,
@@ -1268,7 +1417,7 @@ final List<Repair> predefinedRepairs = [
         'The light sensor is not adjusting the screen brightness automatically.',
     iconUrl: ImageRes.sensor,
   ),
-  Repair(
+  RepairModel(
     title: 'Gyroscope',
     durationInMinutes: 30,
     price: 70,
@@ -1278,14 +1427,14 @@ final List<Repair> predefinedRepairs = [
   ),
 ];
 
-final List<ProductColor> predefinedColors = [
-  ProductColor(name: 'Black', hex: '#494C50'),
-  ProductColor(name: 'Red', hex: '#C34239'),
-  ProductColor(name: 'Blue', hex: '#6798C9'),
-  ProductColor(name: 'Green', hex: '#D5DDCE'),
-  ProductColor(name: 'Yellow', hex: '#D0BD60'),
-  ProductColor(name: 'Purple', hex: '#9C27B0'),
-  ProductColor(name: 'Pink', hex: '#E8D5D4'),
-  ProductColor(name: 'Gold', hex: '#F8E5BD'),
-  ProductColor(name: 'Silver', hex: '#E3E4DE'),
+final List<ProductColorModel> predefinedColors = [
+  ProductColorModel(name: 'Black', color: const Color(0xFF494C50)),
+  ProductColorModel(name: 'Red', color: const Color(0xFFC34239)),
+  ProductColorModel(name: 'Blue', color: const Color(0xFF6798C9)),
+  ProductColorModel(name: 'Green', color: const Color(0xFFD5DDCE)),
+  ProductColorModel(name: 'Yellow', color: const Color(0xFFD0BD60)),
+  ProductColorModel(name: 'Purple', color: const Color(0xFF9C27B0)),
+  ProductColorModel(name: 'Pink', color: const Color(0xFFE8D5D4)),
+  ProductColorModel(name: 'Gold', color: const Color(0xFFF8E5BD)),
+  ProductColorModel(name: 'Silver', color: const Color(0xFFE3E4DE)),
 ];

@@ -1,12 +1,12 @@
-import 'package:daily_phones/repair/bloc/repair_bloc.dart';
-import 'package:daily_phones/repair/models/item.dart';
+import 'package:daily_phones/src/repair/domain/entities/checkout_item.dart';
+import 'package:daily_phones/src/repair/presentation/bloc/repair_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemCard extends StatelessWidget {
   final bool isSelected;
   final Widget child;
-  final Item? item;
+  final CheckoutItem? item;
 
   const ItemCard(
       {this.isSelected = false, required this.child, this.item, super.key});

@@ -1,8 +1,7 @@
-import 'package:daily_phones/core/common/widgets/custom_box_shadow.dart';
-import 'package:daily_phones/core/common/widgets/round_button.dart';
-import 'package:daily_phones/core/common/widgets/white_space.dart';
+import 'package:daily_phones/core/common/widgets/widgets.dart';
 import 'package:daily_phones/core/res/extensions.dart';
 import 'package:daily_phones/core/res/image_resourses.dart';
+import 'package:daily_phones/src/home/presentation/views/views.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,8 +17,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         scrolledUnderElevation: 0,
         title: GestureDetector(
           onTap: () {
-            if (ModalRoute.of(context)?.settings.name != '/') {
-              context.navigator.pushNamed('/');
+            if (ModalRoute.of(context)?.settings.name != HomeScreen.routeName) {
+              context.navigator.pushNamed(HomeScreen.routeName);
             }
           },
           child: Padding(

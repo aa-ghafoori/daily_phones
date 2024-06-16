@@ -1,5 +1,4 @@
-import 'package:daily_phones/core/common/widgets/language_picker.dart';
-import 'package:daily_phones/core/common/widgets/white_space.dart';
+import 'package:daily_phones/core/common/widgets/widgets.dart';
 import 'package:daily_phones/core/res/extensions.dart';
 import 'package:daily_phones/core/res/image_resourses.dart';
 import 'package:flutter/material.dart';

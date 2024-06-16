@@ -1,7 +1,7 @@
-import 'package:daily_phones/repair/bloc/repair_bloc.dart';
+import 'package:daily_phones/src/repair/domain/entities/entities.dart';
+import 'package:daily_phones/src/repair/presentation/bloc/repair_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_devices_api/mobile_devices_api.dart';
 
 class ColorCard extends StatelessWidget {
   final Widget child;

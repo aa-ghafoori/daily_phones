@@ -1,4 +1,5 @@
 import 'package:daily_phones/core/res/extensions.dart';
+import 'package:daily_phones/src/repair/presentation/views/views.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,8 +9,8 @@ class CustomDrawer extends StatelessWidget {
 
   void _onPressed(BuildContext context) {
     context.navigator.pop();
-    if (ModalRoute.of(context)?.settings.name != '/devices') {
-      context.navigator.pushNamed('/devices');
+    if (ModalRoute.of(context)?.settings.name != DevicesScreen.routeName) {
+      context.navigator.pushNamed(DevicesScreen.routeName);
     }
   }
 

@@ -42,12 +42,11 @@ dependencies:
   lottie: ^3.1.2
   flutter_bloc: ^8.1.5
   equatable: ^2.0.5
-  sqflite_mobile_devices_api:
-    path: packages/sqflite_mobile_devices_api
-  mobile_devices_api:
-    path: packages/mobile_devices_api
-  mobile_devices_repository:
-    path: packages/mobile_devices_repository
+  uuid: ^4.4.0
+  dartz: ^0.10.1
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
+  get_it: ^7.7.0
 
 dev_dependencies:
   flutter_test:
