@@ -44,6 +44,7 @@ class SearchInputField extends StatelessWidget {
           cursorWidth: 1,
           style: context.textTheme.bodyMedium,
           decoration: InputDecoration(
+            hintText: 'iPhone 12 Pro Max',
             suffixIcon: SearchIcon(isFocused: isFocused, focusNode: focusNode),
             isDense: true,
             contentPadding:
