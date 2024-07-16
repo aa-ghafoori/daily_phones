@@ -1,10 +1,10 @@
+import 'package:daily_phones/src/repair/domain/entities/entities.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:uuid/uuid.dart';
 
 part 'product_color.dart';
-
-enum ProductType { smartphone, laptop, smartwatch, ipadTablet }
+part 'product_type.dart';
 
 class Product extends Equatable {
   Product({
@@ -20,19 +20,11 @@ class Product extends Equatable {
         ),
         id = id ?? const Uuid().v4();
 
-  factory Product.empty() => Product(
-        name: '',
-        brand: '',
-        imageUrl: '',
-        type: ProductType.smartphone,
-        colors: const [],
-      );
-
   final String id;
 
   final String name;
 
-  final String brand;
+  final Brand brand;
 
   final String imageUrl;
 

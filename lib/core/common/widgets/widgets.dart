@@ -8,6 +8,7 @@ export 'custom_stepper.dart';
 export 'description.dart';
 export 'easy_stepper/easy_stepper.dart';
 export 'footer.dart';
+export 'grid_shimmer.dart';
 export 'info_bar.dart';
 export 'item_card.dart';
 export 'language_picker.dart';

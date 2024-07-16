@@ -9,6 +9,15 @@ sealed class RepairEvent extends Equatable {
 
 final class RepairStarted extends RepairEvent {}
 
+final class RepairProductTypeSelected extends RepairEvent {
+  const RepairProductTypeSelected(this.type);
+
+  final ProductType type;
+
+  @override
+  List<Object> get props => [type];
+}
+
 final class RepairProductsFiltered extends RepairEvent {
   const RepairProductsFiltered(this.text);
 

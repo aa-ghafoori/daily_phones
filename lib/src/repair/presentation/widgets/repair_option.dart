@@ -29,7 +29,7 @@ class RepairOption extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildHeader(context),
+                  _Header(repair: repair),
                   const WhiteSpace(height: 15),
                   Text(repair.description, style: context.textTheme.labelLarge),
                 ],
@@ -38,29 +38,36 @@ class RepairOption extends StatelessWidget {
             Positioned(
               top: 8,
               right: 8,
-              child: _buildPriceTag(context, isSelected),
+              child: _PriceTag(repair: repair, isSelected: isSelected),
             ),
           ],
         ),
       ),
     );
   }
+}
 
-  Row _buildHeader(BuildContext context) {
+class _Header extends StatelessWidget {
+  const _Header({required this.repair});
+
+  final Repair repair;
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       children: [
-        Image.asset(repair.iconUrl, scale: 10),
+        Image.asset(repair.imageUrl, scale: 10),
         const WhiteSpace(width: 10),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              repair.title,
+              repair.name,
               style: context.textTheme.bodyMedium
                   ?.copyWith(fontWeight: FontWeight.w600),
             ),
             Text(
-              '${repair.durationInMinutes} MINUTES',
+              '${repair.duration} MINUTES',
               style: context.textTheme.labelMedium?.copyWith(
                 color: context.colorScheme.secondary,
                 fontWeight: FontWeight.w400,
@@ -73,96 +80,116 @@ class RepairOption extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget _buildPriceTag(BuildContext context, bool isSelected) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: isSelected
-          ? _buildSelectedPriceTag(context)
-          : _buildUnselectedPriceTag(context),
+class _PriceTag extends StatelessWidget {
+  const _PriceTag({required this.repair, required this.isSelected});
+
+  final Repair repair;
+  final bool isSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return isSelected
+        ? _SelectedPriceTag(repair: repair)
+        : _UnselectedPriceTag(repair: repair);
+  }
+}
+
+class _SelectedPriceTag extends StatelessWidget {
+  const _SelectedPriceTag({required this.repair});
+
+  final Repair repair;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(5.w),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(7.r),
+        color: context.colorScheme.secondary,
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '€',
+            style: context.textTheme.labelLarge?.copyWith(
+              color: context.colorScheme.background,
+            ),
+          ),
+          Text(
+            repair.price.toStringAsFixed(0),
+            style: context.textTheme.bodyLarge?.copyWith(
+              color: context.colorScheme.background,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
     );
   }
+}
 
-  List<Widget> _buildSelectedPriceTag(BuildContext context) {
-    return [
-      Container(
-        padding: EdgeInsets.all(5.w),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(7.r),
-          color: context.colorScheme.secondary,
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '€',
-              style: context.textTheme.labelLarge?.copyWith(
-                color: context.colorScheme.background,
-              ),
-            ),
-            Text(
-              repair.price.toStringAsFixed(0),
-              style: context.textTheme.bodyLarge?.copyWith(
-                color: context.colorScheme.background,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      ),
-    ];
-  }
+class _UnselectedPriceTag extends StatelessWidget {
+  const _UnselectedPriceTag({required this.repair});
 
-  List<Widget> _buildUnselectedPriceTag(BuildContext context) {
-    return [
-      Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(7.r),
-            topLeft: Radius.circular(7.r),
-            topRight: Radius.circular(7.r),
-          ),
-          color: context.colorScheme.secondary,
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
-        child: Text(
-          'starting at',
-          style: context.textTheme.labelSmall?.copyWith(
-            color: context.colorScheme.background,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-      ),
-      Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(7.r),
-            bottomRight: Radius.circular(7.r),
-          ),
-          color: context.colorScheme.primary,
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '€',
-              style: context.textTheme.labelLarge?.copyWith(
-                color: context.colorScheme.secondary,
-              ),
+  final Repair repair;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(7.r),
+              topLeft: Radius.circular(7.r),
+              topRight: Radius.circular(7.r),
             ),
-            Text(
-              repair.price.toStringAsFixed(0),
-              style: context.textTheme.bodyLarge?.copyWith(
-                color: context.colorScheme.secondary,
-                fontWeight: FontWeight.w600,
-              ),
+            color: context.colorScheme.secondary,
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
+          child: Text(
+            'starting at',
+            style: context.textTheme.labelSmall?.copyWith(
+              color: context.colorScheme.background,
+              fontWeight: FontWeight.w400,
             ),
-          ],
+          ),
         ),
-      ),
-    ];
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(7.r),
+              bottomRight: Radius.circular(7.r),
+            ),
+            color: context.colorScheme.primary,
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '€',
+                style: context.textTheme.labelLarge?.copyWith(
+                  color: context.colorScheme.secondary,
+                ),
+              ),
+              Text(
+                repair.price.toStringAsFixed(0),
+                style: context.textTheme.bodyLarge?.copyWith(
+                  color: context.colorScheme.secondary,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 }

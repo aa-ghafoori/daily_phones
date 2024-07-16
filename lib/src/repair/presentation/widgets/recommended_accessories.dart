@@ -24,7 +24,7 @@ class _RecommendedAccessoriesState extends State<RecommendedAccessories> {
         context.select((RepairBloc bloc) => bloc.state.accessories);
     return Column(
       children: [
-        _buildHeader(context),
+        _Header(currentIndex: _current, controller: _controller),
         CarouselSlider(
           carouselController: _controller,
           items: accessories
@@ -43,8 +43,16 @@ class _RecommendedAccessoriesState extends State<RecommendedAccessories> {
       ],
     );
   }
+}
 
-  Widget _buildHeader(BuildContext context) {
+class _Header extends StatelessWidget {
+  const _Header({required this.currentIndex, required this.controller});
+
+  final int currentIndex;
+  final CarouselController controller;
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,31 +60,37 @@ class _RecommendedAccessoriesState extends State<RecommendedAccessories> {
         const Description(text1: 'Recommended accessories'),
         Row(
           children: [
-            _buildNavigationButton(
-              context,
+            _NavigationButton(
               icon: Icons.arrow_back_ios,
-              enabled: _current != 0,
-              onTap: _current != 0 ? _controller.previousPage : null,
+              enabled: currentIndex != 0,
+              onTap: currentIndex != 0 ? controller.previousPage : null,
             ),
             const WhiteSpace(width: 5),
-            _buildNavigationButton(
-              context,
+            _NavigationButton(
               icon: Icons.arrow_forward_ios,
-              enabled: _current != 3,
-              onTap: _current != 3 ? _controller.nextPage : null,
+              enabled: currentIndex != 3,
+              onTap: currentIndex != 3 ? controller.nextPage : null,
             ),
           ],
         ),
       ],
     );
   }
+}
 
-  Widget _buildNavigationButton(
-    BuildContext context, {
-    required IconData icon,
-    required bool enabled,
-    VoidCallback? onTap,
-  }) {
+class _NavigationButton extends StatelessWidget {
+  const _NavigationButton({
+    required this.icon,
+    required this.enabled,
+    this.onTap,
+  });
+
+  final IconData icon;
+  final bool enabled;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(

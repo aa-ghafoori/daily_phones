@@ -68,7 +68,7 @@ class DatabaseHelper {
             id TEXT NOT NULL,
             title TEXT PRIMARY KEY,
             description TEXT NOT NULL,
-            durationInMinutes INTEGER NOT NULL,
+            duration INTEGER NOT NULL,
             price REAL NOT NULL,
             iconUrl TEXT NOT NULL
           )
@@ -80,7 +80,7 @@ class DatabaseHelper {
             title TEXT PRIMARY KEY,
             description TEXT NOT NULL,
             price REAL NOT NULL,
-            durationInMinutes INTEGER NOT NULL
+            duration INTEGER NOT NULL
           )
         ''');
 

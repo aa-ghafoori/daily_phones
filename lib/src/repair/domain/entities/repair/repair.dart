@@ -5,11 +5,12 @@ part 'spare_part.dart';
 
 class Repair extends Equatable {
   Repair({
-    required this.title,
+    required this.name,
     required this.description,
-    required this.durationInMinutes,
+    required this.duration,
     required this.price,
-    required this.iconUrl,
+    required this.imageUrl,
+    this.repairOptions,
     String? id,
   })  : assert(
           id == null || id.isNotEmpty,
@@ -19,17 +20,26 @@ class Repair extends Equatable {
 
   final String id;
 
-  final String title;
+  final String name;
 
   final String description;
 
-  final int durationInMinutes;
+  final int duration;
 
   final double price;
 
-  final String iconUrl;
+  final String imageUrl;
+
+  final List<SparePart>? repairOptions;
 
   @override
-  List<Object?> get props =>
-      [id, title, description, durationInMinutes, price, iconUrl];
+  List<Object?> get props => [
+        id,
+        name,
+        description,
+        duration,
+        price,
+        imageUrl,
+        repairOptions,
+      ];
 }

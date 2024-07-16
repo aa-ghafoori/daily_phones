@@ -25,11 +25,12 @@ class AccessoryItem extends StatelessWidget {
           padding: EdgeInsets.all(20.w),
           child: Stack(
             children: [
-              _buildAccessoryContent(context),
+              _AccessoryContent(accessory: accessory),
               Positioned(
                 right: 0,
                 bottom: 0,
-                child: _buildPriceTag(context, isSelected, accessory.price),
+                child:
+                    _PriceTag(isSelected: isSelected, price: accessory.price),
               ),
             ],
           ),
@@ -37,8 +38,14 @@ class AccessoryItem extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildAccessoryContent(BuildContext context) {
+class _AccessoryContent extends StatelessWidget {
+  const _AccessoryContent({required this.accessory});
+  final Accessory accessory;
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
@@ -56,7 +63,7 @@ class AccessoryItem extends StatelessWidget {
         Row(
           children: [
             Text(
-              accessory.title,
+              accessory.name,
               style: context.textTheme.bodyMedium
                   ?.copyWith(fontWeight: FontWeight.w600),
             ),
@@ -76,8 +83,15 @@ class AccessoryItem extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget _buildPriceTag(BuildContext context, bool isSelected, double price) {
+class _PriceTag extends StatelessWidget {
+  const _PriceTag({required this.isSelected, required this.price});
+  final bool isSelected;
+  final double price;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(5.w),
       decoration: BoxDecoration(

@@ -8,7 +8,9 @@ abstract interface class RepairRepo {
 
   ResultFuture<List<Brand>> getBrands(ProductType type);
 
-  ResultFuture<List<Product>> getProducts({ProductType? type, String? brand});
+  ResultFuture<List<ProductType>> getProductTypes();
+
+  ResultFuture<List<Product>> getProducts({ProductType? type, Brand? brand});
 
   ResultFuture<List<Repair>> getRepairs(Product product);
 }

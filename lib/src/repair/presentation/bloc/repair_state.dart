@@ -51,6 +51,29 @@ final class RepairLoadInProgress extends RepairState {
   const RepairLoadInProgress();
 }
 
+final class RepairProductTypesLoadSuccess extends RepairState {
+  const RepairProductTypesLoadSuccess(this.productTypes);
+
+  final List<ProductType> productTypes;
+
+  @override
+  List<Object> get props => [productTypes];
+}
+
+final class RepairProductTypesLoadFailure extends RepairState {
+  const RepairProductTypesLoadFailure({
+    required this.message,
+    required this.statusCode,
+  });
+
+  final String message;
+
+  final String statusCode;
+
+  @override
+  List<Object> get props => [message, statusCode];
+}
+
 final class RepairProductsLoadSuccess extends RepairState {
   const RepairProductsLoadSuccess(this.products);
 

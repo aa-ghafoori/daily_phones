@@ -26,7 +26,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       final product = settings.arguments! as Product;
       return _pageRouteBuilder(
         (_) => BlocProvider(
-          create: (context) => sl<RepairBloc>(),
+          create: (context) =>
+              sl<RepairBloc>()..add(RepairProductSelected(product: product)),
           child: RepairScreen(product: product),
         ),
         settings: settings,

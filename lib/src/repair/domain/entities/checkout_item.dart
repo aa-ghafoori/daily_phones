@@ -10,12 +10,12 @@ class CheckoutItem extends Equatable {
 
   factory CheckoutItem.fromAccessory(Accessory accessory) => CheckoutItem(
         id: accessory.id,
-        name: accessory.title,
+        name: accessory.name,
         price: accessory.price,
       );
 
   factory CheckoutItem.fromRepair(Repair repair) =>
-      CheckoutItem(id: repair.id, name: repair.title, price: repair.price);
+      CheckoutItem(id: repair.id, name: repair.name, price: repair.price);
 
   final String id;
 

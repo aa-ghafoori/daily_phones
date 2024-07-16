@@ -23,14 +23,6 @@ class _RepairScreenState extends State<RepairScreen> {
   final GlobalKey _repairSummaryKey = GlobalKey();
 
   @override
-  void initState() {
-    context
-        .read<RepairBloc>()
-        .add(RepairProductSelected(product: widget.product));
-    super.initState();
-  }
-
-  @override
   void dispose() {
     _scrollController.dispose();
     super.dispose();
@@ -102,12 +94,12 @@ class _ProductDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${product.brand} ${product.name}',
+                  '${product.brand.name} ${product.name}',
                   style: context.textTheme.titleSmall
                       ?.copyWith(fontWeight: FontWeight.w600),
                 ),
                 Text(
-                  product.type.toString().split('.').last,
+                  product.type.name,
                   style: context.textTheme.labelLarge
                       ?.copyWith(color: context.colorScheme.secondary),
                 ),

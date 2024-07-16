@@ -3,7 +3,7 @@ import 'package:uuid/uuid.dart';
 
 class Accessory extends Equatable {
   Accessory({
-    required this.title,
+    required this.name,
     required this.description,
     required this.imageUrl,
     required this.price,
@@ -16,7 +16,7 @@ class Accessory extends Equatable {
 
   final String id;
 
-  final String title;
+  final String name;
 
   final String description;
 
@@ -25,5 +25,5 @@ class Accessory extends Equatable {
   final double price;
 
   @override
-  List<Object?> get props => [id, title, description, imageUrl, price];
+  List<Object?> get props => [id, name, description, imageUrl, price];
 }

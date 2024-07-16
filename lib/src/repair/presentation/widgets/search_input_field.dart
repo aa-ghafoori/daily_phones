@@ -1,5 +1,3 @@
-// ignore_for_file: require_trailing_commas
-
 import 'package:daily_phones/core/res/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +25,8 @@ class SearchInputField extends StatelessWidget {
           borderRadius: isFocused
               ? BorderRadius.only(
                   topLeft: Radius.circular(15.r),
-                  topRight: Radius.circular(15.r))
+                  topRight: Radius.circular(15.r),
+                )
               : BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
@@ -70,8 +69,11 @@ class SearchInputField extends StatelessWidget {
 }
 
 class SearchIcon extends StatelessWidget {
-  const SearchIcon(
-      {required this.isFocused, required this.focusNode, super.key});
+  const SearchIcon({
+    required this.isFocused,
+    required this.focusNode,
+    super.key,
+  });
 
   final bool isFocused;
   final FocusNode focusNode;

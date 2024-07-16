@@ -25,7 +25,7 @@ class _DevicesScreenState extends State<DevicesScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.focusScope.unfocus(),
+      onTap: context.focusScope.unfocus,
       child: CustomScaffold(
         controller: _scrollController,
         body: Container(
@@ -42,7 +42,7 @@ class _DevicesScreenState extends State<DevicesScreen> {
                   _InfoBar(),
                   WhiteSpace(height: 20),
                   _BackgroundContainer(),
-                  BrandGrid(),
+                  CustomGrid(),
                 ],
               ),
               Positioned(

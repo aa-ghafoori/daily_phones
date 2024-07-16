@@ -51,7 +51,7 @@ class SearchResultDropdownMenu extends StatelessWidget {
                     behavior: HitTestBehavior.opaque,
                     onTap: () => _onProductClicked(product, context),
                     child: _DropDownMenuItem(
-                      brandName: product.brand,
+                      brandName: product.brand.name,
                       description: product.name,
                     ),
                   ),

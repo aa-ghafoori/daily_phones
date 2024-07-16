@@ -5,48 +5,55 @@ part 'spare_part_model.dart';
 
 class RepairModel extends Repair {
   RepairModel({
-    required super.title,
+    required super.name,
     required super.description,
-    required super.durationInMinutes,
+    required super.duration,
     required super.price,
-    required super.iconUrl,
+    required super.imageUrl,
+    super.repairOptions,
     super.id,
   });
 
   factory RepairModel.fromMap(DataMap map) => RepairModel(
         id: map['id'] as String,
-        title: map['title'] as String,
+        name: map['name'] as String,
         description: map['description'] as String,
-        durationInMinutes: map['durationInMinutes'] as int,
+        duration: map['duration'] as int,
         price: map['price'] as double,
-        iconUrl: map['iconUrl'] as String,
+        imageUrl: map['image_url'] as String,
       );
 
   RepairModel copyWith({
-    String? title,
+    String? name,
     String? description,
-    int? durationInMinutes,
+    int? duration,
     double? price,
-    String? iconUrl,
+    String? imageUrl,
   }) =>
       RepairModel(
-        title: title ?? this.title,
+        name: name ?? this.name,
         description: description ?? this.description,
-        durationInMinutes: durationInMinutes ?? this.durationInMinutes,
+        duration: duration ?? this.duration,
         price: price ?? this.price,
-        iconUrl: iconUrl ?? this.iconUrl,
+        imageUrl: imageUrl ?? this.imageUrl,
       );
 
   DataMap toMap() => {
         'id': id,
-        'title': title,
+        'name': name,
         'description': description,
-        'durationInMinutes': durationInMinutes,
-        'price': price,
-        'iconUrl': iconUrl,
+        'duration': duration,
+        'image_url': imageUrl,
       };
 
   @override
-  List<Object?> get props =>
-      [id, title, description, durationInMinutes, price, iconUrl];
+  List<Object?> get props => [
+        id,
+        name,
+        description,
+        duration,
+        price,
+        imageUrl,
+        repairOptions,
+      ];
 }

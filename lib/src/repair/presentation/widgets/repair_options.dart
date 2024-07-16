@@ -1,5 +1,6 @@
 import 'package:daily_phones/core/common/widgets/widgets.dart';
 import 'package:daily_phones/core/res/extensions.dart';
+import 'package:daily_phones/src/repair/domain/entities/entities.dart';
 import 'package:daily_phones/src/repair/presentation/bloc/repair_bloc.dart';
 import 'package:daily_phones/src/repair/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -17,28 +18,33 @@ class _RepairOptionsState extends State<RepairOptions> {
 
   @override
   Widget build(BuildContext context) {
-    final repairs = context.select((RepairBloc bloc) => bloc.state.repairs);
-    final displayedRepairs = _showAllRepairs ? repairs : repairs.take(6);
-
-    return Column(
-      children: [
-        ...displayedRepairs.map((repair) => RepairOption(repair: repair)),
-        const WhiteSpace(height: 30),
-        if (!_showAllRepairs)
-          ShowAllRepairsButton(
-            repairCount: repairs.length,
-            onPressed: () => setState(() => _showAllRepairs = true),
-          ),
-      ],
+    return BlocSelector<RepairBloc, RepairState, List<Repair>>(
+      selector: (state) => state.repairs,
+      builder: (context, repairs) {
+        final displayedRepairs = _showAllRepairs ? repairs : repairs.take(6);
+        if (repairs.isNotEmpty) {
+          return Column(
+            children: [
+              ...displayedRepairs.map((repair) => RepairOption(repair: repair)),
+              const WhiteSpace(height: 30),
+              if (!_showAllRepairs)
+                _ShowAllRepairsButton(
+                  repairCount: repairs.length,
+                  onPressed: () => setState(() => _showAllRepairs = true),
+                ),
+            ],
+          );
+        }
+        return const RepairOptionsShimmer();
+      },
     );
   }
 }
 
-class ShowAllRepairsButton extends StatelessWidget {
-  const ShowAllRepairsButton({
+class _ShowAllRepairsButton extends StatelessWidget {
+  const _ShowAllRepairsButton({
     required this.onPressed,
     required this.repairCount,
-    super.key,
   });
   final VoidCallback onPressed;
   final int repairCount;

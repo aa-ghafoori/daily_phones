@@ -1,26 +1,14 @@
 class ImageRes {
   ImageRes._();
   static const _basePath = 'assets/images';
-  static const dpLogo = '$_basePath/dp_logo.png';
-  static const iphoneRepair = '$_basePath/iphone_repair.png';
-  static const ipadRepair = '$_basePath/ipad_repair.png';
-  static const smartWatchRepair = '$_basePath/smartwatch_repair.png';
-  static const dpRefurbished = '$_basePath/dp_refurbished.png';
-  static const dpScreen = '$_basePath/dp_screen.png';
-  static const screenDp = '$_basePath/screen_dp.png';
-  static const laptopDp = '$_basePath/laptop_dp_1.png';
-  static const smartwatchDp1 = '$_basePath/smartwatch_dp_1.png';
-  static const spDp = '$_basePath/sp_dp.png';
-  static const tabletDp = '$_basePath/tablet_dp.png';
-  static const check = '$_basePath/check.png';
-  static const backArrow = '$_basePath/back_arrow.png';
-  static const us = '$_basePath/united_states.png';
-  static const germany = '$_basePath/ger.png';
-  static const france = '$_basePath/french.png';
-  static const netherlands = '$_basePath/netherlands.png';
-  static const phone = '$_basePath/phone.svg';
-  static const question = '$_basePath/question.svg';
-  static const close = '$_basePath/close.svg';
+
+  // Product Type
+  static const smartPhone = '$_basePath/type_smartphone.jpeg';
+  static const smartWatch = '$_basePath/type_smartwatch.jpeg';
+  static const ipadTablet = '$_basePath/type_ipadtablet.jpeg';
+  static const laptop = '$_basePath/type_laptop.jpeg';
+
+  // Brands
   static const alcatel = '$_basePath/alcatel.png';
   static const apple = '$_basePath/apple.png';
   static const asus = '$_basePath/asus.png';
@@ -42,6 +30,27 @@ class ImageRes {
   static const samsung = '$_basePath/samsung.png';
   static const sony = '$_basePath/sony.png';
   static const xiaomi = '$_basePath/xiaomi.png';
+
+  static const dpLogo = '$_basePath/dp_logo.png';
+  static const iphoneRepair = '$_basePath/iphone_repair.png';
+  static const ipadRepair = '$_basePath/ipad_repair.png';
+  static const smartWatchRepair = '$_basePath/smartwatch_repair.png';
+  static const dpRefurbished = '$_basePath/dp_refurbished.png';
+  static const dpScreen = '$_basePath/dp_screen.png';
+  static const screenDp = '$_basePath/screen_dp.png';
+  static const laptopDp = '$_basePath/laptop_dp_1.png';
+  static const smartwatchDp1 = '$_basePath/smartwatch_dp_1.png';
+  static const spDp = '$_basePath/sp_dp.png';
+  static const tabletDp = '$_basePath/tablet_dp.png';
+  static const check = '$_basePath/check.png';
+  static const backArrow = '$_basePath/back_arrow.png';
+  static const us = '$_basePath/united_states.png';
+  static const germany = '$_basePath/ger.png';
+  static const france = '$_basePath/french.png';
+  static const netherlands = '$_basePath/netherlands.png';
+  static const phone = '$_basePath/phone.svg';
+  static const question = '$_basePath/question.svg';
+  static const close = '$_basePath/close.svg';
   static const marktplace = '$_basePath/marktplace.png';
   static const facebook = '$_basePath/facebook.png';
   static const google2 = '$_basePath/google2.png';

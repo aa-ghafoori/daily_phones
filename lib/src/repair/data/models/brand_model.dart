@@ -10,21 +10,26 @@ class BrandModel extends Brand {
     super.id,
   });
 
+  factory BrandModel.fromEntity(Brand brand) => BrandModel(
+        id: brand.id,
+        name: brand.name,
+        imageUrl: brand.imageUrl,
+        types: brand.types,
+      );
+
   factory BrandModel.fromMap(DataMap map) => BrandModel(
         id: map['id'] as String,
         name: map['name'] as String,
-        imageUrl: map['imageUrl'] as String,
-        types: (map['types'] as String)
-            .split(',')
-            .map((typeStr) => ProductModel.stringToProductType(typeStr.trim()))
+        imageUrl: map['image_url'] as String,
+        types: (map['types'] as List<dynamic>)
+            .map((item) => ProductTypeModel.fromMap(item as DataMap))
             .toList(),
       );
 
   DataMap toMap() => {
         'id': id,
         'name': name,
-        'imageUrl': imageUrl,
-        'types': types.map(ProductModel.productTypeToString).join(','),
+        'image_url': imageUrl,
       };
 
   @override

@@ -33,17 +33,15 @@ class RepairSummary extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildSummaryHeader(context),
-            const WhiteSpace(height: 10),
-            _buildProductInfo(context),
+            _RepairSummaryHeader(product: product),
             const WhiteSpace(height: 15),
             ItemsList(selectedItems: items),
             Divider(height: 50.h, thickness: 0),
-            _buildSubtotal(context, numberString),
+            _Subtotal(numberString: numberString),
             const WhiteSpace(height: 15),
             const _CouponCodeField(),
             Divider(height: 30.h, thickness: 0),
-            _buildTotal(context, parts, decimalPart),
+            _Total(parts: parts, decimalPart: decimalPart),
             Divider(height: 30.h, thickness: 0),
             const ActionButtons(),
             const WhiteSpace(height: 40),
@@ -52,25 +50,43 @@ class RepairSummary extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildSummaryHeader(BuildContext context) {
-    return Text(
-      'Repair List',
-      style: context.textTheme.titleLarge?.copyWith(
-        color: context.colorScheme.secondary,
-        fontWeight: FontWeight.w600,
-      ),
+class _RepairSummaryHeader extends StatelessWidget {
+  const _RepairSummaryHeader({required this.product});
+
+  final Product product;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Repair List',
+          style: context.textTheme.titleLarge?.copyWith(
+            color: context.colorScheme.secondary,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const WhiteSpace(height: 10),
+        Text(
+          '${product.brand.name} ${product.name}'.toUpperCase(),
+          style: context.textTheme.bodyLarge
+              ?.copyWith(fontWeight: FontWeight.w400),
+        ),
+      ],
     );
   }
+}
 
-  Widget _buildProductInfo(BuildContext context) {
-    return Text(
-      '${product.brand} ${product.name}'.toUpperCase(),
-      style: context.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w400),
-    );
-  }
+class _Subtotal extends StatelessWidget {
+  const _Subtotal({required this.numberString});
 
-  Widget _buildSubtotal(BuildContext context, String numberString) {
+  final String numberString;
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       children: [
         Text(
@@ -94,12 +110,16 @@ class RepairSummary extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget _buildTotal(
-    BuildContext context,
-    List<String> parts,
-    String decimalPart,
-  ) {
+class _Total extends StatelessWidget {
+  const _Total({required this.parts, required this.decimalPart});
+
+  final List<String> parts;
+  final String decimalPart;
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

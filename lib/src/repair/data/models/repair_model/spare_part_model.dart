@@ -2,29 +2,36 @@ part of 'repair_model.dart';
 
 class SparePartModel extends SparePart {
   SparePartModel({
-    required super.title,
+    required super.name,
     required super.description,
     required super.price,
-    required super.durationInMinutes,
+    required super.duration,
     super.id,
   });
 
+  factory SparePartModel.fromEntity(SparePart sparePart) => SparePartModel(
+        id: sparePart.id,
+        name: sparePart.name,
+        description: sparePart.description,
+        price: sparePart.price,
+        duration: sparePart.duration,
+      );
+
   factory SparePartModel.fromMapDataMap(DataMap map) => SparePartModel(
         id: map['id'] as String,
-        title: map['title'] as String,
+        name: map['name'] as String,
         description: map['description'] as String,
         price: map['price'] as double,
-        durationInMinutes: map['durationInMinutes'] as int,
+        duration: map['duration'] as int,
       );
 
   DataMap toMap() => {
         'id': id,
-        'title': title,
+        'name': name,
         'description': description,
-        'price': price,
-        'durationInMinutes': durationInMinutes,
+        'duration': duration,
       };
 
   @override
-  List<Object?> get props => [id, title, description, price, durationInMinutes];
+  List<Object?> get props => [id, name, description, price, duration];
 }

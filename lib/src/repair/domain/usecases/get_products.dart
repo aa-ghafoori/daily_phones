@@ -9,7 +9,7 @@ class GetProductsParams extends Equatable {
 
   final ProductType? type;
 
-  final String? brand;
+  final Brand? brand;
 
   @override
   List<Object?> get props => [type, brand];

@@ -1,9 +1,10 @@
-import 'dart:convert';
 import 'package:daily_phones/core/utils/typedef.dart';
+import 'package:daily_phones/src/repair/data/models/models.dart';
 import 'package:daily_phones/src/repair/domain/entities/entities.dart';
 import 'package:flutter/widgets.dart';
 
 part 'product_color_model.dart';
+part 'product_type_model.dart';
 
 class ProductModel extends Product {
   ProductModel({
@@ -15,41 +16,23 @@ class ProductModel extends Product {
     super.id,
   });
 
-  factory ProductModel.fromEntity(Product product) => ProductModel(
-        id: product.id,
-        name: product.name,
-        brand: product.brand,
-        imageUrl: product.imageUrl,
-        type: product.type,
-        colors: product.colors,
-      );
-
   factory ProductModel.fromMap(DataMap map) => ProductModel(
         id: map['id'] as String,
         name: map['name'] as String,
-        brand: map['brand'] as String,
-        imageUrl: map['imageUrl'] as String,
-        type: stringToProductType(map['type'] as String),
-        colors: (jsonDecode(map['colors'] as String) as List<dynamic>)
-            .map((colorMap) => ProductColorModel.fromMap(colorMap as DataMap))
+        brand: BrandModel.fromMap(map['brand'] as DataMap),
+        imageUrl: map['image_url'] as String,
+        type: ProductTypeModel.fromMap(map['type'] as DataMap),
+        colors: (map['colors'] as List<dynamic>)
+            .map((item) => ProductColorModel.fromMap(item as DataMap))
             .toList(),
       );
-
-  static String productTypeToString(ProductType type) =>
-      type.toString().split('.').last;
-
-  static ProductType stringToProductType(String type) => ProductType.values
-      .firstWhere((e) => e.toString().split('.').last == type);
 
   DataMap toMap() => {
         'id': id,
         'name': name,
-        'brand': brand,
-        'imageUrl': imageUrl,
-        'type': productTypeToString(type),
-        'colors': jsonEncode(
-          colors.map((color) => (color as ProductColorModel).toMap()).toList(),
-        ),
+        'brand_id': brand.id,
+        'type_id': type.id,
+        'image_url': imageUrl,
       };
 
   @override

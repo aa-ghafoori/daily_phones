@@ -10,14 +10,17 @@ class RepairBloc extends Bloc<RepairEvent, RepairState> {
   RepairBloc({
     required GetAccessories getAccessories,
     required GetBrands getBrands,
+    required GetProductTypes getProductTypes,
     required GetProducts getProducts,
     required GetRepairs getRepairs,
   })  : _getAccessories = getAccessories,
         _getBrands = getBrands,
+        _getProductTypes = getProductTypes,
         _getProducts = getProducts,
         _getRepairs = getRepairs,
         super(const RepairState()) {
     on<RepairStarted>(_onRepairStarted);
+    on<RepairProductTypeSelected>(_onRepairProductTypeSelected);
     on<RepairProductsFiltered>(_onRepairProductsFiltered);
     on<RepairProductSelected>(_onRepairProductSelected);
     on<RepairProductColorSelected>(_onRepairProductColorSelected);
@@ -28,6 +31,8 @@ class RepairBloc extends Bloc<RepairEvent, RepairState> {
   final GetAccessories _getAccessories;
 
   final GetBrands _getBrands;
+
+  final GetProductTypes _getProductTypes;
 
   final GetProducts _getProducts;
 
@@ -41,17 +46,6 @@ class RepairBloc extends Bloc<RepairEvent, RepairState> {
   ) async {
     emit(const RepairLoadInProgress());
 
-    final brands =
-        await _getBrands(const GetBrandsParams(type: ProductType.smartphone));
-
-    brands.fold(
-      (failure) => RepairBrandsLoadFailure(
-        message: failure.message,
-        statusCode: failure.statusCode,
-      ),
-      (brands) => emit(RepairBrandsLoadSuccess(brands)),
-    );
-
     final products = await _getProducts(const GetProductsParams());
 
     products.fold(
@@ -64,16 +58,51 @@ class RepairBloc extends Bloc<RepairEvent, RepairState> {
       _products = products;
       emit(RepairProductsLoadSuccess(products));
     });
+
+    final productTypes = await _getProductTypes();
+
+    productTypes.fold(
+      (failure) => emit(
+        RepairProductTypesLoadFailure(
+          message: failure.message,
+          statusCode: failure.statusCode,
+        ),
+      ),
+      (productTypes) => emit(RepairProductTypesLoadSuccess(productTypes)),
+    );
   }
 
-  Future<void> _onRepairProductsFiltered(
-    RepairProductsFiltered event,
+  Future<void> _onRepairProductTypeSelected(
+    RepairProductTypeSelected event,
     Emitter<RepairState> emit,
   ) async {
+    emit(const RepairLoadInProgress());
+
+    final brands = await _getBrands(
+      GetBrandsParams(type: event.type),
+    );
+
+    brands.fold(
+      (failure) => emit(
+        RepairBrandsLoadFailure(
+          message: failure.message,
+          statusCode: failure.statusCode,
+        ),
+      ),
+      (brands) => emit(RepairBrandsLoadSuccess(brands)),
+    );
+  }
+
+  void _onRepairProductsFiltered(
+    RepairProductsFiltered event,
+    Emitter<RepairState> emit,
+  ) {
     final filteredProducts = _products
         .where(
           (product) =>
-              product.brand.toLowerCase().contains(event.text.toLowerCase()) ||
+              product.brand.name
+                  .toLowerCase()
+                  .contains(event.text.toLowerCase()) ||
               product.name.toLowerCase().contains(event.text.toLowerCase()),
         )
         .toList();
@@ -84,37 +113,31 @@ class RepairBloc extends Bloc<RepairEvent, RepairState> {
     RepairProductSelected event,
     Emitter<RepairState> emit,
   ) async {
-    if (state.product != event.product) {
-      emit(
-        state.copyWith(status: RepairStatus.loading, product: event.product),
-      );
+    final accessories = await _getAccessories(
+      GetAccessoriesParams(product: event.product),
+    );
 
-      final accessories = await _getAccessories(
-        GetAccessoriesParams(product: event.product),
-      );
+    accessories.fold(
+      (failure) => emit(state.copyWith(status: RepairStatus.failure)),
+      (accessories) => emit(
+        state.copyWith(
+          accessories: accessories,
+          status: RepairStatus.success,
+        ),
+      ),
+    );
+    final repairs = await _getRepairs(
+      GetRepairsParams(product: event.product),
+    );
 
-      accessories.fold(
-        (failure) => emit(state.copyWith(status: RepairStatus.failure)),
-        (accessories) => emit(
-          state.copyWith(
-            accessories: accessories,
-            status: RepairStatus.success,
-          ),
-        ),
-      );
-      final repairs = await _getRepairs(
-        GetRepairsParams(product: event.product),
-      );
-
-      repairs.fold(
-        (failure) => emit(
-          state.copyWith(status: RepairStatus.failure),
-        ),
-        (repairs) => emit(
-          state.copyWith(repairs: repairs, status: RepairStatus.success),
-        ),
-      );
-    }
+    repairs.fold(
+      (failure) => emit(
+        state.copyWith(status: RepairStatus.failure),
+      ),
+      (repairs) => emit(
+        state.copyWith(repairs: repairs, status: RepairStatus.success),
+      ),
+    );
   }
 
   void _onRepairProductColorSelected(
