@@ -50,7 +50,7 @@ class _RepairScreenState extends State<RepairScreen> {
       child: CustomScaffold(
         controller: _scrollController,
         body: Container(
-          color: context.colorScheme.background,
+          color: context.colorScheme.surface,
           margin: EdgeInsets.only(top: 30.h),
           padding: EdgeInsets.symmetric(horizontal: 15.w),
           child: Column(

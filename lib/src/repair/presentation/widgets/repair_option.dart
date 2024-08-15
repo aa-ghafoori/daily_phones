@@ -116,13 +116,13 @@ class _SelectedPriceTag extends StatelessWidget {
           Text(
             '€',
             style: context.textTheme.labelLarge?.copyWith(
-              color: context.colorScheme.background,
+              color: context.colorScheme.surface,
             ),
           ),
           Text(
             repair.price.toStringAsFixed(0),
             style: context.textTheme.bodyLarge?.copyWith(
-              color: context.colorScheme.background,
+              color: context.colorScheme.surface,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -155,7 +155,7 @@ class _UnselectedPriceTag extends StatelessWidget {
           child: Text(
             'starting at',
             style: context.textTheme.labelSmall?.copyWith(
-              color: context.colorScheme.background,
+              color: context.colorScheme.surface,
               fontWeight: FontWeight.w400,
             ),
           ),

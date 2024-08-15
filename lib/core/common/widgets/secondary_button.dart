@@ -28,7 +28,7 @@ class SecondaryButton extends StatelessWidget {
             Icon(
               Icons.arrow_back_ios,
               size: 13.w,
-              color: context.colorScheme.background,
+              color: context.colorScheme.surface,
             ),
       ),
     );

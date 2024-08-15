@@ -30,7 +30,7 @@ class DailyPhonesTheme {
         primary: AppColors.primaryColor,
         secondary: AppColors.secondaryColor,
         tertiary: AppColors.tertiaryColor,
-        background: AppColors.backgroundColor,
+        surface: AppColors.backgroundColor,
       ),
       scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
     );

@@ -43,7 +43,7 @@ class _Header extends StatelessWidget {
               Icon(
                 Icons.arrow_forward_ios_rounded,
                 size: 15.sp,
-                color: context.colorScheme.background,
+                color: context.colorScheme.surface,
               ),
             ],
           ),

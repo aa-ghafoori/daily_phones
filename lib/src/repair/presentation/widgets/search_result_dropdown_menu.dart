@@ -22,14 +22,14 @@ class SearchResultDropdownMenu extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       duration: Durations.short3,
       decoration: BoxDecoration(
-        color: context.colorScheme.background,
+        color: context.colorScheme.surface,
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(15),
           bottomRight: Radius.circular(15),
         ),
         boxShadow: [
           BoxShadow(
-            color: context.colorScheme.onBackground.withOpacity(0.2),
+            color: context.colorScheme.onSurface.withOpacity(0.2),
             offset: const Offset(0, 5),
             blurRadius: 3,
           ),

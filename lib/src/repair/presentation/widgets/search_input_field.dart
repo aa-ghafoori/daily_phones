@@ -21,7 +21,7 @@ class SearchInputField extends StatelessWidget {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          color: context.colorScheme.background,
+          color: context.colorScheme.surface,
           borderRadius: isFocused
               ? BorderRadius.only(
                   topLeft: Radius.circular(15.r),
@@ -40,7 +40,7 @@ class SearchInputField extends StatelessWidget {
           key: textFieldKey,
           focusNode: focusNode,
           onChanged: handleTextChanged,
-          cursorColor: context.colorScheme.onBackground,
+          cursorColor: context.colorScheme.onSurface,
           cursorWidth: 1,
           style: context.textTheme.bodyMedium,
           decoration: InputDecoration(
@@ -124,7 +124,7 @@ class SearchIcon extends StatelessWidget {
                 child: Icon(
                   CupertinoIcons.xmark_circle_fill,
                   size: 30,
-                  color: context.colorScheme.onBackground.withOpacity(0.45),
+                  color: context.colorScheme.onSurface.withOpacity(0.45),
                 ),
               ),
             ),

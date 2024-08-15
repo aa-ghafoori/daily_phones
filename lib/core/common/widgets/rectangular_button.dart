@@ -21,7 +21,7 @@ class RectangularButton extends StatelessWidget {
         minimumSize: Size.zero,
         padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 9.h),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.h)),
-        backgroundColor: backgroundColor ?? context.colorScheme.background,
+        backgroundColor: backgroundColor ?? context.colorScheme.surface,
         side: const BorderSide(color: Colors.transparent),
       ),
       onPressed: onPressed,

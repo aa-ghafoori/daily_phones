@@ -9,7 +9,7 @@ environment:
   sdk: ">=3.3.4 <4.0.0"
 
 dependencies:
-  carousel_slider: ^4.2.1
+  carousel_slider: ^5.0.0
   cupertino_icons: ^1.0.6
   dartz: ^0.10.1
   dropdown_button2: ^2.3.9
@@ -20,9 +20,14 @@ dependencies:
   flutter_dotenv: ^5.1.0
   flutter_screenutil: ^5.9.0
   flutter_svg: ^2.0.10+1
+  form_builder_validators: ^11.0.0
   get_it: ^7.7.0
+  http: ^1.2.2
+  intl: ^0.19.0
   lottie: ^3.1.2
   path: ^1.9.0
+  pdf: ^3.11.1
+  printing: ^5.13.2
   shimmer: ^3.0.0
   smooth_page_indicator: ^1.1.0
   supabase_flutter: ^2.5.6
@@ -30,10 +35,10 @@ dependencies:
 
 dev_dependencies:
   custom_lint: ^0.6.4
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^5.1.0
+  very_good_analysis: ^6.0.0
 
 flutter:
   uses-material-design: true

@@ -15,7 +15,7 @@ class RecommendedAccessories extends StatefulWidget {
 }
 
 class _RecommendedAccessoriesState extends State<RecommendedAccessories> {
-  final CarouselController _controller = CarouselController();
+  final _controller = CarouselSliderController();
   int _current = 0;
 
   @override
@@ -49,7 +49,7 @@ class _Header extends StatelessWidget {
   const _Header({required this.currentIndex, required this.controller});
 
   final int currentIndex;
-  final CarouselController controller;
+  final CarouselSliderController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +104,7 @@ class _NavigationButton extends StatelessWidget {
         child: Icon(
           icon,
           size: 13.h,
-          color: context.colorScheme.background,
+          color: context.colorScheme.surface,
         ),
       ),
     );

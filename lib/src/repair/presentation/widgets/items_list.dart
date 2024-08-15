@@ -144,7 +144,7 @@ class _CheckoutItemWidget extends StatelessWidget {
                 item.price.toString(),
                 style: context.textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: context.colorScheme.background,
+                  color: context.colorScheme.surface,
                   fontSize: 16,
                 ),
               ),

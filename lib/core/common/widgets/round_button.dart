@@ -29,7 +29,7 @@ class RoundButton extends StatelessWidget {
       child: DefaultTextStyle.merge(
         child: text,
         style: context.textTheme.labelLarge?.copyWith(
-          color: context.colorScheme.background,
+          color: context.colorScheme.surface,
           fontWeight: FontWeight.w500,
         ),
       ),

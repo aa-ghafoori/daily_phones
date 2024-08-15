@@ -14,7 +14,7 @@ class PageSlider extends StatefulWidget {
 
 class _PageSliderState extends State<PageSlider> {
   int _current = 0;
-  final CarouselController _controller = CarouselController();
+  final _controller = CarouselSliderController();
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +94,7 @@ class CarouselIndicator extends StatelessWidget {
 
   final int itemCount;
   final int currentIndex;
-  final CarouselController controller;
+  final CarouselSliderController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +107,7 @@ class CarouselIndicator extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 7.w),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.h),
-              color: context.colorScheme.background,
+              color: context.colorScheme.surface,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -124,8 +124,8 @@ class CarouselIndicator extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: (context.theme.brightness == Brightness.dark
-                              ? context.colorScheme.background
-                              : context.colorScheme.onBackground)
+                              ? context.colorScheme.surface
+                              : context.colorScheme.onSurface)
                           .withOpacity(currentIndex == index ? 0.9 : 0.4),
                     ),
                   ),

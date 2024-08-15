@@ -71,7 +71,7 @@ class _AccessoryContent extends StatelessWidget {
             Icon(
               CupertinoIcons.info_circle_fill,
               size: 20.w,
-              color: context.colorScheme.onBackground.withOpacity(0.35),
+              color: context.colorScheme.onSurface.withOpacity(0.35),
             ),
           ],
         ),
@@ -108,7 +108,7 @@ class _PriceTag extends StatelessWidget {
             '€',
             style: context.textTheme.labelLarge?.copyWith(
               color: isSelected
-                  ? context.colorScheme.background
+                  ? context.colorScheme.surface
                   : context.colorScheme.secondary,
             ),
           ),
@@ -116,7 +116,7 @@ class _PriceTag extends StatelessWidget {
             price.toString(),
             style: context.textTheme.bodyLarge?.copyWith(
               color: isSelected
-                  ? context.colorScheme.background
+                  ? context.colorScheme.surface
                   : context.colorScheme.secondary,
               fontWeight: FontWeight.w600,
             ),

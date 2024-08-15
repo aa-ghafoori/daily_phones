@@ -55,7 +55,7 @@ class CustomDrawer extends StatelessWidget {
             'KORTING',
             style: context.textTheme.labelSmall?.copyWith(
               fontWeight: FontWeight.w800,
-              color: context.colorScheme.background,
+              color: context.colorScheme.surface,
             ),
           ),
         ),

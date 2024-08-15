@@ -15,6 +15,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       offset: const Offset(0, 4),
       child: AppBar(
         scrolledUnderElevation: 0,
+        backgroundColor: context.colorScheme.surface,
         title: GestureDetector(
           onTap: () {
             if (ModalRoute.of(context)?.settings.name != HomeScreen.routeName) {

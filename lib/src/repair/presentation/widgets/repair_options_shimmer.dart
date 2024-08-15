@@ -20,7 +20,6 @@ class RepairOptionsShimmer extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.r),
-                color: Colors.white,
               ),
               child: Stack(
                 children: [
@@ -60,7 +59,7 @@ class RepairOptionsShimmer extends StatelessWidget {
                         const WhiteSpace(height: 15),
                         Container(
                           width: double.infinity,
-                          height: 20.h,
+                          height: 40.h,
                           color: Colors.white,
                         ),
                       ],

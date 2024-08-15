@@ -52,7 +52,7 @@ class _ShowAllRepairsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textStyle = context.textTheme.bodyMedium?.copyWith(
-      color: context.colorScheme.background,
+      color: context.colorScheme.surface,
       fontWeight: FontWeight.w300,
     );
 
@@ -78,7 +78,7 @@ class _ShowAllRepairsButton extends StatelessWidget {
           Icon(
             Icons.arrow_downward_sharp,
             size: 20,
-            color: context.colorScheme.background,
+            color: context.colorScheme.surface,
           ),
         ],
       ),

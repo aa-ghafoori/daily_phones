@@ -42,11 +42,11 @@ class CardItem extends StatelessWidget {
                 title,
                 style: !isSliderItem
                     ? context.textTheme.titleSmall?.copyWith(
-                        color: context.colorScheme.background,
+                        color: context.colorScheme.surface,
                         fontWeight: FontWeight.w600,
                       )
                     : context.textTheme.titleMedium?.copyWith(
-                        color: context.colorScheme.background,
+                        color: context.colorScheme.surface,
                       ),
               ),
               WhiteSpace(height: !isSliderItem ? 10 : 15),
@@ -54,7 +54,7 @@ class CardItem extends StatelessWidget {
                 description,
                 textAlign: TextAlign.center,
                 style: context.textTheme.bodySmall?.copyWith(
-                  color: context.colorScheme.background,
+                  color: context.colorScheme.surface,
                 ),
               ),
               const WhiteSpace(height: 5),

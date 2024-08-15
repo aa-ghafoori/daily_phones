@@ -20,7 +20,7 @@ class CustomBoxShadow extends StatelessWidget {
     return Container(
       padding: padding,
       decoration: BoxDecoration(
-        color: context.colorScheme.background,
+        color: context.colorScheme.surface,
         boxShadow: [
           BoxShadow(
             color: context.colorScheme.tertiary.withOpacity(0.2),

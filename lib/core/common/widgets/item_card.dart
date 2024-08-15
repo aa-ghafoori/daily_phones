@@ -45,7 +45,7 @@ class ItemCard extends StatelessWidget {
                     blurStyle: BlurStyle.outer,
                     color: Theme.of(context)
                         .colorScheme
-                        .onBackground
+                        .onSurface
                         .withOpacity(0.2),
                   ),
                 ]

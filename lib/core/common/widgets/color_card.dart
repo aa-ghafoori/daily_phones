@@ -33,8 +33,7 @@ class ColorCard extends StatelessWidget {
             BoxShadow(
               blurRadius: 4,
               blurStyle: BlurStyle.outer,
-              color:
-                  Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2),
             ),
           ],
         ),

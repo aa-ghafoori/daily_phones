@@ -74,13 +74,12 @@ class CustomGridView extends StatelessWidget {
                   onTap: () => onTap?.call(gridItem),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: context.colorScheme.background,
+                      color: context.colorScheme.surface,
                       borderRadius: BorderRadius.circular(15),
                       boxShadow: [
                         BoxShadow(
                           blurRadius: 10,
-                          color:
-                              context.colorScheme.onBackground.withOpacity(0.1),
+                          color: context.colorScheme.onSurface.withOpacity(0.1),
                         ),
                       ],
                     ),

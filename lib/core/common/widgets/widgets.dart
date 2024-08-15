@@ -5,6 +5,7 @@ export 'custom_box_shadow.dart';
 export 'custom_drawer.dart';
 export 'custom_scaffold.dart';
 export 'custom_stepper.dart';
+export 'custom_text_form_field.dart';
 export 'description.dart';
 export 'easy_stepper/easy_stepper.dart';
 export 'footer.dart';

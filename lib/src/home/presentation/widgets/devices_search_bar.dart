@@ -20,13 +20,13 @@ class DevicesSearchBar extends StatelessWidget {
           BoxShadow(
             blurRadius: 5,
             blurStyle: BlurStyle.outer,
-            color: context.colorScheme.onBackground.withOpacity(0.2),
+            color: context.colorScheme.onSurface.withOpacity(0.2),
           ),
         ],
         borderRadius: BorderRadius.circular(90.r),
       ),
       child: TextField(
-        cursorColor: context.colorScheme.onBackground,
+        cursorColor: context.colorScheme.onSurface,
         cursorWidth: 1,
         onChanged: onChanged,
         style: context.textTheme.bodyMedium?.copyWith(
@@ -38,13 +38,13 @@ class DevicesSearchBar extends StatelessWidget {
             backgroundColor: context.colorScheme.secondary,
             child: Icon(
               Icons.search_outlined,
-              color: context.colorScheme.background,
+              color: context.colorScheme.surface,
             ),
           ),
           suffixIconConstraints: BoxConstraints(minWidth: 55.w),
           hintText: hintText,
           filled: true,
-          fillColor: context.colorScheme.background,
+          fillColor: context.colorScheme.surface,
           contentPadding:
               EdgeInsets.symmetric(vertical: 15.h, horizontal: 20.w),
           focusedBorder: OutlineInputBorder(

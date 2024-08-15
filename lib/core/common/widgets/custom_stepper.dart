@@ -22,7 +22,7 @@ class _CustomStepperState extends State<CustomStepper> {
         lineType: LineType.normal,
         lineThickness: 8.r,
         lineLength: 60.w,
-        defaultLineColor: context.colorScheme.onBackground.withOpacity(0.2),
+        defaultLineColor: context.colorScheme.onSurface.withOpacity(0.2),
         finishedLineColor: context.colorScheme.secondary,
         progress: 0.5,
         progressColor: context.colorScheme.secondary,
@@ -32,15 +32,15 @@ class _CustomStepperState extends State<CustomStepper> {
       activeStepBorderColor: context.colorScheme.secondary,
       borderThickness: 5,
       disableScroll: true,
-      activeStepTextColor: context.colorScheme.onBackground,
+      activeStepTextColor: context.colorScheme.onSurface,
       activeStepBackgroundColor: context.colorScheme.secondary,
       unreachedStepBackgroundColor:
-          context.colorScheme.onBackground.withOpacity(0.2),
-      unreachedStepTextColor: context.colorScheme.onBackground.withOpacity(0.4),
+          context.colorScheme.onSurface.withOpacity(0.2),
+      unreachedStepTextColor: context.colorScheme.onSurface.withOpacity(0.4),
       unreachedStepBorderColor: Colors.transparent,
       finishedStepBackgroundColor: Colors.transparent,
       finishedStepBorderColor: context.colorScheme.secondary,
-      finishedStepTextColor: context.colorScheme.onBackground.withOpacity(0.4),
+      finishedStepTextColor: context.colorScheme.onSurface.withOpacity(0.4),
       finishedStepIconColor: context.colorScheme.secondary,
       showLoadingAnimation: false,
       stepRadius: 20,
@@ -64,7 +64,7 @@ class _CustomStepperState extends State<CustomStepper> {
     return Text(
       text,
       style: context.textTheme.bodyLarge
-          ?.copyWith(color: context.colorScheme.background),
+          ?.copyWith(color: context.colorScheme.surface),
     );
   }
 }

@@ -24,7 +24,7 @@ class RepairProcessGuide extends StatelessWidget {
             Text(
               'Jouw Reparatie: 3 Eenvoudige Stappen',
               style: context.textTheme.titleMedium
-                  ?.copyWith(color: context.colorScheme.background),
+                  ?.copyWith(color: context.colorScheme.surface),
             ),
             const RepairStep(
               title: 'Type Selectie',
@@ -51,7 +51,7 @@ class RepairProcessGuide extends StatelessWidget {
                   Icon(
                     Icons.arrow_forward_ios_rounded,
                     size: 15.sp,
-                    color: context.colorScheme.background,
+                    color: context.colorScheme.surface,
                   ),
                 ],
               ),
@@ -89,13 +89,13 @@ class RepairStep extends StatelessWidget {
                   Text(
                     title,
                     style: context.textTheme.titleSmall
-                        ?.copyWith(color: context.colorScheme.background),
+                        ?.copyWith(color: context.colorScheme.surface),
                   ),
                   const WhiteSpace(height: 5),
                   Text(
                     description,
                     style: context.textTheme.bodySmall
-                        ?.copyWith(color: context.colorScheme.background),
+                        ?.copyWith(color: context.colorScheme.surface),
                   ),
                 ],
               ),

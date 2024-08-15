@@ -29,7 +29,7 @@ class _DevicesScreenState extends State<DevicesScreen> {
       child: CustomScaffold(
         controller: _scrollController,
         body: Container(
-          color: context.colorScheme.background,
+          color: context.colorScheme.surface,
           margin: EdgeInsets.only(top: 30.h),
           padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 15.w),
           child: Stack(
@@ -90,7 +90,7 @@ class _BackgroundContainer extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
       decoration: BoxDecoration(
-        color: context.colorScheme.onBackground.withOpacity(0.05),
+        color: context.colorScheme.onSurface.withOpacity(0.05),
         borderRadius: BorderRadius.circular(15.r),
       ),
       child: const Column(

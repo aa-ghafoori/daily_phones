@@ -13,7 +13,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
       child: BottomAppBar(
         padding: EdgeInsets.zero,
         height: 70,
-        surfaceTintColor: Colors.transparent,
+        color: Colors.transparent,
         child: Center(
           child: Builder(
             builder: (context) => IconButton(
@@ -33,13 +33,13 @@ class CustomBottomNavigationBar extends StatelessWidget {
                         right: 0,
                         left: 10,
                         child: CircleAvatar(
-                          foregroundColor: context.colorScheme.background,
+                          foregroundColor: context.colorScheme.surface,
                           backgroundColor: context.colorScheme.secondary,
                           radius: 8,
                           child: Text(
                             '0',
                             style: context.textTheme.labelMedium?.copyWith(
-                              color: context.colorScheme.background,
+                              color: context.colorScheme.surface,
                               fontWeight: FontWeight.w300,
                             ),
                           ),

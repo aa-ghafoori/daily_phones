@@ -12,7 +12,7 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: context.colorScheme.background,
+      color: context.colorScheme.surface,
       margin: EdgeInsets.only(top: 50.h),
       padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 40.h),
       width: double.infinity,

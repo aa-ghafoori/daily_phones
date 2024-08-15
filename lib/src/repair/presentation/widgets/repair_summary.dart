@@ -43,7 +43,7 @@ class RepairSummary extends StatelessWidget {
             Divider(height: 30.h, thickness: 0),
             _Total(parts: parts, decimalPart: decimalPart),
             Divider(height: 30.h, thickness: 0),
-            const ActionButtons(),
+            ActionButtons(selectedItems: items),
             const WhiteSpace(height: 40),
           ],
         ),
@@ -93,7 +93,7 @@ class _Subtotal extends StatelessWidget {
           'Sub-total',
           style: context.textTheme.bodySmall?.copyWith(
             fontSize: 15.sp,
-            color: context.colorScheme.onBackground.withOpacity(0.7),
+            color: context.colorScheme.onSurface.withOpacity(0.7),
           ),
         ),
         const Spacer(),
@@ -134,7 +134,7 @@ class _Total extends StatelessWidget {
               'incl. tax (21%)',
               style: TextStyle(
                 fontWeight: FontWeight.w300,
-                color: context.colorScheme.onBackground.withOpacity(0.7),
+                color: context.colorScheme.onSurface.withOpacity(0.7),
               ),
             ),
           ],
@@ -181,7 +181,7 @@ class _CouponCodeField extends StatelessWidget {
                 style: context.textTheme.bodyMedium
                     ?.copyWith(fontWeight: FontWeight.w300),
                 cursorWidth: 1,
-                cursorColor: context.colorScheme.onBackground,
+                cursorColor: context.colorScheme.onSurface,
                 decoration: InputDecoration(
                   hintText: 'Coupon Code',
                   border: InputBorder.none,
