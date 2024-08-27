@@ -1,14 +1,16 @@
 import 'package:daily_phones/core/common/widgets/widgets.dart';
 import 'package:daily_phones/core/res/extensions.dart';
-import 'package:daily_phones/core/res/image_resourses.dart';
+import 'package:daily_phones/core/res/image_resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InfoBar extends StatelessWidget {
-  const InfoBar({required this.title, super.key});
+  const InfoBar({required this.child, this.onTap, super.key});
 
-  final Widget title;
+  final Widget child;
+
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class InfoBar extends StatelessWidget {
           child: Row(
             children: [
               GestureDetector(
-                onTap: () => context.navigator.pop(),
+                onTap: onTap ?? () => context.navigator.pop(),
                 child: Container(
                   padding: EdgeInsets.all(8.r),
                   decoration: BoxDecoration(
@@ -28,12 +30,12 @@ class InfoBar extends StatelessWidget {
                   ),
                   child: Image.asset(
                     ImageRes.backArrow,
-                    scale: 7.r,
+                    scale: 7 * (1 / 1.h),
                   ),
                 ),
               ),
               const WhiteSpace(width: 15),
-              Expanded(child: title),
+              Expanded(child: child),
             ],
           ),
         ),

@@ -43,7 +43,7 @@ class _CustomStepperState extends State<CustomStepper> {
       finishedStepTextColor: context.colorScheme.onSurface.withOpacity(0.4),
       finishedStepIconColor: context.colorScheme.secondary,
       showLoadingAnimation: false,
-      stepRadius: 20,
+      stepRadius: 20.r,
       steps: [
         EasyStep(
           icon: const Icon(CupertinoIcons.check_mark),
@@ -55,7 +55,11 @@ class _CustomStepperState extends State<CustomStepper> {
           icon: const Icon(CupertinoIcons.check_mark),
           customStep: widget.activeStep <= 1 ? _buildCustomStepText('2') : null,
         ),
-        EasyStep(title: 'Afronden', customStep: _buildCustomStepText('3')),
+        EasyStep(
+          title: 'Afronden',
+          icon: const Icon(CupertinoIcons.check_mark),
+          customStep: widget.activeStep <= 2 ? _buildCustomStepText('3') : null,
+        ),
       ],
     );
   }

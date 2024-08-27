@@ -17,6 +17,7 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: context.colorScheme.surface,
       child: SafeArea(
         child: Column(
           children: [

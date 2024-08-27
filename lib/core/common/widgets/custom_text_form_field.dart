@@ -1,14 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:daily_phones/core/res/extensions.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
+    required this.fieldName,
     this.isRequired = true,
     this.validator,
-    required this.fieldName,
     this.keyboardType,
     this.onSaved,
+    this.height,
     super.key,
   });
 
@@ -17,19 +18,22 @@ class CustomTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
   final void Function(String?)? onSaved;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: fieldName == 'NOTES' ? null : 1,
+      minLines: fieldName == 'NOTES' ? 3 : null,
       onSaved: onSaved,
       keyboardType: keyboardType,
       validator: validator,
-      cursorColor: context.colorScheme.onSurface,
       cursorWidth: 1,
       style: context.textTheme.bodySmall
           ?.copyWith(color: context.colorScheme.tertiary),
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 12.h),
+        contentPadding:
+            EdgeInsets.symmetric(horizontal: 15.w, vertical: height ?? 12.h),
         label: Padding(
           padding: EdgeInsets.symmetric(horizontal: 5.w),
           child: RichText(

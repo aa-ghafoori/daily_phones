@@ -27,6 +27,8 @@ Future<void> init() async {
         getProductTypes: sl(),
         getProducts: sl(),
         getRepairs: sl(),
+        sendOfferEmail: sl(),
+        sendAppointmentEmail: sl(),
       ),
     )
     ..registerLazySingleton(() => GetAccessories(sl()))
@@ -34,6 +36,8 @@ Future<void> init() async {
     ..registerLazySingleton(() => GetProductTypes(sl()))
     ..registerLazySingleton(() => GetProducts(sl()))
     ..registerLazySingleton(() => GetRepairs(sl()))
+    ..registerLazySingleton(() => SendOfferEmail(sl()))
+    ..registerLazySingleton(() => SendAppointmentEmail(sl()))
     ..registerLazySingleton<RepairRepo>(() => RepairRepoImpl(sl()))
     ..registerLazySingleton<RepairRemoteDataSrc>(
       () => RepairRemoteDataSrcImpl(supabase),

@@ -11,6 +11,7 @@ class SearchInputField extends StatelessWidget {
     required this.handleTextChanged,
     super.key,
   });
+
   final GlobalKey textFieldKey;
   final FocusNode focusNode;
   final bool isFocused;
@@ -27,7 +28,7 @@ class SearchInputField extends StatelessWidget {
                   topLeft: Radius.circular(15.r),
                   topRight: Radius.circular(15.r),
                 )
-              : BorderRadius.circular(15),
+              : BorderRadius.circular(15.r),
           boxShadow: [
             BoxShadow(
               color: context.colorScheme.secondary.withOpacity(0.2),
@@ -36,7 +37,7 @@ class SearchInputField extends StatelessWidget {
             ),
           ],
         ),
-        child: TextFormField(
+        child: TextField(
           key: textFieldKey,
           focusNode: focusNode,
           onChanged: handleTextChanged,
@@ -46,14 +47,13 @@ class SearchInputField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: 'iPhone 12 Pro Max',
             suffixIcon: SearchIcon(isFocused: isFocused, focusNode: focusNode),
+            suffixIconConstraints: const BoxConstraints(),
             isDense: true,
             contentPadding:
-                const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                EdgeInsets.symmetric(horizontal: 15.w, vertical: 13.h),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(
-                color: context.colorScheme.secondary,
-              ),
+              borderRadius: BorderRadius.circular(15.r),
+              borderSide: BorderSide(color: context.colorScheme.secondary),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.only(
@@ -104,26 +104,26 @@ class SearchIcon extends StatelessWidget {
       child: !isFocused
           ? Container(
               key: const ValueKey<int>(1),
-              margin: const EdgeInsets.only(right: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 9),
+              margin: EdgeInsets.only(right: 5.w),
+              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 7.h),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(12.r),
                 color: context.colorScheme.secondary.withOpacity(0.22),
               ),
               child: Icon(
                 Icons.search,
                 color: context.colorScheme.secondary,
-                size: 25,
+                size: 25.h,
               ),
             )
           : Padding(
               key: const ValueKey<int>(2),
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
               child: GestureDetector(
                 onTap: focusNode.unfocus,
                 child: Icon(
                   CupertinoIcons.xmark_circle_fill,
-                  size: 30,
+                  size: 30.h,
                   color: context.colorScheme.onSurface.withOpacity(0.45),
                 ),
               ),

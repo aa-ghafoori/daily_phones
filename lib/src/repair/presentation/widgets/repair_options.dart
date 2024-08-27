@@ -21,8 +21,9 @@ class _RepairOptionsState extends State<RepairOptions> {
     return BlocSelector<RepairBloc, RepairState, List<Repair>>(
       selector: (state) => state.repairs,
       builder: (context, repairs) {
-        final displayedRepairs = _showAllRepairs ? repairs : repairs.take(6);
         if (repairs.isNotEmpty) {
+          final displayedRepairs =
+              _showAllRepairs ? repairs : repairs.take(6).toList();
           return Column(
             children: [
               ...displayedRepairs.map((repair) => RepairOption(repair: repair)),
@@ -32,6 +33,10 @@ class _RepairOptionsState extends State<RepairOptions> {
                   repairCount: repairs.length,
                   onPressed: () => setState(() => _showAllRepairs = true),
                 ),
+              if (_showAllRepairs)
+                ...repairs
+                    .skip(6)
+                    .map((repair) => RepairOption(repair: repair)),
             ],
           );
         }
@@ -46,6 +51,7 @@ class _ShowAllRepairsButton extends StatelessWidget {
     required this.onPressed,
     required this.repairCount,
   });
+
   final VoidCallback onPressed;
   final int repairCount;
 

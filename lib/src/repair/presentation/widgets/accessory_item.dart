@@ -50,7 +50,7 @@ class _AccessoryContent extends StatelessWidget {
       children: [
         Container(
           color: context.colorScheme.secondary.withOpacity(0.5),
-          height: 180,
+          height: 180.h,
           child: ClipRect(
             child: Image.asset(
               accessory.imageUrl,
@@ -59,7 +59,7 @@ class _AccessoryContent extends StatelessWidget {
             ),
           ),
         ),
-        const WhiteSpace(height: 10),
+        const WhiteSpace(height: 20),
         Row(
           children: [
             Text(
@@ -70,7 +70,7 @@ class _AccessoryContent extends StatelessWidget {
             const WhiteSpace(width: 5),
             Icon(
               CupertinoIcons.info_circle_fill,
-              size: 20.w,
+              size: 20.h,
               color: context.colorScheme.onSurface.withOpacity(0.35),
             ),
           ],

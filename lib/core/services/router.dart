@@ -1,8 +1,11 @@
+import 'package:daily_phones/app/app_bloc_observer.dart';
 import 'package:daily_phones/core/common/views/page_under_construction.dart';
 import 'package:daily_phones/core/services/injection_container.dart';
 import 'package:daily_phones/src/home/presentation/views/views.dart';
 import 'package:daily_phones/src/repair/domain/entities/entities.dart';
 import 'package:daily_phones/src/repair/presentation/bloc/repair_bloc.dart';
+import 'package:daily_phones/src/repair/presentation/views/booking_confirmation_screen.dart';
+import 'package:daily_phones/src/repair/presentation/views/booking_screen.dart';
 import 'package:daily_phones/src/repair/presentation/views/views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +33,26 @@ Route<dynamic> generateRoute(RouteSettings settings) {
               sl<RepairBloc>()..add(RepairProductSelected(product: product)),
           child: RepairScreen(product: product),
         ),
+        settings: settings,
+      );
+    case BookingScreen.routeName:
+      final currentState = settings.arguments! as RepairState;
+
+      return _pageRouteBuilder(
+        (_) => BlocProvider(
+          create: (context) =>
+              sl<RepairBloc>()..add(RepairBookingScreenStarted(currentState)),
+          child: BookingScreen(state: currentState),
+        ),
+        settings: settings,
+      );
+
+    case BookingConfirmationScreen.routeName:
+      final currentState = settings.arguments! as RepairState;
+      logger.f(currentState);
+
+      return _pageRouteBuilder(
+        (_) => BookingConfirmationScreen(state: currentState),
         settings: settings,
       );
     default:

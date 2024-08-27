@@ -17,7 +17,7 @@ class GridShimmer extends StatelessWidget {
             text1: 'Of selecteer het',
             text2: 'type',
           ),
-          const WhiteSpace(height: 10),
+          const WhiteSpace(height: 20),
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),

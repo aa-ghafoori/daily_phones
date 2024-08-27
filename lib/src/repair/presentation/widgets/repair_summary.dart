@@ -1,5 +1,6 @@
 import 'package:daily_phones/core/common/widgets/widgets.dart';
 import 'package:daily_phones/core/res/extensions.dart';
+import 'package:daily_phones/core/res/helper_functions.dart';
 import 'package:daily_phones/src/repair/domain/entities/entities.dart';
 import 'package:daily_phones/src/repair/presentation/bloc/repair_bloc.dart';
 import 'package:daily_phones/src/repair/presentation/widgets/action_buttons.dart';
@@ -17,10 +18,9 @@ class RepairSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = context.select((RepairBloc bloc) => bloc.state.selectedItems);
-    final totalPrice =
-        items.fold<double>(0, (total, item) => total + item.price);
+    final totalPrice = getTotal(items);
 
-    final numberString = totalPrice.toStringAsFixed(2);
+    final numberString = totalPrice.toString();
     final parts = numberString.split('.');
     final decimalPart = parts.length > 1 ? parts[1] : '';
 
@@ -72,8 +72,8 @@ class _RepairSummaryHeader extends StatelessWidget {
         const WhiteSpace(height: 10),
         Text(
           '${product.brand.name} ${product.name}'.toUpperCase(),
-          style: context.textTheme.bodyLarge
-              ?.copyWith(fontWeight: FontWeight.w400),
+          style: context.textTheme.bodyMedium
+              ?.copyWith(fontWeight: FontWeight.w500),
         ),
       ],
     );
@@ -132,7 +132,7 @@ class _Total extends StatelessWidget {
             ),
             Text(
               'incl. tax (21%)',
-              style: TextStyle(
+              style: context.textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w300,
                 color: context.colorScheme.onSurface.withOpacity(0.7),
               ),

@@ -2,12 +2,14 @@
 
 import 'dart:math';
 
-import 'package:daily_phones/core/res/image_resourses.dart';
+import 'package:daily_phones/core/res/image_resources.dart';
 import 'package:daily_phones/src/home/domain/entities/entities.dart';
 import 'package:daily_phones/src/home/presentation/widgets/widgets.dart';
 import 'package:daily_phones/src/repair/data/models/models.dart';
+import 'package:daily_phones/src/repair/domain/entities/entities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 void redPrint(String text) {
   debugPrint('\u001b[1;31m $text');
@@ -20,6 +22,115 @@ void greenPrint(String text) {
 void yellowPrint(String text) {
   debugPrint('\u001b[1;33m $text');
 }
+
+DateTime generateAppointmentDate() {
+  final now = DateTime.now();
+  final appointmentTime = now.add(const Duration(hours: 24));
+
+  const minHour = 10;
+  const maxHour = 17;
+
+  // If the appointment time is outside the allowed range, adjust to the next day at 10:00 AM
+  DateTime adjustedAppointmentTime;
+  if (appointmentTime.hour < minHour || appointmentTime.hour >= maxHour) {
+    adjustedAppointmentTime = DateTime(
+      appointmentTime.year,
+      appointmentTime.month,
+      appointmentTime.day + 1,
+      minHour,
+    );
+  } else {
+    adjustedAppointmentTime = appointmentTime;
+  }
+
+  // Snap the time to the nearest 30-minute interval
+  final minutes = adjustedAppointmentTime.minute;
+  final snappedMinutes = (minutes < 30) ? 0 : 30;
+
+  adjustedAppointmentTime = DateTime(
+    adjustedAppointmentTime.year,
+    adjustedAppointmentTime.month,
+    adjustedAppointmentTime.day,
+    adjustedAppointmentTime.hour,
+    snappedMinutes,
+  );
+
+  return adjustedAppointmentTime;
+}
+
+List<DateTime> getNext14Days() {
+  final dates = <DateTime>[];
+  final today = DateTime.now();
+
+  for (var i = 0; i < 14; i++) {
+    dates.add(today.add(Duration(days: i)));
+  }
+
+  return dates;
+}
+
+List<DateItem> generateDateItems(List<DateTime> dates) {
+  final dateItems = <DateItem>[];
+
+  // Generate working hours with DateTime objects
+  for (final date in dates) {
+    final hours = <DateTime>[];
+    for (var hour = 10; hour <= 17; hour++) {
+      for (var minute = 0; minute < 60; minute += 30) {
+        hours.add(DateTime(date.year, date.month, date.day, hour, minute));
+      }
+    }
+
+    dateItems.add(
+      DateItem(
+        weekDay:
+            DateFormat('EEE').format(date), // Format for abbreviated weekday
+        date: DateFormat('dd').format(date), // Format for day of the month
+        hours: hours,
+      ),
+    );
+  }
+
+  return dateItems;
+}
+
+List<String> generateTimeSlots() {
+  final timeSlots = <String>[];
+  var startTime = DateTime(2024, 1, 1, 10); // Starting at 10:00 AM
+  final endTime = DateTime(2024, 1, 1, 17); // Ending at 5:00 PM
+
+  while (startTime.isBefore(endTime)) {
+    final formattedTime = formatTime(startTime);
+    timeSlots.add(formattedTime);
+    startTime = startTime.add(const Duration(minutes: 30));
+  }
+
+  return timeSlots;
+}
+
+String formatTime(DateTime time) {
+  return "${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}";
+}
+
+// List<DateItem> generateDateItemsForCurrentMonth() {
+//   final today = DateTime.now();
+//   final totalDaysInMonth = DateTime(today.year, today.month + 1, 0).day;
+//   final dateItems = <DateItem>[];
+//
+//   for (var i = today.day; i <= totalDaysInMonth; i++) {
+//     final currentDate = DateTime(today.year, today.month, i);
+//     final dayString = i.toString();
+//
+//     // Weekdays are represented by numbers in DateTime class, so we need to convert them to strings.
+//     final weekdays = <String>['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+//     final weekdayString = weekdays[currentDate.weekday -
+//         1]; // Subtract 1 because weekday starts from 1 (Monday)
+//
+//     dateItems.add(DateItem(date: dayString, weekDay: weekdayString));
+//   }
+//
+//   return dateItems;
+// }
 
 List<ProductColorModel> generateProductColors(int count) {
   final random = Random();

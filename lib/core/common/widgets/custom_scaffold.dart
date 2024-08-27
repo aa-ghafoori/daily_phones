@@ -2,6 +2,7 @@ import 'package:daily_phones/core/common/widgets/custom_app_bar.dart';
 import 'package:daily_phones/core/common/widgets/custom_bottom_navigation_bar.dart';
 import 'package:daily_phones/core/common/widgets/custom_drawer.dart';
 import 'package:daily_phones/core/common/widgets/footer.dart';
+import 'package:daily_phones/core/res/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,7 +21,9 @@ class CustomScaffold extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(),
       drawer: const CustomDrawer(),
-      endDrawer: const Drawer(),
+      endDrawer: Drawer(
+        backgroundColor: context.colorScheme.surface,
+      ),
       bottomNavigationBar: const CustomBottomNavigationBar(),
       body: SafeArea(
         child: SingleChildScrollView(

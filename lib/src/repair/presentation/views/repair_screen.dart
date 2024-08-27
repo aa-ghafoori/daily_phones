@@ -2,6 +2,7 @@ import 'package:daily_phones/core/common/widgets/widgets.dart';
 import 'package:daily_phones/core/res/extensions.dart';
 import 'package:daily_phones/src/repair/domain/entities/entities.dart';
 import 'package:daily_phones/src/repair/presentation/bloc/repair_bloc.dart';
+import 'package:daily_phones/src/repair/presentation/widgets/product_details.dart';
 import 'package:daily_phones/src/repair/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,12 +53,12 @@ class _RepairScreenState extends State<RepairScreen> {
         body: Container(
           color: context.colorScheme.surface,
           margin: EdgeInsets.only(top: 30.h),
-          padding: EdgeInsets.symmetric(horizontal: 15.w),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Column(
             children: [
               const WhiteSpace(height: 40),
               const CustomStepper(activeStep: 1),
-              _ProductDetails(product: product),
+              InfoBar(child: ProductDetails(product: product)),
               const WhiteSpace(height: 40),
               const Description(text1: 'Selecteer', text2: 'kleur'),
               const WhiteSpace(height: 20),
@@ -72,41 +73,6 @@ class _RepairScreenState extends State<RepairScreen> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _ProductDetails extends StatelessWidget {
-  const _ProductDetails({required this.product});
-
-  final Product product;
-
-  @override
-  Widget build(BuildContext context) {
-    return InfoBar(
-      title: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.asset(product.imageUrl, scale: 15),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '${product.brand.name} ${product.name}',
-                  style: context.textTheme.titleSmall
-                      ?.copyWith(fontWeight: FontWeight.w600),
-                ),
-                Text(
-                  product.type.name,
-                  style: context.textTheme.labelLarge
-                      ?.copyWith(color: context.colorScheme.secondary),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

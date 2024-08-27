@@ -1,7 +1,9 @@
 import 'package:daily_phones/core/common/widgets/widgets.dart';
 import 'package:daily_phones/core/res/extensions.dart';
+import 'package:daily_phones/src/repair/presentation/bloc/repair_bloc.dart';
 import 'package:daily_phones/src/repair/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DevicesScreen extends StatefulWidget {
@@ -31,27 +33,31 @@ class _DevicesScreenState extends State<DevicesScreen> {
         body: Container(
           color: context.colorScheme.surface,
           margin: EdgeInsets.only(top: 30.h),
-          padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 15.w),
-          child: Stack(
+          padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.w),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              const Column(
-                mainAxisSize: MainAxisSize.min,
+              const CustomStepper(activeStep: 0),
+              const WhiteSpace(height: 30),
+              const _InfoBar(),
+              Stack(
                 children: [
-                  CustomStepper(activeStep: 0),
-                  WhiteSpace(height: 30),
-                  _InfoBar(),
-                  WhiteSpace(height: 20),
-                  _BackgroundContainer(),
-                  CustomGrid(),
+                  const Column(
+                    children: [
+                      WhiteSpace(height: 20),
+                      _BackgroundContainer(),
+                      CustomGrid(),
+                    ],
+                  ),
+                  Positioned(
+                    top: 75.h,
+                    left: 0,
+                    right: 0,
+                    child: DeviceSearch(
+                      scrollController: _scrollController,
+                    ),
+                  ),
                 ],
-              ),
-              Positioned(
-                top: 235.h,
-                left: 0,
-                right: 0,
-                child: DeviceSearch(
-                  scrollController: _scrollController,
-                ),
               ),
             ],
           ),
@@ -66,8 +72,34 @@ class _InfoBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.watch<RepairBloc>().state;
     return InfoBar(
-      title: Text.rich(
+      onTap: state is RepairLoadSuccess
+          ? () {
+              if (state.filteredProducts != null) {
+                context
+                    .read<RepairBloc>()
+                    .add(RepairNavigateBackToBrandsPressed());
+              } else if (state.brands != null) {
+                context
+                    .read<RepairBloc>()
+                    .add(RepairNavigateBackToTypesPressed());
+              } else {
+                context.navigator.pop();
+              }
+            }
+          : () {
+              if (state.brands != null) {
+                context
+                    .read<RepairBloc>()
+                    .add(RepairNavigateBackToBrandsPressed());
+              } else {
+                context
+                    .read<RepairBloc>()
+                    .add(RepairNavigateBackToTypesPressed());
+              }
+            },
+      child: Text.rich(
         TextSpan(
           style: context.textTheme.titleMedium
               ?.copyWith(fontWeight: FontWeight.w300),

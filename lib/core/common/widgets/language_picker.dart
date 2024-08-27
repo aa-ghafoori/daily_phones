@@ -1,5 +1,5 @@
 import 'package:daily_phones/core/res/extensions.dart';
-import 'package:daily_phones/core/res/image_resourses.dart';
+import 'package:daily_phones/core/res/image_resources.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -58,19 +58,19 @@ class MenuItems {
 
   static final netherlands = MenuItem(
     text: 'Nederlands',
-    icon: Image.asset(ImageRes.netherlands, scale: 1.5),
+    icon: Image.asset(ImageRes.netherlands, scale: 1.5 * (1 / 1.r)),
   );
   static final english = MenuItem(
     text: 'English (US)',
-    icon: Image.asset(ImageRes.us, scale: 1.5),
+    icon: Image.asset(ImageRes.us, scale: 1.5 * (1 / 1.r)),
   );
   static final deutsch = MenuItem(
     text: 'Deutsch',
-    icon: Image.asset(ImageRes.germany, scale: 1.5),
+    icon: Image.asset(ImageRes.germany, scale: 1.5 * (1 / 1.r)),
   );
   static final french = MenuItem(
     text: 'Français',
-    icon: Image.asset(ImageRes.france, scale: 1.5),
+    icon: Image.asset(ImageRes.france, scale: 1.5 * (1 / 1.r)),
   );
 
   static Widget buildItem(MenuItem item) {

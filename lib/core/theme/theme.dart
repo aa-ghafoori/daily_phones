@@ -33,6 +33,11 @@ class DailyPhonesTheme {
         surface: AppColors.backgroundColor,
       ),
       scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
+      textSelectionTheme: const TextSelectionThemeData(
+        selectionHandleColor: AppColors.secondaryColor,
+        cursorColor: AppColors.tertiaryColor,
+        selectionColor: Color.fromARGB(65, 119, 119, 119),
+      ),
     );
   }
 }

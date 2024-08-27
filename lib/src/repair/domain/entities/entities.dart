@@ -1,6 +1,9 @@
 export 'accessory/accessory.dart';
+export 'booking_form_data.dart';
 export 'brand.dart';
 export 'checkout_item.dart';
+export 'date_item.dart';
+export 'delivery_method.dart';
 export 'grid_item.dart';
 export 'product/product.dart';
 export 'repair/repair.dart';

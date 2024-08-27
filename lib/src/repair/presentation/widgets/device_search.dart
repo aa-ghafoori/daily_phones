@@ -1,5 +1,5 @@
 import 'package:daily_phones/core/res/extensions.dart';
-import 'package:daily_phones/core/res/image_resourses.dart';
+import 'package:daily_phones/core/res/image_resources.dart';
 import 'package:daily_phones/src/repair/domain/entities/entities.dart';
 import 'package:daily_phones/src/repair/presentation/bloc/repair_bloc.dart';
 import 'package:daily_phones/src/repair/presentation/widgets/widgets.dart';
@@ -85,14 +85,14 @@ class _DeviceSearchState extends State<DeviceSearch> {
           ),
           BlocBuilder<RepairBloc, RepairState>(
             buildWhen: (previous, current) =>
-                current is RepairProductsLoadSuccess ||
+                current is RepairLoadSuccess && current.products != null ||
                 current is RepairProductsFilterSuccess,
             builder: (context, state) {
               var products = <Product>[];
-              if (state is RepairProductsLoadSuccess) {
-                products = state.products;
+              if (state is RepairLoadSuccess && state.products != null) {
+                products = state.products!;
               } else if (state is RepairProductsFilterSuccess) {
-                products = state.products;
+                products = state.products!;
               }
               return SearchResultDropdownMenu(
                 isFocused: _isFocused,
@@ -124,7 +124,7 @@ class _DeviceIcon extends StatelessWidget {
         ),
         SvgPicture.asset(
           ImageRes.question,
-          height: 17,
+          height: 17.h,
           colorFilter:
               ColorFilter.mode(context.colorScheme.secondary, BlendMode.srcIn),
         ),

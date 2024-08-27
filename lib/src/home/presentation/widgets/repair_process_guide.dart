@@ -2,7 +2,7 @@
 
 import 'package:daily_phones/core/common/widgets/widgets.dart';
 import 'package:daily_phones/core/res/extensions.dart';
-import 'package:daily_phones/core/res/image_resourses.dart';
+import 'package:daily_phones/core/res/image_resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

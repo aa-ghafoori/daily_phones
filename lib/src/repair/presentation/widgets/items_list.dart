@@ -1,6 +1,6 @@
 import 'package:daily_phones/core/common/widgets/widgets.dart';
 import 'package:daily_phones/core/res/extensions.dart';
-import 'package:daily_phones/core/res/image_resourses.dart';
+import 'package:daily_phones/core/res/image_resources.dart';
 import 'package:daily_phones/src/repair/domain/entities/checkout_item.dart';
 import 'package:daily_phones/src/repair/presentation/bloc/repair_bloc.dart';
 import 'package:flutter/material.dart';
@@ -145,7 +145,7 @@ class _CheckoutItemWidget extends StatelessWidget {
                 style: context.textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w600,
                   color: context.colorScheme.surface,
-                  fontSize: 16,
+                  fontSize: 16.sp,
                 ),
               ),
             ),

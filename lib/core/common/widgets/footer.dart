@@ -1,6 +1,6 @@
 import 'package:daily_phones/core/common/widgets/widgets.dart';
 import 'package:daily_phones/core/res/extensions.dart';
-import 'package:daily_phones/core/res/image_resourses.dart';
+import 'package:daily_phones/core/res/image_resources.dart';
 import 'package:daily_phones/core/res/predefined_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +32,7 @@ class Footer extends StatelessWidget {
   Widget _buildCenterContent(BuildContext context) {
     return Center(
       child: WhiteSpace(
-        width: 0.7.sw,
+        width: 0.8.sw,
         child: Column(
           children: [
             _buildAddressItem(
@@ -56,7 +56,7 @@ class Footer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.asset(ImageRes.dpLogo, scale: 3.7.sp),
+        Image.asset(ImageRes.dpLogo, scale: 3.7 * (1 / 1.h)),
         const WhiteSpace(height: 20),
         Text(
           // ignore: lines_longer_than_80_chars
@@ -178,7 +178,7 @@ class Footer extends StatelessWidget {
           .map(
             (image) => Padding(
               padding: const EdgeInsets.only(right: 10),
-              child: Image.asset(image, scale: 1.7),
+              child: Image.asset(image, scale: 1.7 * (1 / 1.h)),
             ),
           )
           .toList(),

@@ -8,25 +8,27 @@ class ItemCard extends StatelessWidget {
     required this.child,
     this.isSelected = false,
     this.item,
+    this.onTap,
     super.key,
   });
 
   final bool isSelected;
   final Widget child;
   final CheckoutItem? item;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        if (item != null) {
-          if (isSelected) {
-            context.read<RepairBloc>().add(RepairItemRemoved(item!));
-          } else {
-            context.read<RepairBloc>().add(RepairItemAdded(item!));
-          }
-        }
-      },
+      onTap: item != null
+          ? () {
+              if (isSelected) {
+                context.read<RepairBloc>().add(RepairItemRemoved(item!));
+              } else {
+                context.read<RepairBloc>().add(RepairItemAdded(item!));
+              }
+            }
+          : onTap,
       child: AnimatedContainer(
         duration: Durations.medium1,
         decoration: BoxDecoration(
